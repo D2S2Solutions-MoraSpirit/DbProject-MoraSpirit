@@ -1,0 +1,3 @@
+application_student_homepage:
+    path:     /
+    defaults: { _controller: applicationStudentBundle:Default:index }
