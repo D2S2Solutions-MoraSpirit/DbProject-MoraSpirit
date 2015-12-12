@@ -1,0 +1,9 @@
+applicationequipment_homepage:
+    path:     /
+    defaults: { _controller: applicationequipmentBundle:Default:index }
+applicationequipment_addEquip:
+    path:     /add
+    defaults: { _controller: applicationequipmentBundle:form:saveEquipment }
+applicationequipment_addEquipForm:
+    path:     /addEquip
+    defaults: { _controller: applicationequipmentBundle:form:add }

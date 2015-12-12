@@ -10,6 +10,7 @@ class DefaultController extends Controller
     {
         $student=new Entity\Student();
         $student->getId();
+        echo $student->getId();
         return $this->render('applicationStudentBundle:Default:index.html.twig');
     }
 }
