@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - Moraspirit@localhost" uuid="f5341c26-3728-4168-88cd-c1956013ba9f">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>moraspirit.*</schema-pattern>
+      <default-schemas>moraspirit.*</default-schemas>
+    </data-source>
+  </component>
+</project>
