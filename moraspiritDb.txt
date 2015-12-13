@@ -1,0 +1,180 @@
+DROP DATABASE Moraspirit;
+CREATE DATABASE Moraspirit;
+USE Moraspirit;
+
+CREATE TABLE Student(
+	student_id varchar(10),
+	name varchar(30) NOT NULL,
+	batch varchar(10),
+	faculty varchar(20) NOT NULL,
+	address varchar(100),
+	NIC char(10) UNIQUE,
+	PRIMARY KEY(student_id)
+);
+
+CREATE TABLE StudentContact(
+	student_id varchar(10),
+	contact_no varchar(15),
+	PRIMARY KEY(student_id,contact_no),
+	FOREIGN KEY f1(student_id) REFERENCES Student(student_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CHECK (contact_no LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
+);
+
+
+
+CREATE TABLE Sport(
+	sport_id varchar(10),
+	name varchar(15) NOT NULL,
+	PRIMARY KEY(sport_id)
+);
+
+
+CREATE TABLE Coach(
+	sport_id varchar(10) NOT NULL,
+	coach_id varchar(10),
+	coachName varchar(30),
+	PRIMARY KEY(coach_id),
+	FOREIGN KEY f1(sport_id) REFERENCES Sport(sport_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE SportInvolve(
+	student_id varchar(10),
+	sport_id varchar(10),
+	isActive boolean DEFAULT TRUE,
+	role ENUM('Captain', 'V-Captain', 'Player', 'Other') NOT NULL,
+	PRIMARY KEY(sport_id,student_id),
+	FOREIGN KEY f1(sport_id) REFERENCES Sport(sport_id),
+	FOREIGN KEY f2(student_id) REFERENCES Student(student_id)
+);
+
+
+CREATE TABLE Achievement(
+	sport_id varchar(10),
+	achivement_id varchar(10),
+	description varchar(100) NOT NULL,
+	achievedDate date,
+	PRIMARY KEY(sport_id,achivement_id),
+	FOREIGN KEY f1(sport_id) REFERENCES Sport(sport_id)	ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE StudentAchievement(
+	sport_id varchar(10),
+	achivement_id varchar(10),
+	student_id varchar(10),
+	PRIMARY KEY(sport_id,achivement_id,student_id),
+	FOREIGN KEY f1(sport_id,achivement_id) REFERENCES Achievement(sport_id,achivement_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY f2(student_id) REFERENCES Student(student_id) ON DELETE CASCADE ON UPDATE CASCADE	
+);
+
+
+
+CREATE TABLE Supplier(
+	supplierId varchar(10),
+	name varchar(30) NOT NULL,
+	contact_no char(10),
+	NIC char(10) UNIQUE,
+	PRIMARY KEY(supplierId),
+	CHECK (contact_no LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
+);
+
+
+CREATE TABLE Resource(
+	resource_id varchar(10),
+	supplierId varchar(10),
+	PRIMARY KEY(resource_id),
+	FOREIGN KEY f1(supplierId) REFERENCES Supplier(supplierId)
+);
+
+
+CREATE TABLE Location(
+	resource_id varchar(10),
+	locationName varchar(15) NOT NULL,
+	sessionLimit int,
+	locationType varchar(10),
+	PRIMARY KEY(resource_id),
+	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Equipment(
+	resource_id varchar(10),
+	equipmentName varchar(15) NOT NULL,
+	equipmentType varchar(10),
+	qty int DEFAULT 0,
+	boughtDate date,
+	PRIMARY KEY(resource_id),
+	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE PracticeSchedule(
+	sport_id varchar(10),
+	resource_id varchar(10),
+	practiceDate date,
+	practiceTime time,
+	PRIMARY KEY(sport_id,resource_id,practiceDate,practiceTime),
+	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id),
+	FOREIGN KEY f2(sport_id) REFERENCES Sport(sport_id) ON DELETE CASCADE ON UPDATE CASCADE
+	
+	
+);
+
+
+CREATE TABLE Damage(
+	damageId varchar(10),
+	resource_id varchar(10),
+	description varchar(70) NOT NULL,
+	damageDate date,
+	PRIMARY KEY(damageId),
+	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id) ON DELETE CASCADE ON UPDATE CASCADE
+	
+);
+
+
+CREATE TABLE Request(
+	request_id varchar(10),
+	student_id varchar(10),
+	requestDate date,
+	PRIMARY KEY(request_id),
+	FOREIGN KEY f1(student_id) REFERENCES Student(student_id) ON DELETE CASCADE ON UPDATE CASCADE
+	
+);
+
+
+CREATE TABLE RequestResource(
+	request_id varchar(10),
+	resource_id varchar(10),
+	itemBorrowingDate date,
+	issueDate date,
+	returnDate date,
+	status boolean DEFAULT FALSE,
+	PRIMARY KEY(request_id,resource_id,itemBorrowingDate),
+	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id),
+	FOREIGN KEY f2(request_id) REFERENCES Request(request_id)  ON DELETE CASCADE ON UPDATE CASCADE
+	
+);
+
+
+CREATE TABLE RequestResourceDamage(
+	request_id varchar(10),
+	resource_id varchar(10),
+	itemBorrowingDate date,
+	description varchar(80) NOT NULL,
+	PRIMARY KEY(request_id,resource_id,itemBorrowingDate),
+	FOREIGN KEY f2(request_id,resource_id,itemBorrowingDate) REFERENCES RequestResource(request_id,resource_id,itemBorrowingDate)  ON DELETE CASCADE ON UPDATE CASCADE
+	
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
