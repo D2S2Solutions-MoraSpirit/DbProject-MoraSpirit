@@ -54,7 +54,7 @@ class StudentDBaccess
 
             $student=new Student();
 
-            if ($result->num_rows > 0) {
+            if ($result->mysql_num_rows($result) > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
                     $student->setName($row["name"]);
