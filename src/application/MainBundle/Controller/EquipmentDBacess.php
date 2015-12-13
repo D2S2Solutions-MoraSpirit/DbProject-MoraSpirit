@@ -9,7 +9,8 @@ namespace application\MainBundle\Controller;
 use mysqli;
 use application\MainBundle\Controller as cont;
 use  application\MainBundle\Resources\Entity\equipment;
-class DBacess{
+class EquipmentDBacess{
+
     public static function saveToEquipment(equipment $eqpm)
     {
         $conn = cont\connection::getConnectionObject();

@@ -16,7 +16,7 @@ class formController extends Controller
         $eqpm = new Entity\equipment();
         $eqpm->setResource_id($_POST["rid"]);
         $eqpm->setSupplier_id($_POST["sid"]);
-        cont\DBacess::saveToEquipment($eqpm);
+        cont\EquipmentDBacess::saveToEquipment($eqpm);
 
 
 
