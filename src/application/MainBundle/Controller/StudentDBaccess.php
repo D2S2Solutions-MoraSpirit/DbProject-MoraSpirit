@@ -39,4 +39,9 @@ class StudentDBaccess
             echo "Error: " . $sql . "<br>" ;
         }
     }
+
+
+    public static function addSportInvolve(){
+
+    }
 }

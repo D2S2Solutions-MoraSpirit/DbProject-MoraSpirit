@@ -5,3 +5,12 @@ application_student_homepage:
 application_student_insertpage:
     path:     /AddStudentControl
     defaults: { _controller: applicationStudentBundle:Student:addStudent }
+
+application_student_sport_detail_insertpage:
+    path:     /addStudentspd
+    defaults: { _controller: applicationStudentBundle:SportInvolve:index }
+
+
+application_sport_involve_controlpage:
+    path:     /AddStudentSPDControl
+    defaults: { _controller: applicationStudentBundle:SportInvolve:addSportInvolve}
