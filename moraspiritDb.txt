@@ -97,16 +97,25 @@ CREATE TABLE Location(
 	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE EquipmentType(
+	type_id int AUTO INCREMENT,
+	type varchar(20) NOT NULL,
+	PRIMARY KEY(type_id)
+	
+);
+
 
 CREATE TABLE Equipment(
 	resource_id varchar(10),
 	equipmentName varchar(15) NOT NULL,
-	equipmentType varchar(10),
+	type_id int,
 	qty int DEFAULT 0,
 	boughtDate date,
 	PRIMARY KEY(resource_id),
-	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY f1(type_id) REFERENCES EquipmentType(type_id) ON DELETE CASCADE ON UPDATE CASCADE,
 );
+
 
 CREATE TABLE PracticeSchedule(
 	sport_id varchar(10),
