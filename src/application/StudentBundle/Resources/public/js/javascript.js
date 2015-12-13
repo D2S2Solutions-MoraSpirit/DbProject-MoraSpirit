@@ -3,6 +3,8 @@
  */
 
 
-function getStudentDetails(){
-
+function getStudentDetails(event){
+    if(event.keyCode()==13){
+        alert("tjos os pl");
+    }
 }

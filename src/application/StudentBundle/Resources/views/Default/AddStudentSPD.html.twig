@@ -42,18 +42,31 @@ table.form label.email { border-bottom: 1px dotted #000000; }
 /* ==================== Form style sheet END ==================== */
 
 </style>
-    <script type="text/css" src="{{ asset('applicationstudentBundle/Resources/public/js/javascript.js') }}"></script>
+    <script type="text/css" src="{{ asset('bundles/applicationstudent/js/jquery.js') }}"></script>
+    <script type="text/css" src="{{ asset('bundles/applicationstudent/js/javascript.js') }}"></script>
+    <script type="javascript">
+
+        $(document).ready(function() {
+            $("input").onkeydown(function(event){
+                if(event.keyCode == 13) {
+                    event.preventDefault();
+                    alert("sd");
+                    return false;
+                }
+            });
+        });
+    </script>
 </head>
 
 
 <body>
     <div>
-	<form action="AddStudentSPDControl" method="get">
+	<form action="" method="get">
         <h1>Add Sports involving details of students</h1>
 		<table class="form" id="table1">
 			<tr>
 				<th><label for="id"><strong>Student ID:</strong></label></th>
-				<td><input class="inp-text" name="student_id" id="studentID" type="text" size="30" onkeypress=""/></td>
+				<td><input class="inp-text" name="student_id" id="studentID" type="text" size="30" onkeypress="getStudentDetails(event)"/></td>
 
 			</tr>
 
