@@ -47,5 +47,6 @@ final class connection
     public function getConnection(){
         return $this->con;
     }
+
 }
 ?>
