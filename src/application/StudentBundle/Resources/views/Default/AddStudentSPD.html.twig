@@ -42,6 +42,7 @@ table.form label.email { border-bottom: 1px dotted #000000; }
 /* ==================== Form style sheet END ==================== */
 
 </style>
+    <script type="text/css" src="{{ asset('applicationstudentBundle/Resources/public/js/javascript.js') }}"></script>
 </head>
 
 
@@ -52,7 +53,8 @@ table.form label.email { border-bottom: 1px dotted #000000; }
 		<table class="form" id="table1">
 			<tr>
 				<th><label for="id"><strong>Student ID:</strong></label></th>
-				<td><input class="inp-text" name="student_id" id="studentID" type="text" size="30" /></td>
+				<td><input class="inp-text" name="student_id" id="studentID" type="text" size="30" onkeypress=""/></td>
+
 			</tr>
 
             <tr>
@@ -134,9 +136,7 @@ table.form label.email { border-bottom: 1px dotted #000000; }
         table.deleteRow(a);
     }
 
-    function loadStudentDetails(){
-        
-    }
+
 
 </script>
 
