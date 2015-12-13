@@ -7,3 +7,4 @@ applicationequipment_addEquip:
 applicationequipment_addEquipForm:
     path:     /addEquip
     defaults: { _controller: applicationequipmentBundle:form:add }
+
