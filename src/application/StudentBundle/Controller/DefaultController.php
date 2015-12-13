@@ -8,9 +8,9 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $student=new Entity\Student();
-        $student->getId();
-        echo $student->getId();
-        return $this->render('applicationStudentBundle:Default:index.html.twig');
+        return $this->render('applicationStudentBundle:Default:AddStudent.html.twig');
     }
+
+
+
 }

@@ -1,4 +1,7 @@
 application_student_homepage:
-    path:     /
+    path:     /addStudent
     defaults: { _controller: applicationStudentBundle:Default:index }
 
+application_student_insertpage:
+    path:     /AddStudentControl
+    defaults: { _controller: applicationStudentBundle:Student:addStudent }
