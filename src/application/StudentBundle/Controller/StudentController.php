@@ -21,6 +21,10 @@ class StudentController extends Controller
         return $this->render('applicationMainBundle:Default:index.html.twig');
     }
 
+    public function getStudentDetails($student_id){
+        return cont\StudentDBaccess::getStudentDetails($student_id);
+    }
+
 
 
 
