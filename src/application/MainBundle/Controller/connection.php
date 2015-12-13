@@ -30,7 +30,7 @@ final class connection
     {
         $servername = "localhost";
         $username = "root";
-        $password = "12345";
+        $password = null;
         $dbname = "moraspirit";
 
         // Create connection
@@ -47,5 +47,6 @@ final class connection
     public function getConnection(){
         return $this->con;
     }
+
 }
 ?>

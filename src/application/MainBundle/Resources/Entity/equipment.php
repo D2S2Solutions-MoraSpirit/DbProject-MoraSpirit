@@ -8,20 +8,79 @@
 namespace application\MainBundle\Resources\Entity;
 class equipment{
     private $resource_id;
-    private $supplier_id;
 
-    public function setResource_id($r_id){
-        $this->resource_id =$r_id;
+    private $type_id;
+    private $quantity;
+    private $date;
+
+    /**
+     * @return mixed
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
-    public function setSupplier_id($s_id){
-        $this->supplier_id =$s_id;
+
+    /**
+     * @param mixed $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
     }
-    public function getResource_id(){
+
+    /**
+     * @return mixed
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param mixed $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeId()
+    {
+        return $this->type_id;
+    }
+
+    /**
+     * @param mixed $type_id
+     */
+    public function setTypeId($type_id)
+    {
+        $this->type_id = $type_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResourceId()
+    {
         return $this->resource_id;
     }
-    public function getSupplier_id(){
-        return $this->supplier_id;
+
+    /**
+     * @param mixed $resource_id
+     */
+    public function setResourceId($resource_id)
+    {
+        $this->resource_id = $resource_id;
     }
+
+    /**
+     * @return mixed
+     */
+
 
 }
 ?>

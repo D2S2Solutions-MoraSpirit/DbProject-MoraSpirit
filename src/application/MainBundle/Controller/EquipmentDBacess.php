@@ -6,19 +6,19 @@
  * Time: 5:23 AM
  */
 namespace application\MainBundle\Controller;
+use application\MainBundle\Resources\Entity\resource;
 use mysqli;
 use application\MainBundle\Controller as cont;
 use  application\MainBundle\Resources\Entity\equipment;
 class EquipmentDBacess{
 
-    public static function saveToEquipment(equipment $eqpm)
+    public static function saveToEquipment(equipment $eqpm,resource $rs)
     {
         $conn = cont\connection::getConnectionObject();
         $con =$conn->getConnection();
-        $r_id = $eqpm->getResource_id();
-        $s_id = $eqpm->getSupplier_id();
-        echo $r_id ."<br>";
-        echo $s_id  ."<br>";
+        $r_id = $eqpm->getResourceID();
+        $s_id = $rs->getSupplierID();
+
         $sql = "INSERT INTO resource VALUES ( '$r_id'  , '$s_id' ) ";
 
 
@@ -28,7 +28,43 @@ class EquipmentDBacess{
         } else {
             echo "Error: " . $sql . "<br>" ;
         }
+        $t_name=$eqpm->getTypeId();
+        $sql2="select type_id from EquipmentType where '$t_name'=equipmentName";
+        $result=mysqli_query($con,$sql2);
+        $row=mysqli_fetch_row($result);
+        $quantity=$eqpm->getQuantity();
+        $date= $eqpm->getDate();
+        $mysqltime = date('Y-m-d', strtotime(str_replace('-','/', $date)));
 
+        $newsql = "insert into equipment Values('$r_id',$row[0],$quantity,$mysqltime)";
+        if ( $con->query($newsql)==TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" ;
+        }
+
+
+    }
+    public static function getLastResourceID()
+    {
+        $conn = cont\connection::getConnectionObject();
+        $con =$conn->getConnection();
+        $sql="SELECT max(resource_id) FROM resource";
+
+        if ($result=mysqli_query($con,$sql))
+        {
+            $row=mysqli_fetch_row($result);
+            if($row[0]==null){
+               $r = 0;
+
+            }
+            else{
+                $r= $row[0];
+            }
+
+            mysqli_free_result($result);
+        }
+        return $r+1;
 
     }
 }
