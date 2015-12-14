@@ -22,5 +22,16 @@ $(document).ready(function(){
         }
     });
 
+    $("#but").click(function(){
+        alert("sdf");
+        $.ajax({
+            url:"/getStudentDetail",
+            type: "POST",
+            data: { "tag_id" : "sd" },
+            success: function(data) {
+                alert(data);
+            }
+        });
+    });
 
 });

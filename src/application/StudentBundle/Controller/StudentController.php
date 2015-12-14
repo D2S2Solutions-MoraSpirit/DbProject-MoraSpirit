@@ -4,6 +4,7 @@ namespace application\StudentBundle\Controller;
 use application\MainBundle\Resources\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use application\MainBundle\Controller as cont;
+use Symfony\Component\HttpFoundation\Response;
 
 class StudentController extends Controller
 {
@@ -21,8 +22,13 @@ class StudentController extends Controller
         return $this->render('applicationMainBundle:Default:index.html.twig');
     }
 
-    public function getStudentDetails($student_id){
-        return cont\StudentDBaccess::getStudentDetails($student_id);
+    public function getStudentDetailsAction(){
+        $student_id="8";
+        $data=cont\StudentDBaccess::getStudentDetails($student_id);
+        //$data=new Entity\Student();
+        //$faculty=$data->getFaculty();
+        return new Response($data);
+
     }
 
 
