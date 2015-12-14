@@ -4,6 +4,7 @@ namespace application\StudentBundle\Controller;
 use application\MainBundle\Resources\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use application\MainBundle\Controller as cont;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class StudentController extends Controller
@@ -23,11 +24,9 @@ class StudentController extends Controller
     }
 
     public function getStudentDetailsAction(){
-        $student_id="S-0001";
+        $student_id=$_GET["student_id"];
         $student=cont\StudentDBaccess::getStudentDetails($student_id);
-        //$data=new Entity\Student();
-        //$faculty=$data->getFaculty();
-        return new Response($student->getFaculty());
+        return new JsonResponse(['name'=>$student->getName(),'faculty'=>$student->getFaculty(),'batch'=>$student->getBatch()]);
 
     }
 
