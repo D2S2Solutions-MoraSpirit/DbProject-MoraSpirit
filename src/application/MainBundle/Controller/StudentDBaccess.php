@@ -47,35 +47,33 @@ class StudentDBaccess
             $conn=connection::getConnectionObject();
             $con =$conn->getConnection();
 
+
             $stm=$con->stmt_init();
 
             $stm->prepare("SELECT name,batch,faculty FROM Student where student_id=?");
             $stm->bind_param("s",$student_id);
-           // $result = mysqli_query($con,$sql);
-
-
+//           // $result = mysqli_query($con,$sql);
+//
+//
             $stm->execute();
             $result = $stm->get_result();
-
+//
             $student=new Student();
-
-            while ($row = $result->fetch_array(MYSQLI_NUM))
+//
+            while ($row = $result->fetch_assoc())
             {
                 $student->setName($row["name"]);
                 $student->setFaculty($row["faculty"]);
                 $student->setBatch($row["batch"]);;
             }
 
-
-            return $student_id;
+            return $student;
         }catch (Exception $e){
             return "error";
         }finally{
-            $conn->close();
+            //$conn->close();
             $stm->close();
         }
-
-
 
     }
 

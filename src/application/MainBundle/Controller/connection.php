@@ -30,7 +30,7 @@ final class connection
     {
         $servername = "localhost";
         $username = "root";
-        $password = null;
+        $password = "12345";
         $dbname = "moraspirit";
 
         // Create connection
@@ -40,7 +40,7 @@ final class connection
             die("Connection failed: " . $conn->connect_error);
         }
         else{
-            echo "connection created <br>";
+            //echo "connection created <br>";
             $this->con=$conn;
         }
     }

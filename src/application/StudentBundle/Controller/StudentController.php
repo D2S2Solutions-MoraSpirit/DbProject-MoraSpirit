@@ -23,11 +23,11 @@ class StudentController extends Controller
     }
 
     public function getStudentDetailsAction(){
-        $student_id="8";
-        $data=cont\StudentDBaccess::getStudentDetails($student_id);
+        $student_id="S-0001";
+        $student=cont\StudentDBaccess::getStudentDetails($student_id);
         //$data=new Entity\Student();
         //$faculty=$data->getFaculty();
-        return new Response($data);
+        return new Response($student->getFaculty());
 
     }
 
