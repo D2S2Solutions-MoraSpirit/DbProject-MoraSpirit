@@ -40,7 +40,7 @@ final class connection
             die("Connection failed: " . $conn->connect_error);
         }
         else{
-            echo "connection created <br>";
+            //echo "connection created <br>";
             $this->con=$conn;
         }
     }

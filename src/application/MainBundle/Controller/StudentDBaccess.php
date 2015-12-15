@@ -43,35 +43,37 @@ class StudentDBaccess
     }
 
     public static function getStudentDetails($student_id){
-
         try{
             $conn=connection::getConnectionObject();
             $con =$conn->getConnection();
 
-            $sql = $con->prepare("SELECT name,batch,faculty FROM Student where studet_id=?");
-            $sql->bind_param("s",$student_id);
-            $result = $sql->execute();
 
+            $stm=$con->stmt_init();
+
+            $stm->prepare("SELECT name,batch,faculty FROM Student where student_id=?");
+            $stm->bind_param("s",$student_id);
+//           // $result = mysqli_query($con,$sql);
+//
+//
+            $stm->execute();
+            $result = $stm->get_result();
+//
             $student=new Student();
-
-            if ($result->mysql_num_rows($result) > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    $student->setName($row["name"]);
-                    $student->setFaculty($row["faculty"]);
-                    $student->setBatch($row["batch"]);;
-                }
-            } else {
-                echo "0 results";
+//
+            while ($row = $result->fetch_assoc())
+            {
+                $student->setName($row["name"]);
+                $student->setFaculty($row["faculty"]);
+                $student->setBatch($row["batch"]);;
             }
+
             return $student;
-        }catch (Exception $exc){
-            throw $exc;
+        }catch (Exception $e){
+            return "error";
         }finally{
-            $conn->close();
+            //$conn->close();
+            $stm->close();
         }
-
-
 
     }
 

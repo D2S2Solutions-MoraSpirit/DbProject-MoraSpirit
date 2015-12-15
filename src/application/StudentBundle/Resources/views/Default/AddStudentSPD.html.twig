@@ -4,69 +4,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>HTML Form</title>
 
-<style type="text/css">
 
-* { margin: 0; padding: 0; }
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/applicationstudent/css/studentStyle.css') }}"/>
+    <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/javascript.js') }}"></script>
 
-html { height: 100%; font-size: 62.5% }
-
-body { height: 100%; background-color: #FFFFFF; font: 1.2em Verdana, Arial, Helvetica, sans-serif; }
-
-
-/* ==================== Form style sheet ==================== */
-
-table.form { margin: 25px 0 0 29px; border-collapse: collapse; }
-
-table.form th, table.form td { padding: 10px 5px; text-align: left; font-weight: normal; }
-
-table.form label { font-family: Verdana, Arial, Helvetica, sans-serif; color: #181818; margin-right: 12px; }
-table.form td span { font-size: 0.9em; color: #181818; margin-left: 8px; }
-table.form td samp { font: 1em Verdana, Arial, Helvetica, sans-serif; color: #000000; }
-
-table.form input { width: 340px; }
-table.form input.answer { width: 53px; }
-table.form textarea { width: 400px; height: 160px; }
-
-table.form input.inp-text, table.form input.answer, table.form textarea
-{ border: 1px solid #909090; padding: 2px; }
-
-table.form th.message-up { vertical-align: top !important; }
-
-
-
-table.form td.submit-button-right { text-align: right !important; }
-table.form input.submit-text { font: 1.4em Georgia, "Times New Roman", Times, serif; letter-spacing: 1px; width: auto; }
-
-table.form label.email { border-bottom: 1px dotted #000000; }
-
-/* ==================== Form style sheet END ==================== */
-
-</style>
-    <script type="text/css" src="{{ asset('bundles/applicationstudent/js/jquery.js') }}"></script>
-    <script type="text/css" src="{{ asset('bundles/applicationstudent/js/javascript.js') }}"></script>
     <script type="javascript">
 
-        $(document).ready(function() {
-            $("input").onkeydown(function(event){
-                if(event.keyCode == 13) {
-                    event.preventDefault();
-                    alert("sd");
-                    return false;
-                }
-            });
-        });
+        jQuery.noConflict();
+
+
     </script>
 </head>
 
 
 <body>
     <div>
-	<form action="" method="get">
+	<form  id="formid" onsubmit="return false">
         <h1>Add Sports involving details of students</h1>
 		<table class="form" id="table1">
 			<tr>
 				<th><label for="id"><strong>Student ID:</strong></label></th>
-				<td><input class="inp-text" name="student_id" id="studentID" type="text" size="30" onkeypress="getStudentDetails(event)"/></td>
+				<td><input class="inp-text" name="student_id" id="studentID" type="text" size="30" onkeypress="getStudentDetails(event)" title="Press enter to load details"/></td>
 
 			</tr>
 
@@ -91,8 +50,10 @@ table.form label.email { border-bottom: 1px dotted #000000; }
                     <select name="sport">
                         <option value="cricket">cricket</option>
                         <option value="football">football</option>
-                        
+                        <option value="football">football</option>
+
                     </select>
+
                 </td>
 			</tr>
             
@@ -132,7 +93,7 @@ table.form label.email { border-bottom: 1px dotted #000000; }
 <script>
     var a=1;
     function addField() {
-        
+
         var table = document.getElementById('table1');
         var newRow=table.insertRow(2+a);
         var newCell = newRow.insertCell(0);
@@ -143,7 +104,7 @@ table.form label.email { border-bottom: 1px dotted #000000; }
         newCell3.innerHTML='<td><button type="button" name="delButton" id="addButton'+a+'" onclick="deleteField()" size="30">Del</button></td>';
         a=a+1;
     }
-    
+
     function deleteField(){
         var table = document.getElementById('table1');
         table.deleteRow(a);

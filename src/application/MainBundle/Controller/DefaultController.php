@@ -9,7 +9,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $student=new Entity\Student();
+        //$student=new Entity\Student();
         return $this->render('applicationMainBundle:Default:index.html.twig');
     }
 }
