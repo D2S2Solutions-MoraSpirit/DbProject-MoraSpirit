@@ -30,7 +30,9 @@ final class connection
     {
         $servername = "localhost";
         $username = "root";
-        $password = null;
+
+        $password = "diluksha";
+
         $dbname = "moraspirit";
 
         // Create connection
