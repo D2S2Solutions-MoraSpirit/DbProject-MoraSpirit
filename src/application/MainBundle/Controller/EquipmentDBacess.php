@@ -100,7 +100,7 @@ class EquipmentDBacess{
 
             $stm=$con->stmt_init();
 
-            $stm->prepare("SELECT equipmentName FROM EquipmentType");
+            $stm->prepare("SELECT equipmentName,id FROM EquipmentType");
 //           // $result = mysqli_query($con,$sql);
 //
 //

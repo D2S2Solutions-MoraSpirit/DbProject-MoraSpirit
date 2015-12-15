@@ -68,7 +68,7 @@ CREATE TABLE StudentAchievement(
 	FOREIGN KEY f1(sport_id,achivement_id) REFERENCES Achievement(sport_id,achivement_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY f2(student_id) REFERENCES Student(student_id) ON DELETE CASCADE ON UPDATE CASCADE	
 );
-
+ 
 
 
 CREATE TABLE Supplier(
@@ -98,16 +98,11 @@ CREATE TABLE Location(
 	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE EquipmentType(
-	type_id int AUTO_INCREMENT,
-	equipmentName varchar(20) NOT NULL UNIQUE,
-	PRIMARY KEY(type_id)
-);
 
 
 CREATE TABLE Equipment(
 	resource_id varchar(10),
-	type_id int,
+	equipmentName varchar(20) NOT NULL UNIQUE,
 	qty int DEFAULT 0,
 	boughtDate date,
 	PRIMARY KEY(resource_id),
