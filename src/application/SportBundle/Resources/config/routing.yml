@@ -4,8 +4,8 @@ sport_homepage:
 
 sport-add:
     path: /sportadd
-    defaults: {_controller: SportBundle:Default:addSport}
+    defaults: {_controller: SportBundle:AddSportForm:addSport}
 
 sport-add-database:
     path: /sport/save
-    defaults: {_controller: SportBundle:Default:saveSport}
+    defaults: {_controller: SportBundle:AddSportForm:saveSport}
