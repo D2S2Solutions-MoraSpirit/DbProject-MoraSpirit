@@ -1,3 +1,7 @@
 sport_homepage:
-    path:     /test
+    path:     /sport
     defaults: { _controller: SportBundle:Default:index }
+
+sport-add:
+    path: /sportadd
+    defaults: {_controller: SportBundle:Default:addSport}

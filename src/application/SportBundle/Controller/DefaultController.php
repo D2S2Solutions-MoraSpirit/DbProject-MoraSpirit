@@ -10,4 +10,8 @@ class DefaultController extends Controller
     {
         return $this->render('SportBundle:Default:index.html.twig');
     }
+
+    public function addSportAction(){
+        return $this->render('SportBundle:AddSport:addSport.html.twig');
+    }
 }
