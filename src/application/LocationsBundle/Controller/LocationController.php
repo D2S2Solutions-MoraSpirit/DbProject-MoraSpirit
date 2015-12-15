@@ -10,13 +10,16 @@ namespace application\LocationsBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use application\MainBundle\Resources\Entity;
 use application\MainBundle\Controller as cont;
 use application\MainBundle\Resources\Entity as en;
-
 class LocationController extends Controller
 {
-    public function saveEquipmentAction(){
+    public function addAction(){
+        $r=cont\LocationDBaccess::getLastResourceID();
+        return $this->render('applicationLocationsBundle:Default:addlocation.html.twig',array('s' => $r));
+    }
+
+    public function saveLocationAction(){
 
         $eqpm = new en\Location();
         $rs = new en\resource();
@@ -29,16 +32,12 @@ class LocationController extends Controller
         $rs->setResourceId($_POST["resource_id"]);
         $rs->setSupplierId($_POST["supplier_id"]);
 
+        cont\ResourceDBaccess::addResource($rs);
         cont\LocationDBaccess::addLocation($eqpm);
+
         return $this->render('applicationLocationsBundle:Default:index.html.twig');
 
-
-
-
     }
 
-    public function addAction(){
-        $r=cont\LocationDBaccess::getLastResourceID();
-        return $this->render('applicationLocationsBundle:Default:addlocation.html.twig',array('s' => $r));
-    }
+
 }

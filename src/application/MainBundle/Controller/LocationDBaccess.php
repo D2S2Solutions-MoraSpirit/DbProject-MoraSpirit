@@ -35,7 +35,7 @@ class LocationDBaccess
 
     public static function addLocation(Location $location)
     {
-        $conn = connection::getConnectionObject;
+        $conn = connection::getConnectionObject();
         $con = $conn->getConnection();
 
         $sql = $con->prepare("INSERT INTO location VALUES (?,?,?,?)");
@@ -45,13 +45,13 @@ class LocationDBaccess
         $seslim =$location->getSession();
         $loctype=$location->getType();
 
-        $sql->bund_param("ssss",$resid,$locname,$seslim,$loctype);
+        $sql->bind_param("ssss",$resid,$locname,$seslim,$loctype);
 
 
         if ( $sql->execute()==TRUE) {
-            echo "New record created successfully";
+            echo "New record created successfully in LOCATION table";
         } else {
-            echo "Error: " . $sql . "<br>" ;
+            echo "Error in location adding: " . $sql . "<br>" ;
         }
 
 
