@@ -21,7 +21,7 @@ class EquipmentDBacess{
         $con =$conn->getConnection();
         $r_id = $eqpm->getResourceID();
         $s_id = $rs->getSupplierID();
-
+        $sql = $con->prepare("INSERT INTO equipment VALUES (?,? )");
         $sql = "INSERT INTO resource VALUES ( '$r_id'  , '$s_id' ) ";
 
 
@@ -128,4 +128,5 @@ class EquipmentDBacess{
 
         }
     }
+
 }

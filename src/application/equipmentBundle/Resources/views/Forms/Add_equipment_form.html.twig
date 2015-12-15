@@ -11,15 +11,16 @@ Supplier ID:<br>
 Quantity:<br>
 <input type="number" name="quantity" min="1" max="1000" >
 <br>
-resource_id:<br>
-<input type="text" name="resource_id" value={{ s }} readonly >
-<br>
-Equipment Type:<br>
-<select id="select" name="equipment_type" style="width: 115px;">
-<option value="Cricket Ball" title="Cricket Ball">Cricket Ball</option>
-<option value="Cricket Bat" title="Cricket Bat">Cricket Bat</option>
-<option value="Basket Ball" title="Basket Ball">Basket Ball</option>
-</select>
+
+Equipment:<br>
+
+
+    <select name="equipmentList">
+        <% {% for x in s %}
+        <option value="eqItem">{{ x.getEquipmentName() }}</option>
+        {% endfor %}%>
+    </select>
+
 <br>
 Date:<br>
 <input type="date" name="Date">
