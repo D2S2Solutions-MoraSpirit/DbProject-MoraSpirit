@@ -6,12 +6,44 @@
  * Time: 4:42 AM
  */
 namespace application\MainBundle\Resources\Entity;
-class equipment{
+class equipment
+{
     private $resource_id;
-
-    private $type_id;
+    private $equipmentName;
     private $quantity;
     private $date;
+
+    /**
+     * @return mixed
+     */
+    public function getResourceId()
+    {
+        return $this->resource_id;
+    }
+
+    /**
+     * @param mixed $resource_id
+     */
+    public function setResourceId($resource_id)
+    {
+        $this->resource_id = $resource_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEquipmentName()
+    {
+        return $this->equipmentName;
+    }
+
+    /**
+     * @param mixed $equipmentName
+     */
+    public function setEquipmentName($equipmentName)
+    {
+        $this->equipmentName = $equipmentName;
+    }
 
     /**
      * @return mixed
@@ -44,43 +76,5 @@ class equipment{
     {
         $this->date = $date;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getTypeId()
-    {
-        return $this->type_id;
-    }
-
-    /**
-     * @param mixed $type_id
-     */
-    public function setTypeId($type_id)
-    {
-        $this->type_id = $type_id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getResourceId()
-    {
-        return $this->resource_id;
-    }
-
-    /**
-     * @param mixed $resource_id
-     */
-    public function setResourceId($resource_id)
-    {
-        $this->resource_id = $resource_id;
-    }
-
-    /**
-     * @return mixed
-     */
-
-
 }
-?>
+  ?>
