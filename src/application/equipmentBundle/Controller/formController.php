@@ -29,4 +29,28 @@ class formController extends Controller
 
         return $this->render('applicationMainBundle:Default:index.html.twig');
     }
+    public function damageReportAction()
+    {
+        $damage = new en\requestResourceDamage();
+        $damage->setResourceId($_POST["resource_id"]);
+        $damage->setRequestId($_POST["request_id"]);
+        $damage->setBorrowingDate($_POST["borrow_date"]);
+
+      $damage->setDescription($_POST["description"]);
+        cont\EquipmentDBacess::saveToRequestResourceDamage($damage);
+
+        return $this->render('applicationMainBundle:Default:index.html.twig');
+
+
+
+    }
+    public function damageViewAction()
+    {
+        $request_id ='1';
+        $resource_id='1';
+        $borrowDate=Date("y/m/d");
+        return $this->render('applicationequipmentBundle:Forms:reportDamage_form.html.twig',array('request_id' => $request_id,'resource_id'=>$resource_id,'borrow_date'=>$borrowDate));
+
+
+    }
 }

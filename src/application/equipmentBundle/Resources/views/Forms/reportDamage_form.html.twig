@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Damage Description</title>
+</head>
+
+<body bgcolor="#e6e6fa">
+
+<h1 align="center">Report Damage</h1>
+
+<form  action="/saveDamage" method ="post" align="center" >
+    <br>
+    Resource ID:<br>
+    <input type="text" name="resource_id" value={{ resource_id }} readonly >
+    <br>
+    Request ID:<br>
+    <input type="text" name="request_id" value={{ request_id }} readonly >
+    <br>
+    <br>
+    Borrow Date:<br>
+    <input type="text" name="borrow_date" value={{ borrow_date }} readonly >
+    <br>
+
+    Description :<br>
+
+    <textarea type="text"  name="description" rows="10" cols="35" wrap="soft" >
+    </textarea>
+
+    <br><br>
+<input type="submit">
+</form>
+<br>
+</body>
+</html>

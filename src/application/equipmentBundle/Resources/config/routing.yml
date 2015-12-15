@@ -7,4 +7,10 @@ applicationequipment_addEquip:
 applicationequipment_addEquipForm:
     path:     /addEquip
     defaults: { _controller: applicationequipmentBundle:form:add }
+applicationequipment_reportDamage:
+    path:     /DamageDesc
+    defaults: { _controller: applicationequipmentBundle:form:damageView }
 
+applicationequipment_reportDamageView:
+    path:     /saveDamage
+    defaults: { _controller: applicationequipmentBundle:form:damageReport }
