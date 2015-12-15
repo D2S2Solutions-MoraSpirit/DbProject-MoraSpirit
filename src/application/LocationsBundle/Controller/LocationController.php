@@ -8,6 +8,7 @@
 
 namespace application\LocationsBundle\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use application\MainBundle\Controller as cont;
 use application\MainBundle\Resources\Entity as en;

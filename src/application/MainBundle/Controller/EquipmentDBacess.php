@@ -21,7 +21,7 @@ class EquipmentDBacess{
         $con =$conn->getConnection();
         $r_id = $eqpm->getResourceID();
         $s_id = $rs->getSupplierID();
-
+        $sql = $con->prepare("INSERT INTO equipment VALUES (?,? )");
         $sql = "INSERT INTO resource VALUES ( '$r_id'  , '$s_id' ) ";
 
 
@@ -100,7 +100,7 @@ class EquipmentDBacess{
 
             $stm=$con->stmt_init();
 
-            $stm->prepare("SELECT equipmentName FROM EquipmentType");
+            $stm->prepare("SELECT equipmentName,resource_id  FROM Equipment");
 //           // $result = mysqli_query($con,$sql);
 //
 //
@@ -109,16 +109,17 @@ class EquipmentDBacess{
 //
 
             $equipmentArray=array();
-            $count=0;
+
 
             while ($row = $result->fetch_assoc())
             {
-                $eqOb=new EquipmentType();
+                $eqOb=new Equipment();
                 $eqOb->setEquipmentName($row["equipmentName"]);
+                $eqOb->setResourceId($row["resource_id"]);
                 $sportArray[]=$eqOb;
             }
 
-            return $sportArray;
+            return $equipmentArray;
         }catch (Exception $e){
             return "error";
         }finally{
@@ -127,4 +128,5 @@ class EquipmentDBacess{
 
         }
     }
+
 }

@@ -30,7 +30,11 @@ final class connection
     {
         $servername = "localhost";
         $username = "root";
+<<<<<<< HEAD
         $password = "diluksha";
+=======
+        $password = null;
+>>>>>>> 26a73e160a57223db039a74d038029695ab6d793
         $dbname = "moraspirit";
 
         // Create connection
@@ -40,7 +44,7 @@ final class connection
             die("Connection failed: " . $conn->connect_error);
         }
         else{
-            //echo "connection created <br>";
+
             $this->con=$conn;
         }
     }
