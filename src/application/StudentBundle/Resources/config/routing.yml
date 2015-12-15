@@ -18,3 +18,7 @@ application_sport_involve_controlpage:
 application_getStudentDetailPage:
     path:     /getStudentDetail
     defaults: { _controller: applicationStudentBundle:Student:getStudentDetails}
+
+application_studentRequestPage:
+    path:     /studentRequest
+    defaults: { _controller: applicationStudentBundle:StudentRequest:index}
