@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new application\StudentBundle\applicationStudentBundle(),
             new application\equipmentBundle\applicationequipmentBundle(),
             new application\SportBundle\SportBundle(),
+            new application\LocationsBundle\applicationLocationsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
