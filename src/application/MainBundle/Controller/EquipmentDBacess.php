@@ -113,10 +113,12 @@ class EquipmentDBacess{
 
             while ($row = $result->fetch_assoc())
             {
+
                 $eqOb=new Equipment();
                 $eqOb->setEquipmentName($row["equipmentName"]);
                 $eqOb->setResourceId($row["resource_id"]);
-                $sportArray[]=$eqOb;
+                $equipmentArray[]=$eqOb;
+
             }
 
             return $equipmentArray;
@@ -124,8 +126,26 @@ class EquipmentDBacess{
             return "error";
         }finally{
             //$conn->close();
-            $stm->close();
+           // $stm->close();
 
+        }
+    }
+    public static function updateEquipment(equipment $eq){
+        $conn=connection::getConnectionObject();
+        $con =$conn->getConnection();
+
+
+        $stm=$con->stmt_init();
+
+        $stm="UPDATE equipment SET 'quantity'='quantity'+"+$eq->getQuantity()+ "WHERE equipmentName="+$eq->getEquipmentName();
+        echo $stm;
+
+
+        if (mysqli_query($con, $stm)) {
+            echo "Updated successfully";
+        } else {
+            echo "not working";
+            //echo "Error: " . $sql . "<br>";
         }
     }
 
