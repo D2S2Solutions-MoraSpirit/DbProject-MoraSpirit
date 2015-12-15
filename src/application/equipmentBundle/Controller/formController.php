@@ -53,4 +53,8 @@ class formController extends Controller
 
 
     }
+
+    public static function getAllEqupiments(){
+        return cont\EquipmentDBacess::getAllEquipmentTypes();
+    }
 }

@@ -9,7 +9,7 @@
 namespace application\LocationsBundle\Controller;
 
 
-use Symfony\Component\HttpKernel\Tests\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use application\MainBundle\Resources\Entity;
 use application\MainBundle\Controller as cont;
 use application\MainBundle\Resources\Entity as en;

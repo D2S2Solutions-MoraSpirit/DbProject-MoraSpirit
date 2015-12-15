@@ -4,10 +4,10 @@ application_locations_homepage:
 
 application_equipment_save:
     path:   /equipment/add
-    default: { _controller: applicationLocationBundle:Location:saveEquipment}
+    defaults: { _controller: applicationLocationsBundle:Location:saveEquipment}
 
 equipmnet_add:
     path:   /equipmentadd
-    default: { _contoller: applicationLocationBundle:Location:add}
+    defaults: { _contoller: applicationLocationBundle:Location:add}
 
 
