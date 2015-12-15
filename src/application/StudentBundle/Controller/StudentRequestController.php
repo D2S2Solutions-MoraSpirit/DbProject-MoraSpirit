@@ -7,6 +7,8 @@
  */
 
 namespace application\StudentBundle\Controller;
+use application\equipmentBundle\Controller\EquipmentTypeController;
+use application\MainBundle\Controller\EquipmentDBacess;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class StudentRequestController extends Controller
@@ -14,7 +16,8 @@ class StudentRequestController extends Controller
     public function indexAction()
     {
         //$sportList=SportDBaccess::getAllSports();
-        return $this->render('applicationStudentBundle:Default:StudentRequest.html.twig');
+        $eqList=EquipmentTypeController::getAllEquipmentTypes();
+        return $this->render('applicationStudentBundle:Default:StudentRequest.html.twig',array('eqList'=>$eqList));
     }
 }
 

@@ -3,63 +3,114 @@
 
     <style type="text/css">
 
-        * { margin: 0; padding: 0; }
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-        html { height: 100%; font-size: 62.5% }
+        html {
+            height: 100%;
+            font-size: 62.5%
+        }
 
-        body { height: 100%; background-color: #FFFFFF; font: 1.2em Verdana, Arial, Helvetica, sans-serif; }
-
+        body {
+            height: 100%;
+            background-color: #FFFFFF;
+            font: 1.2em Verdana, Arial, Helvetica, sans-serif;
+        }
 
         /* ==================== Form style sheet ==================== */
 
-        table.form { margin: 25px 0 0 29px; border-collapse: collapse; }
+        table.form {
+            margin: 25px 0 0 29px;
+            border-collapse: collapse;
+        }
 
-        table.form th, table.form td { padding: 10px 5px; text-align: left; font-weight: normal; }
+        table.form th, table.form td {
+            padding: 10px 5px;
+            text-align: left;
+            font-weight: normal;
+        }
 
-        table.form label { font-family: Verdana, Arial, Helvetica, sans-serif; color: #181818; margin-right: 12px; }
-        table.form td span { font-size: 0.9em; color: #181818; margin-left: 8px; }
-        table.form td samp { font: 1em Verdana, Arial, Helvetica, sans-serif; color: #000000; }
+        table.form label {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            color: #181818;
+            margin-right: 12px;
+        }
 
-        table.form input { width: 340px; }
-        table.form input.answer { width: 53px; }
-        table.form textarea { width: 400px; height: 160px; }
+        table.form td span {
+            font-size: 0.9em;
+            color: #181818;
+            margin-left: 8px;
+        }
 
-        table.form input.inp-text, table.form input.answer, table.form textarea
-        { border: 1px solid #909090; padding: 2px; }
+        table.form td samp {
+            font: 1em Verdana, Arial, Helvetica, sans-serif;
+            color: #000000;
+        }
 
-        table.form th.message-up { vertical-align: top !important; }
+        table.form input {
+            width: 340px;
+        }
 
+        table.form input.answer {
+            width: 53px;
+        }
 
+        table.form textarea {
+            width: 400px;
+            height: 160px;
+        }
 
-        table.form td.submit-button-right { text-align: right !important; }
-        table.form input.submit-text { font: 1.4em Georgia, "Times New Roman", Times, serif; letter-spacing: 1px; width: auto; }
+        table.form input.inp-text, table.form input.answer, table.form textarea {
+            border: 1px solid #909090;
+            padding: 2px;
+        }
 
-        table.form label.email { border-bottom: 1px dotted #000000; }
+        table.form th.message-up {
+            vertical-align: top !important;
+        }
 
-        table tr td{
-            height:30px;
+        table.form td.submit-button-right {
+            text-align: right !important;
+        }
+
+        table.form input.submit-text {
+            font: 1.4em Georgia, "Times New Roman", Times, serif;
+            letter-spacing: 1px;
+            width: auto;
+        }
+
+        table.form label.email {
+            border-bottom: 1px dotted #000000;
+        }
+
+        table tr td {
+            height: 30px;
             padding: 10px;
         }
 
-        table tr td input{
+        table tr td input {
             height: 20px;
         }
 
-        table tr td input{
+        table tr td input {
             height: 20px;
         }
 
-        table tr td span input{
+        table tr td span input {
             height: 20px;
         }
 
-        .addTableRow th{
+        .addTableRow th {
             width: 200px;
             background-color: #4CAF50;
             color: white;
         }
 
-        table tr:nth-child(even) {background-color: #f2f2f2}
+        table tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
 
         /* ==================== Form style sheet END ==================== */
 
@@ -85,16 +136,20 @@
                 <tr>
                     <td><label for="id"><strong>Resource Type:</strong></label></td>
                     <td>
-                        <span><label></label><input type="radio" name="equipment" value="equipment" style="padding-left:5em;width: 15%">Equipment</span>
-                        <select name="sport">
-
+                        <span><label></label><input type="radio" name="equipment" value="equipment"
+                                                    style="padding-left:5em;width: 15%">Equipment</span>
+                        <select name="equipmentList">
+                            <% {% for x in eqList %}
+                            <option value="eqItem">{{ x.getEquipmentName() }}</option>
+                            {% endfor %}%>
                         </select>
                     </td>
                 </tr>
 
                 <tr>
                     <td><label for="id"><strong></strong></label></td>
-                    <td><span><input type="radio" name="equipment" value="equipment" style="padding-left:5em;width: 15%">Location</span>
+                    <td><span><input type="radio" name="equipment" value="equipment"
+                                     style="padding-left:5em;width: 15%">Location</span>
                         <select name="sport">
 
                         </select>
@@ -113,7 +168,9 @@
 
                 <tr>
                     <td></td>
-                    <td><button>Add to request</button></td>
+                    <td>
+                        <button>Add to request</button>
+                    </td>
                 </tr>
 
             </table>
@@ -136,7 +193,6 @@
         </tr>
     </table>
 </span>
-
 
 
 </body>

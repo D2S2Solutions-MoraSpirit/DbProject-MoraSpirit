@@ -6,6 +6,7 @@
  * Time: 5:23 AM
  */
 namespace application\MainBundle\Controller;
+use application\MainBundle\Resources\Entity\EquipmentType;
 use application\MainBundle\Resources\Entity\resource;
 use mysqli;
 use application\MainBundle\Controller as cont;
@@ -66,5 +67,40 @@ class EquipmentDBacess{
         }
         return $r+1;
 
+    }
+
+    public static function getAllEquipmentTypes(){
+        try{
+            $conn=connection::getConnectionObject();
+            $con =$conn->getConnection();
+
+
+            $stm=$con->stmt_init();
+
+            $stm->prepare("SELECT equipmentName FROM EquipmentType");
+//           // $result = mysqli_query($con,$sql);
+//
+//
+            $stm->execute();
+            $result = $stm->get_result();
+//
+
+            $equipmentArray=array();
+            $count=0;
+
+            while ($row = $result->fetch_assoc())
+            {
+                $eqOb=new EquipmentType();
+                $eqOb->setEquipmentName($row["equipmentName"]);
+                $sportArray[]=$eqOb;
+            }
+
+            return $sportArray;
+        }catch (Exception $e){
+            return "error";
+        }finally{
+            //$conn->close();
+            $stm->close();
+        }
     }
 }
