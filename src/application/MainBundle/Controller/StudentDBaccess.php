@@ -17,29 +17,37 @@ class StudentDBaccess
 
     public static function addStudent(Student $student){
 
+        try{
+            $conn=connection::getConnectionObject();
+            $con =$conn->getConnection();
 
-        $conn=connection::getConnectionObject();
-        $con =$conn->getConnection();
-
-        $sql = $con->prepare("INSERT INTO Student VALUES (?,?,?,?,?,? )");
-
-
-        $studentId=$student->getStudentId();
-        $name=$student->getName();
-        $faculty=$student->getFaculty();
-        $batch=$student->getBatch();
-        $address=$student->getAddress();
-        $nic=$student->getNic();
-
-        $sql->bind_param("ssssss",$studentId,$name,$batch,$faculty,$address,$nic );
+            $sql = $con->prepare("INSERT INTO Student VALUES (?,?,?,?,?,? )");
 
 
+            $studentId=$student->getStudentId();
+            $name=$student->getName();
+            $faculty=$student->getFaculty();
+            $batch=$student->getBatch();
+            $address=$student->getAddress();
+            $nic=$student->getNic();
 
-        if ( $sql->execute()==TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" ;
+            $sql->bind_param("ssssss",$studentId,$name,$batch,$faculty,$address,$nic );
+
+
+
+            if ( $sql->execute()==TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" ;
+            }
+            return true;
+        }catch (Exception $e){
+            return "error";
+        }finally{
+            $con->close();
         }
+
+
     }
 
     public static function getStudentDetails($student_id){

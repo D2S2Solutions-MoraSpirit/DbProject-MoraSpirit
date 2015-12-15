@@ -6,10 +6,13 @@
  * Time: 5:23 AM
  */
 namespace application\MainBundle\Controller;
+use application\MainBundle\Resources\Entity\EquipmentType;
 use application\MainBundle\Resources\Entity\resource;
 use mysqli;
 use application\MainBundle\Controller as cont;
 use  application\MainBundle\Resources\Entity\equipment;
+use  application\MainBundle\Resources\Entity\requestResourceDamage;
+
 class EquipmentDBacess{
 
     public static function saveToEquipment(equipment $eqpm,resource $rs)
@@ -66,5 +69,62 @@ class EquipmentDBacess{
         }
         return $r+1;
 
+    }
+
+    public static function saveToRequestResourceDamage(requestResourceDamage $rsd)
+    {
+        $conn = cont\connection::getConnectionObject();
+        $con = $conn->getConnection();
+
+        $sql = $con->prepare("INSERT INTO requestresourcedamage VALUES (?,?,?,? )");
+        $resource_id = $rsd->getResourceId();
+        $request_id = $rsd->getRequestId();
+        $borrow_date = $rsd->getBorrowingDate();
+        $description = $rsd->getDescription();
+
+
+        $sql->bind_param("ssss", $resource_id, $request_id, $borrow_date, $description);
+        if ($sql->execute() == TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "not working";
+            echo "Error: " . $sql . "<br>";
+        }
+    }
+
+    public static function getAllEquipmentTypes(){
+        try{
+            $conn=connection::getConnectionObject();
+            $con =$conn->getConnection();
+
+
+            $stm=$con->stmt_init();
+
+            $stm->prepare("SELECT equipmentName FROM EquipmentType");
+//           // $result = mysqli_query($con,$sql);
+//
+//
+            $stm->execute();
+            $result = $stm->get_result();
+//
+
+            $equipmentArray=array();
+            $count=0;
+
+            while ($row = $result->fetch_assoc())
+            {
+                $eqOb=new EquipmentType();
+                $eqOb->setEquipmentName($row["equipmentName"]);
+                $sportArray[]=$eqOb;
+            }
+
+            return $sportArray;
+        }catch (Exception $e){
+            return "error";
+        }finally{
+            //$conn->close();
+            $stm->close();
+
+        }
     }
 }
