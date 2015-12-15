@@ -13,5 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ViewScheduleDataController extends Controller
 {
-
+    public function viewScheduleAction(){
+        return $this->render('SportBundle:Default:index.html.twig');
+    }
 }
