@@ -1,6 +1,17 @@
 <html>
 <head>
 
+    <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/javascript.js') }}"></script>
+
+    <script type="javascript">
+
+        jQuery.noConflict();
+
+
+    </script>
+
+
     <style type="text/css">
 
         * {
@@ -136,9 +147,9 @@
                 <tr>
                     <td><label for="id"><strong>Resource Type:</strong></label></td>
                     <td>
-                        <span><label></label><input type="radio" name="equipment" value="equipment"
+                        <span><label></label><input type="radio" name="equipment" value="equipment" id="equipmentRadio"
                                                     style="padding-left:5em;width: 15%">Equipment</span>
-                        <select name="equipmentList">
+                        <select name="equipmentList" id="equipmentCombo">
                             <% {% for x in eqList %}
                             <option value="eqItem">{{ x.getEquipmentName() }}</option>
                             {% endfor %}%>
@@ -148,9 +159,9 @@
 
                 <tr>
                     <td><label for="id"><strong></strong></label></td>
-                    <td><span><input type="radio" name="equipment" value="equipment"
+                    <td><span><input type="radio" name="equipment" value="equipment" id="locationRadio"
                                      style="padding-left:5em;width: 15%">Location</span>
-                        <select name="sport">
+                        <select name="sport"  id="locationCombo">
 
                         </select>
                     </td>
@@ -158,18 +169,18 @@
 
                 <tr>
                     <td><label for="id"><strong>Item Borrowing date</strong></label></td>
-                    <td><span><input type="date" name="equipment" value="equipment"></span></td>
+                    <td><span><input type="date" name="equipment" value="equipment" id="borrowingDate"></span></td>
                 </tr>
 
                 <tr>
                     <td><label for="id"><strong>Return date</strong></label></td>
-                    <td><span><input type="date" name="equipment" value="equipment"></span></td>
+                    <td><span><input type="date" name="equipment" value="equipment" id="returnDate"></span></td>
                 </tr>
 
                 <tr>
                     <td></td>
                     <td>
-                        <button>Add to request</button>
+                        <button onclick="addRequestResource()">Add to request</button>
                     </td>
                 </tr>
 
@@ -180,7 +191,7 @@
 </table>
 </span>
 <span>
-    <table>
+    <table id="resourceItemTable">
         <tr></tr>
         <tr></tr>
         <tr></tr>
@@ -196,6 +207,32 @@
 
 
 </body>
+<script>
+    function addRequestResource(item) {
+        //alert("d");
+        var equipmentType=$("#equipmentCombo").find('option:selected').text();
+        var locationType=$("#locationCombo").val();
 
+        if($("#locationRadio").is(':checked')){
+            equipmentType=locationType;
+        }
+
+        var borrowingDate=$("#borrowingDate").val();
+        var returnDate=$("#returnDate").val();
+        var resourceId;
+        {% for x in eqList%}
+            var foo = '{{ x.getEquipmentName() }}';
+            if(foo==equipmentType){
+                resourceId='{{ x.getResourceId() }}';
+                //alert(resourceId);
+            }
+        {% endfor %}
+
+        $("#resourceItemTable tr:last").after('<tr><td>'+resourceId+'</td><td>'+equipmentType+'</td><td>'+borrowingDate+'</td><td>'+returnDate+'</td>'+'</tr>');
+
+
+
+    }
+</script>
 
 </html>

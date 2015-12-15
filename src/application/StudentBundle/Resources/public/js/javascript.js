@@ -26,3 +26,27 @@ $(document).ready(function () {
 
 
 });
+
+function myIndexOf(item) {
+
+    alert(php_var[0].getResourceId());
+    for (var i = 0; i < eqList.length; i++) {
+        if (eqList[i].getEquipmentName() == item) {
+            return eqList[i].getResourceId();
+        }
+    }
+    return -1;
+}
+
+function addRequestResource(){
+
+
+    alert(equipmentType);
+    var resourceId=myIndexOf(equipmentType);
+
+    $('select[name="equipmentCombo"]').find(":selected").text();
+
+
+
+
+}
