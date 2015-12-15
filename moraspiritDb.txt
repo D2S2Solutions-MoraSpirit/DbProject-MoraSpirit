@@ -24,8 +24,9 @@ CREATE TABLE StudentContact(
 
 CREATE TABLE Sport(
 	sport_id varchar(10),
-	name varchar(15) NOT NULL,
+	name varchar(15) NOT NULL UNIQUE,
 	PRIMARY KEY(sport_id)
+
 );
 
 
