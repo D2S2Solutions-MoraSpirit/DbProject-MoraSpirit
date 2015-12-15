@@ -9,6 +9,8 @@
 namespace application\StudentBundle\Controller;
 
 
+use application\MainBundle\Controller\SportDBaccess;
+use application\MainBundle\Controller\StudentDBaccess;
 use application\MainBundle\Resources\Entity\SportInvolve;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use application\MainBundle\Resources\Entity;
@@ -19,7 +21,8 @@ class SportInvolveController extends Controller
 
     public function indexAction()
     {
-        return $this->render('applicationStudentBundle:Default:AddStudentSPD.html.twig');
+        $sportList=SportDBaccess::getAllSports();
+        return $this->render('applicationStudentBundle:Default:AddStudentSPD.html.twig',array('sportList' => ($sportList)));
     }
 
     public function addSportInvolveAction(SportInvolve $sportInvolve){
