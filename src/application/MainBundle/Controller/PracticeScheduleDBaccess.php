@@ -8,28 +8,41 @@
 
 namespace application\MainBundle\Controller;
 
-
-use PracticeSchedule;
+use application\MainBundle\Resources\Entity\PracticeSchedule;
 
 class PracticeScheduleDBAccess
 {
     public static function getAllScheduleDetails(){
-        $conn=connection::getConnectionObject();
-        $con =$conn->getConnection();
-        $sql= $con->prepare("SELECT * FROM practiceschedule");
-        $result=$sql->execute();
-        $sql->bind_result($sport_id, $resource_id,$practise_date,$practise_time);
-        $practiceSchedule =new PracticeSchedule();
-        $array=array();
-        while($sql->fetch()){
-            $practiceSchedule =new PracticeSchedule();
-            $practiceSchedule->setSportId($sport_id);
-            $practiceSchedule->setResourceId($resource_id);
-            $practiceSchedule->setPractiseDate($practise_date);
-            $practiceSchedule->setPractiseTime($practise_time);
-            $array[]=$practiceSchedule;
-        }
-        return $array;
 
     }
+    public static function getAllLocationSchedule($resource_id){
+        try{
+            $conn=connection::getConnectionObject();
+            $con =$conn->getConnection();
+            $stm=$con->stmt_init();
+            $stm->prepare("SELECT practiceschedule.sport_id,practiceschedule.practiceDate,practiceschedule.practiceTime FROM practiceschedule where practiceschedule.resource_id=?");
+            $stm->bind_param("s",$resource_id);
+//           // $result = mysqli_query($con,$sql);
+            $stm->execute();
+            $result = $stm->get_result();
+            $practiceSchedule=new PracticeSchedule();
+            while ($row = $result->fetch_assoc())
+            {
+                $practiceSchedule->setSportId($row["sport_id"]);
+                $practiceSchedule->setPractiseDate($row["practiceDate"]);
+                $practiceSchedule->setPractiseTime($row["practiceTime"]);
+            }
+
+            return $practiceSchedule;
+        }catch (Exception $e){
+            return "error";
+        }finally{
+            //$conn->close();
+            $stm->close();
+        }
+
+    }
+
+
+
 }
