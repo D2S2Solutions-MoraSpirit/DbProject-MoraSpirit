@@ -100,7 +100,7 @@ class EquipmentDBacess{
 
             $stm=$con->stmt_init();
 
-            $stm->prepare("SELECT equipmentName,resource_id  FROM Equipment");
+            $stm->prepare("SELECT equipmentName,resource_id FROM Equipment");
 //           // $result = mysqli_query($con,$sql);
 //
 //
@@ -116,7 +116,7 @@ class EquipmentDBacess{
                 $eqOb=new Equipment();
                 $eqOb->setEquipmentName($row["equipmentName"]);
                 $eqOb->setResourceId($row["resource_id"]);
-                $sportArray[]=$eqOb;
+                $equipmentArray[]=$eqOb;
             }
 
             return $equipmentArray;
