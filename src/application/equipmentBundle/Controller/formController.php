@@ -10,7 +10,7 @@ class formController extends Controller
     public function addAction()
 
     {
-        $r=cont\EquipmentDBacess::getLastResourceID();
+        $r=cont\EquipmentDBacess::getAllEquipmentTypes();
         return $this->render('applicationequipmentBundle:Forms:Add_equipment_form.html.twig',array('s' => $r));
     }
     public function saveEquipmentAction()
@@ -48,7 +48,7 @@ class formController extends Controller
     {
         $request_id ='1';
         $resource_id='1';
-        $borrowDate=Date("y/m/d");
+        $borrowDate="2015-12-16";
         return $this->render('applicationequipmentBundle:Forms:reportDamage_form.html.twig',array('request_id' => $request_id,'resource_id'=>$resource_id,'borrow_date'=>$borrowDate));
 
 
