@@ -31,4 +31,39 @@ class SportDBaccess{
         }
 
     }
+
+    public static function getAllSports(){
+        try{
+            $conn=connection::getConnectionObject();
+            $con =$conn->getConnection();
+
+
+            $stm=$con->stmt_init();
+
+            $stm->prepare("SELECT name FROM Sport");
+//
+//
+            $stm->execute();
+            $result = $stm->get_result();
+//
+
+
+            $sportArray=array();
+            $count=0;
+
+            while ($row = $result->fetch_assoc())
+            {
+                $sport=new Sport();
+                $sport->setName($row["name"]);
+                $sportArray[]=$sport;
+            }
+
+            return $sportArray;
+        }catch (Exception $e){
+            return "error";
+        }finally{
+            //$conn->close();
+            $stm->close();
+        }
+    }
 }

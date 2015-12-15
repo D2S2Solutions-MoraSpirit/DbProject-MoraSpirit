@@ -4,17 +4,8 @@ function getStudentDetails(event) {
     }
 }
 
-    $(document).ready(function () {
-        $("label").click(function () {
-            alert("Text");
-        });
+$(document).ready(function () {
 
-        $(window).keydown(function (event) {
-            if (event.keyCode == 13) {
-                event.preventDefault();
-                return false;
-            }
-        });
 
     $("#studentID").keydown(function (event) {
         if (event.keyCode == 13) {

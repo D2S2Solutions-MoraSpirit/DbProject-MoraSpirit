@@ -25,7 +25,7 @@
 		<table class="form" id="table1">
 			<tr>
 				<th><label for="id"><strong>Student ID:</strong></label></th>
-				<td><input class="inp-text" name="student_id" id="studentID" type="text" size="30" onkeypress="getStudentDetails(event)" title="Press enter to load details"/></td>
+				<td><input class="inp-text" name="student_id" value={{ sportList[0].getName() }}  id="studentID" type="text" size="30" onkeypress="getStudentDetails(event)" title="Press enter to load details"/></td>
 
 			</tr>
 
@@ -48,10 +48,9 @@
 				<th><label for="batch"><strong>Sport:</strong></label></th>
 				<td>
                     <select name="sport">
-                        <option value="cricket">cricket</option>
-                        <option value="football">football</option>
-                        <option value="football">football</option>
-
+                        <% {% for x in sportList  %}
+                            <option value="cricket">{{ x.getName() }}</option>
+                        {% endfor %}%>
                     </select>
 
                 </td>
