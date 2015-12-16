@@ -31,7 +31,9 @@ final class connection
         $servername = "localhost";
         $username = "root";
 
-        $password = "12345";
+
+        $password = null;
+
 
         $dbname = "moraspirit";
 

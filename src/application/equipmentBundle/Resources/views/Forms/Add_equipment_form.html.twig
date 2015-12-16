@@ -20,8 +20,9 @@ Equipment:<br>
 
         <% {% for x in s %}
 
-        <option value="eqItem">{{ x.getEquipmentName() }}</option>
+        <option value={{  x.getEquipmentName() }}>{{ x.getEquipmentName() }}</option>
         {% endfor %}%>
+
     </select>
 
 
