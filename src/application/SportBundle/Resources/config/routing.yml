@@ -9,6 +9,9 @@ sport-add:
 sport-add-database:
     path: /sport/save
     defaults: {_controller: SportBundle:AddSportForm:saveSport}
-sport-view-schedule::
+sport-view-schedule:
     path: /sport/view
     defaults: {_controller: SportBundle:ViewScheduleData:viewSchedule}
+sport-view-gymschedule:
+    path: /sport/Gym
+    defaults: {_controller: SportBundle:GymSchedule:index }
