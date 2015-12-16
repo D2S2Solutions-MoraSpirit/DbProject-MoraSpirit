@@ -11,6 +11,7 @@ use application\equipmentBundle\Controller\EquipmentTypeController;
 use application\equipmentBundle\Controller\formController;
 use application\MainBundle\Controller\EquipmentDBacess;
 use application\MainBundle\Controller\LocationDBaccess;
+use application\MainBundle\Controller\StudentRequestDBaccess;
 use application\MainBundle\Resources\Entity\Request;
 use application\MainBundle\Resources\Entity\RequestResource;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,7 +38,7 @@ class StudentRequestController extends Controller
         $request=new Request();
         $request->setRequestId($request_id);
         $request->setStudentId($student_id);
-        $request->setRequestDate(new Date());
+        $request->setRequestDate(date("Y-m-d"));
 
 
         $resourcesArray=array();
@@ -53,9 +54,12 @@ class StudentRequestController extends Controller
             $resourcesArray[]=$requestResource;
         }
 
+        $status=StudentRequestDBaccess::addStudentRequest($request,$resourcesArray);
+
+$v=$resourcesArray[0];
 
 
-        return new JsonResponse(['name'=>$resourcesArray]);
+        return new JsonResponse(['status'=>$status]);
     }
 }
 

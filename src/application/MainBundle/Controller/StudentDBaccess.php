@@ -9,6 +9,8 @@
 namespace application\MainBundle\Controller;
 
 
+use application\MainBundle\Resources\Entity\Request;
+use application\MainBundle\Resources\Entity\RequestResource;
 use application\MainBundle\Resources\Entity\Student;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
@@ -92,9 +94,8 @@ class StudentDBaccess
     }
 
 
-    public static function addStudentRequest()
-    {
 
-    }
+
+
 
 }
