@@ -100,7 +100,7 @@ class EquipmentDBacess{
 
             $stm=$con->stmt_init();
 
-            $stm->prepare("SELECT equipmentName,resource_id  FROM Equipment");
+            $stm->prepare("SELECT equipmentName,resource_id FROM Equipment");
 //           // $result = mysqli_query($con,$sql);
 //
 //
@@ -120,6 +120,8 @@ class EquipmentDBacess{
                 $eqOb->setResourceId($row["resource_id"]);
                 echo ($eqOb->getEquipmentName());
                 $equipmentArray[]=$eqOb;
+
+
 
             }
 
