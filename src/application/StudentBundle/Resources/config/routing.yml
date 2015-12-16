@@ -22,3 +22,8 @@ application_getStudentDetailPage:
 application_studentRequestPage:
     path:     /studentRequest
     defaults: { _controller: applicationStudentBundle:StudentRequest:index}
+
+
+application_studentRequestSubmitPage:
+    path:     /submitStudentRequest
+    defaults: { _controller: applicationStudentBundle:StudentRequest:addStudentRequest}

@@ -46,7 +46,42 @@ function addRequestResource(){
 
     $('select[name="equipmentCombo"]').find(":selected").text();
 
+}
 
+
+function submitTable(){
+
+    var datas = [];
+    jQuery.each(jQuery('#resourceItemTable tr:gt(0)'), function(i,e ) {
+        datas.push(jQuery('td', e).map(function(i,e) {
+                return e.innerHTML;
+            }).get()
+        );
+    });
+
+
+    var tableList=new Array();
+    for(var x=4;x<datas.length;x++){
+       tableList[x-4]=datas[x];
+    }
+    alert(tableList);
+
+   var studentID= $("#studentID").val();
+   var requestID= $("#requestID").val();
+
+
+
+    jQuery.ajax({
+        url: "/submitStudentRequest",
+        type: "GET",
+        data: {"student_id": studentID,"request_id":requestID,"tableList":tableList},
+        success: function (data) {
+
+            alert(data['name']);
+            //var json_obj = $.parseJSON(data);
+
+        }
+    });
 
 
 }

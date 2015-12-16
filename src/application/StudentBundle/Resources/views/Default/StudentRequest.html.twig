@@ -109,7 +109,7 @@
             height: 20px;
         }
 
-        table tr td span input {
+        table tr td span input{
             height: 20px;
         }
 
@@ -162,7 +162,9 @@
                     <td><span><input type="radio" name="equipment" value="equipment" id="locationRadio"
                                      style="padding-left:5em;width: 15%">Location</span>
                         <select name="sport"  id="locationCombo">
-
+                            <% {% for x in locationList %}
+                            <option value="eqItem">{{ x.getName() }}</option>
+                            {% endfor %}%>
                         </select>
                     </td>
                 </tr>
@@ -203,6 +205,9 @@
             <th>Return date</th>
         </tr>
     </table>
+    <button onclick="submitTable()">SUubmit request</button>
+
+
 </span>
 
 
@@ -211,22 +216,33 @@
     function addRequestResource(item) {
         //alert("d");
         var equipmentType=$("#equipmentCombo").find('option:selected').text();
-        var locationType=$("#locationCombo").val();
-
-        if($("#locationRadio").is(':checked')){
+        var locationType=$("#locationCombo").find('option:selected').text();
+        var islocation=$("#locationRadio").is(':checked');
+        if(islocation){
             equipmentType=locationType;
         }
 
         var borrowingDate=$("#borrowingDate").val();
         var returnDate=$("#returnDate").val();
         var resourceId;
-        {% for x in eqList%}
+        if(islocation){
+            {% for x in locationList%}
+            var foo = '{{ x.getName() }}';
+            if(foo==equipmentType){
+                resourceId='{{ x.getResourceid() }}';
+                //alert(resourceId);
+            }
+            {% endfor %}
+        }else{
+            {% for x in eqList%}
             var foo = '{{ x.getEquipmentName() }}';
             if(foo==equipmentType){
                 resourceId='{{ x.getResourceId() }}';
                 //alert(resourceId);
             }
-        {% endfor %}
+            {% endfor %}
+        }
+
 
         $("#resourceItemTable tr:last").after('<tr><td>'+resourceId+'</td><td>'+equipmentType+'</td><td>'+borrowingDate+'</td><td>'+returnDate+'</td>'+'</tr>');
 

@@ -15,70 +15,70 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 class StudentDBaccess
 {
 
-    public static function addStudent(Student $student){
+    public static function addStudent(Student $student)
+    {
 
-        try{
-            $conn=connection::getConnectionObject();
-            $con =$conn->getConnection();
+        try {
+            $conn = connection::getConnectionObject();
+            $con = $conn->getConnection();
 
             $sql = $con->prepare("INSERT INTO Student VALUES (?,?,?,?,?,? )");
 
 
-            $studentId=$student->getStudentId();
-            $name=$student->getName();
-            $faculty=$student->getFaculty();
-            $batch=$student->getBatch();
-            $address=$student->getAddress();
-            $nic=$student->getNic();
+            $studentId = $student->getStudentId();
+            $name = $student->getName();
+            $faculty = $student->getFaculty();
+            $batch = $student->getBatch();
+            $address = $student->getAddress();
+            $nic = $student->getNic();
 
-            $sql->bind_param("ssssss",$studentId,$name,$batch,$faculty,$address,$nic );
+            $sql->bind_param("ssssss", $studentId, $name, $batch, $faculty, $address, $nic);
 
 
-
-            if ( $sql->execute()==TRUE) {
+            if ($sql->execute() == TRUE) {
                 echo "New record created successfully";
             } else {
-                echo "Error: " . $sql . "<br>" ;
+                echo "Error: " . $sql . "<br>";
             }
             return true;
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return "error";
-        }finally{
+        } finally {
             $con->close();
         }
 
 
     }
 
-    public static function getStudentDetails($student_id){
-        try{
-            $conn=connection::getConnectionObject();
-            $con =$conn->getConnection();
+    public static function getStudentDetails($student_id)
+    {
+        try {
+            $conn = connection::getConnectionObject();
+            $con = $conn->getConnection();
 
 
-            $stm=$con->stmt_init();
+            $stm = $con->stmt_init();
 
             $stm->prepare("SELECT name,batch,faculty FROM Student where student_id=?");
-            $stm->bind_param("s",$student_id);
+            $stm->bind_param("s", $student_id);
 //           // $result = mysqli_query($con,$sql);
 //
 //
             $stm->execute();
             $result = $stm->get_result();
 //
-            $student=new Student();
+            $student = new Student();
 //
-            while ($row = $result->fetch_assoc())
-            {
+            while ($row = $result->fetch_assoc()) {
                 $student->setName($row["name"]);
                 $student->setFaculty($row["faculty"]);
                 $student->setBatch($row["batch"]);;
             }
 
             return $student;
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return "error";
-        }finally{
+        } finally {
             //$conn->close();
             $stm->close();
         }
@@ -86,7 +86,15 @@ class StudentDBaccess
     }
 
 
-    public static function addSportInvolve(){
+    public static function addSportInvolve()
+    {
 
     }
+
+
+    public static function addStudentRequest()
+    {
+
+    }
+
 }
