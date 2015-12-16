@@ -1,3 +1,15 @@
 application_locations_homepage:
     path:     /
     defaults: { _controller: applicationLocationsBundle:Default:index }
+
+application_equipmnet_add:
+    path:   /equipmentadd
+    defaults: { _controller: applicationLocationsBundle:Location:add}
+
+application_equipment_save:
+    path:   /equipment/add
+    defaults: { _controller: applicationLocationsBundle:Location:saveLocation}
+
+
+
+
