@@ -32,11 +32,12 @@ final class connection
         $username = "root";
 
 
+
         $password = "12345";
 
 
-        $dbname = "moraspirit";
 
+        $dbname = "moraspirit";
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection

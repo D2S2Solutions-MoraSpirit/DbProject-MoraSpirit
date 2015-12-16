@@ -10,39 +10,39 @@ namespace application\MainBundle\Controller;
 
 use application\MainBundle\Resources\Entity\PracticeSchedule;
 
-class PracticeScheduleDBAccess
+class PracticeScheduleDBaccess
 {
-    public static function getAllScheduleDetails(){
-
-    }
-    public static function getAllLocationSchedule($resource_id){
-        try{
-            $conn=connection::getConnectionObject();
-            $con =$conn->getConnection();
-            $stm=$con->stmt_init();
-            $stm->prepare("SELECT practiceschedule.sport_id,practiceschedule.practiceDate,practiceschedule.practiceTime FROM practiceschedule where practiceschedule.resource_id=?");
-            $stm->bind_param("s",$resource_id);
+    public static function getAllLocationSchedule($resource_id)
+    {
+        $stm = null;
+        try {
+            $conn = connection::getConnectionObject();
+            $con = $conn->getConnection();
+            $stm = $con->stmt_init();
+            $stm->prepare("SELECT sport_id,practiceDate,practiceTime FROM practiceschedule where resource_id=?");
+            $stm->bind_param("s", $resource_id);
 //           // $result = mysqli_query($con,$sql);
             $stm->execute();
             $result = $stm->get_result();
-            $practiceSchedule=new PracticeSchedule();
-            while ($row = $result->fetch_assoc())
-            {
+            $practiceScheduleArray = array();
+            while ($row = $result->fetch_assoc()) {
+                $practiceSchedule = new PracticeSchedule();
                 $practiceSchedule->setSportId($row["sport_id"]);
                 $practiceSchedule->setPractiseDate($row["practiceDate"]);
                 $practiceSchedule->setPractiseTime($row["practiceTime"]);
+                $practiceScheduleArray[]=$practiceSchedule;
+                //array_push($practiceScheduleArray, );
             }
 
-            return $practiceSchedule;
-        }catch (Exception $e){
+            return $practiceScheduleArray;
+        } catch (Exception $e) {
             return "error";
-        }finally{
+        } finally {
             //$conn->close();
             $stm->close();
         }
 
     }
-
 
 
 }

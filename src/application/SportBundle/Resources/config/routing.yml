@@ -14,4 +14,4 @@ sport-view-schedule:
     defaults: {_controller: SportBundle:ViewScheduleData:viewSchedule}
 sport-view-gymschedule:
     path: /sport/Gym
-    defaults: {_controller: SportBundle:GymSchedule:index }
+    defaults: {_controller: SportBundle:GymSchedule:index}
