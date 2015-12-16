@@ -16,12 +16,6 @@
         <td>
     <span><label></label><input type="radio" name="equipment" value="equipment" id="equipmentRadio"
                                 style="padding-left:5em;width: 15%">Equipment</span>
-           <table>
-               <% {% for x in response_array %}
-                    <tr><td>{{ x.getSportId() }}</td></tr>
-               {% endfor %}%>
-           </table>
-
 
         </td>
     </tr>
@@ -45,5 +39,14 @@
     </tr>
 
 </table>
+
+<table>
+    <tr><td>this is</td></tr>
+    <% {% for x in response_array %}
+    <tr><td>{{ x.getSportId() }}</td></tr>
+    {% endfor %}%>
+</table>
+
+
 </body>
 </html>
