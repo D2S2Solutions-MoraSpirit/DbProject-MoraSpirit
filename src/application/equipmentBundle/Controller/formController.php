@@ -10,20 +10,27 @@ class formController extends Controller
     public function addAction()
 
     {
+
         $r=cont\EquipmentDBacess::getAllEquipmentTypes();
+
         return $this->render('applicationequipmentBundle:Forms:Add_equipment_form.html.twig',array('s' => $r));
     }
     public function saveEquipmentAction()
     {
         $eqpm = new en\equipment();
-        $rs = new en\resource();
-        $eqpm->setResourceId($_POST["resource_id"]);
-        $eqpm->setTypeId($_POST["equipment_type"]);
-        $eqpm->setQuantity($_POST["quantity"]);
+
+        $eqpm->setEquipmentName($_POST["equipmentName"]);
         $eqpm->setDate($_POST["Date"]);
-        $rs->setResourceId($_POST["resource_id"]);
+        $eqpm->setQuantity($_POST["quantity"]);
+        $rs=new en\resource();
+        $rs->setResourceId($eqpm->getResourceId());
         $rs->setSupplierId($_POST["supplier_id"]);
-        cont\EquipmentDBacess::saveToEquipment($eqpm,$rs);
+
+
+        $eqpm=cont\EquipmentDBacess::getResourceID($eqpm);
+        $rs->setResourceId($eqpm->getResourceId());
+        cont\EquipmentDBacess::updateEquipment($eqpm);
+        cont\EquipmentDBacess::updateResource($rs);
 
 
 
@@ -56,5 +63,26 @@ class formController extends Controller
 
     public static function getAllEqupiments(){
         return cont\EquipmentDBacess::getAllEquipmentTypes();
+    }
+    public function addNewEquipmentAction(){
+            $id =cont\EquipmentDBacess::getLastResourceID();
+        echo $id;
+
+        return $this->render('applicationequipmentBundle:Forms:add_new_equipment.html.twig',array('new_id'=>$id));
+    }
+    public function addNewEquipmentSaveAction(){
+        $eqpm = new en\equipment();
+
+        $eqpm->setEquipmentName($_POST["equipmentName"]);
+        $eqpm->setDate($_POST["Date"]);
+        echo $eqpm->getDate();
+        $eqpm->setQuantity($_POST["quantity"]);
+        $eqpm->setResourceId($_POST["resource_id"]);
+        $rs = new en\resource();
+        $rs->setResourceId($_POST["resource_id"]);
+        $rs->setSupplierId($_POST["supplier_id"]);
+        cont\EquipmentDBacess::saveToEquipment($eqpm,$rs);
+
+        return $this->render('applicationMainBundle:Default:index.html.twig');
     }
 }

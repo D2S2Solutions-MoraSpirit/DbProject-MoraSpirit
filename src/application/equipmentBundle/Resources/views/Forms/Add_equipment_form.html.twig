@@ -6,8 +6,9 @@
 <h1 align="center"> Add Equipment </h1>
 <form action="/add" method ="post"  >
 Supplier ID:<br>
-<input type="text" name="supplier_id" >
-<br>
+    <input type="text" name="supplier_id" >
+    <br>
+
 Quantity:<br>
 <input type="number" name="quantity" min="1" max="1000" >
 <br>
@@ -15,11 +16,15 @@ Quantity:<br>
 Equipment:<br>
 
 
-    <select name="equipmentList">
+    <select name="equipmentName">
+
         <% {% for x in s %}
-        <option value="eqItem">{{ x.getEquipmentName() }}</option>
+
+        <option value={{  x.getEquipmentName() }}>{{ x.getEquipmentName() }}</option>
         {% endfor %}%>
+
     </select>
+
 
 <br>
 Date:<br>

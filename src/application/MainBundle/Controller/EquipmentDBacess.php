@@ -22,6 +22,8 @@ class EquipmentDBacess{
         $r_id = $eqpm->getResourceID();
         $s_id = $rs->getSupplierID();
         $sql = $con->prepare("INSERT INTO equipment VALUES (?,? )");
+
+
         $sql = "INSERT INTO resource VALUES ( '$r_id'  , '$s_id' ) ";
 
 
@@ -31,19 +33,20 @@ class EquipmentDBacess{
         } else {
             echo "Error: " . $sql . "<br>" ;
         }
-        $t_name=$eqpm->getTypeId();
-        $sql2="select type_id from EquipmentType where '$t_name'=equipmentName";
-        $result=mysqli_query($con,$sql2);
-        $row=mysqli_fetch_row($result);
+
+
+
         $quantity=$eqpm->getQuantity();
         $date= $eqpm->getDate();
-        $mysqltime = date('Y-m-d', strtotime(str_replace('-','/', $date)));
+        $name=$eqpm->getEquipmentName();
+        $mysqltime = $eqpm->getDate();
+        echo $mysqltime;
 
-        $newsql = "insert into equipment Values('$r_id',$row[0],$quantity,$mysqltime)";
+        $newsql = "insert into equipment Values('$r_id','$name','$quantity','$mysqltime')";
         if ( $con->query($newsql)==TRUE) {
             echo "New record created successfully";
         } else {
-            echo "Error: " . $sql . "<br>" ;
+            echo "Error: " . $newsql . "<br>" ;
         }
 
 
@@ -67,6 +70,7 @@ class EquipmentDBacess{
 
             mysqli_free_result($result);
         }
+
         return $r+1;
 
     }
@@ -100,7 +104,7 @@ class EquipmentDBacess{
 
             $stm=$con->stmt_init();
 
-            $stm->prepare("SELECT equipmentName,resource_id  FROM Equipment");
+            $stm->prepare("SELECT equipmentName,resource_id FROM Equipment");
 //           // $result = mysqli_query($con,$sql);
 //
 //
@@ -113,10 +117,16 @@ class EquipmentDBacess{
 
             while ($row = $result->fetch_assoc())
             {
+
+
                 $eqOb=new Equipment();
                 $eqOb->setEquipmentName($row["equipmentName"]);
                 $eqOb->setResourceId($row["resource_id"]);
-                $sportArray[]=$eqOb;
+                echo ($eqOb->getEquipmentName());
+                $equipmentArray[]=$eqOb;
+
+
+
             }
 
             return $equipmentArray;
@@ -124,9 +134,77 @@ class EquipmentDBacess{
             return "error";
         }finally{
             //$conn->close();
-            $stm->close();
+           // $stm->close();
 
         }
+    }
+    public static function updateEquipment(equipment $eq){
+        $conn=connection::getConnectionObject();
+        $con =$conn->getConnection();
+
+        $qty=$eq->getQuantity();
+        $date= $eq->getDate();
+        $name =$eq->getEquipmentName();
+
+
+        $sql = "UPDATE equipment  SET qty=qty+?, boughtDate=? WHERE equipmentName=?";
+
+        $sql = $con->prepare($sql);
+        $sql->bind_param('iss',$qty, $date,$name);
+
+
+        $sql->execute();
+
+
+        if ($sql->errno) {
+            echo "FAILURE!!! " . $sql->error;
+        }
+        else echo "Updated {$sql->affected_rows} rows";
+
+
+    }
+    public static function getResourceID(equipment $eqpt){
+        $conn = cont\connection::getConnectionObject();
+        $con =$conn->getConnection();
+        $name =$eqpt->getEquipmentName();
+        $sql="SELECT resource_id FROM equipment where equipmentName=? ";
+        $sql = $con->prepare($sql);
+        $sql->bind_param('s',$name);
+
+
+        $sql->execute();
+        $result = $sql->get_result();
+
+
+
+        $row=mysqli_fetch_row($result);
+
+        $eqpt->setResourceId($row[0]);
+        return $eqpt;
+
+
+    }
+    public static function updateResource(resource $rs){
+
+        $conn=connection::getConnectionObject();
+        $con =$conn->getConnection();
+        $s_id =$rs->getSupplierId();
+        $r_id=$rs->getResourceId();
+     
+
+        $sql = "UPDATE resource  SET supplierId=? WHERE resource_id=?";
+
+        $sql = $con->prepare($sql);
+        $sql->bind_param('ss',$s_id,$r_id );
+
+
+        $sql->execute();
+
+
+        if ($sql->errno) {
+            echo "FAILURE!!! " . $sql->error;
+        }
+        else echo "Updated {$sql->affected_rows} rows";
     }
 
 }
