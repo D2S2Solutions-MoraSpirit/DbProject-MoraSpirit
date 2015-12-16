@@ -1,0 +1,35 @@
+<html>
+<form action="/coach/save" method="post">
+    Coach name:<br>
+    <input type="text" name="coachname">
+    <br>
+    Coach Id:<br>
+    <input type="text" name="coachid">
+    <br>
+    Sport Id:<br>
+    <select name="sportid" id="combo"></select>
+
+
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+</html>
+
+<script>
+var choices = ["one", "two"];
+
+function addInput(divName) {
+var newDiv = document.createElement('div');
+var selectHTML = "";
+selectHTML="<select>";
+    for(i = 0; i < choices.length; i = i + 1) {
+    selectHTML += "<option value='" + choices[i] + "'>" + choices[i] + "</option>";
+    }
+    selectHTML += "</select>";
+newDiv.innerHTML = selectHTML;
+document.getElementById(divName).appendChild(newDiv);
+}
+
+</script>
