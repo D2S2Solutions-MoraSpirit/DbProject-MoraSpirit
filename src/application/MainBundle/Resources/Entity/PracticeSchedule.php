@@ -4,7 +4,11 @@
  * User: Sineth
  * Date: 12/13/2015
  * Time: 7:00 PM
+ *
  */
+
+namespace application\MainBundle\Resources\Entity;
+
 class PracticeSchedule{
     private $sport_id;
     private $resource_id;
