@@ -2,6 +2,51 @@
 
 
 
+<body>
+<table>
+    <tr>
+        <th><label for="id"><strong>Request ID:</strong></label></th>
+        <td><input class="inp-text" name="request_id" id="requestID" type="text" size="30"/></td>
+    </tr>
+
+    <tr>
+        <th><label for="id"><strong>Student ID:</strong></label></th>
+        <td><input class="inp-text" name="student_id" id="studentID" type="text" size="30"/></td>
+    </tr>
+
+    <tr>
+        <td><label for="id"><strong>Resource Type:</strong></label></td>
+        <td>
+    <span><label></label><input type="radio" name="equipment" value="equipment" id="equipmentRadio"
+                                style="padding-left:5em;width: 15%">Equipment</span>
+           <table>
+               <% {% for x in response_array %}
+                    <tr><td>{{ x.getSportId() }}</td></tr>
+               {% endfor %}%>
+           </table>
 
 
+        </td>
+    </tr>
+
+
+    <tr>
+        <td><label for="id"><strong>Item Borrowing date</strong></label></td>
+        <td><span><input type="date" name="equipment" value="equipment" id="borrowingDate"></span></td>
+    </tr>
+
+    <tr>
+        <td><label for="id"><strong>Return date</strong></label></td>
+        <td><span><input type="date" name="equipment" value="equipment" id="returnDate"></span></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td>
+
+        </td>
+    </tr>
+
+</table>
+</body>
 </html>

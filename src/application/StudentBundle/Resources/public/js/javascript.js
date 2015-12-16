@@ -39,8 +39,6 @@ function myIndexOf(item) {
 }
 
 function addRequestResource(){
-
-
     alert(equipmentType);
     var resourceId=myIndexOf(equipmentType);
 
