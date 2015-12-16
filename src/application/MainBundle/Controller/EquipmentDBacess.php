@@ -21,18 +21,17 @@ class EquipmentDBacess{
         $con =$conn->getConnection();
         $r_id = $eqpm->getResourceID();
         $s_id = $rs->getSupplierID();
-        $sql = $con->prepare("INSERT INTO equipment VALUES (?,? )");
+        $sql = $con->prepare("INSERT INTO resource VALUES (?,? )");
 
 
-        $sql = "INSERT INTO resource VALUES ( '$r_id'  , '$s_id' ) ";
+        $sql->bind_param("ss", $r_id, $s_id);
 
-
-
-        if ( $con->query($sql)==TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" ;
+        if ($sql->errno) {
+            echo "FAILURE!!! " . $sql->error;
         }
+        else echo "Updated {$sql->affected_rows} rows";
+
+
 
 
 
@@ -42,12 +41,14 @@ class EquipmentDBacess{
         $mysqltime = $eqpm->getDate();
         echo $mysqltime;
 
-        $newsql = "insert into equipment Values('$r_id','$name','$quantity','$mysqltime')";
-        if ( $con->query($newsql)==TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $newsql . "<br>" ;
+
+        $sql = $con->prepare("INSERT INTO equipment VALUES ('?','?','?','?' )");
+        $sql->bind_param("ssss", $r_id, $name, $quantity,$mysqltime);
+        if ($sql->errno) {
+            echo "FAILURE!!! " . $sql->error;
         }
+        else echo "Updated {$sql->affected_rows} rows";
+
 
 
     }

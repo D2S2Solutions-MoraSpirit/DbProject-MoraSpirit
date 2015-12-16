@@ -33,7 +33,7 @@ final class connection
 
 
 
-        $password = "12345";
+        $password = null;
 
 
 
