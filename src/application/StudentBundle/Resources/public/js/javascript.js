@@ -77,7 +77,7 @@ function submitTable(){
         data: {"student_id": studentID,"request_id":requestID,"tableList":tableList},
         success: function (data) {
 
-            alert(data['name']);
+            alert(data['status']);
             //var json_obj = $.parseJSON(data);
 
         }

@@ -32,7 +32,7 @@ final class connection
         $username = "root";
 
 
-        $password = null;
+        $password = "12345";
 
 
         $dbname = "moraspirit";
