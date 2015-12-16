@@ -16,8 +16,7 @@ class GymScheduleController extends Controller
         //$response=new JsonResponse(['sport-id'=>$resource->getSportId(),'practise_date'=>$resource->getPractiseDate(),'practise_time'=>$resource->getPractiseTime(),'resource_id'=>$resource_id]);
        // $response_array = array($resource->getSportId(), $resource->getPractiseDate(), $resource->getPractiseTime());
        // $response_array = array($resource);
-        $v=$resource[0];
-        echo $v.getSportId();
+        ;
     return $this->render('SportBundle:Default:gymSchedule.html.twig', array('response_array' => $resource));
     }
 }

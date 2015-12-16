@@ -8,6 +8,7 @@
 
 namespace application\SportBundle\Controller;
 
+use application\MainBundle\Controller\PracticeScheduleDBAccess;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -17,6 +18,9 @@ class ViewScheduleDataController extends Controller
         return $this->render('SportBundle:Default:index.html.twig');
     }
     public function viewScheduleGymAction(){
+
+        $locationShedule=PracticeScheduleDBAccess::getAllLocationSchedule();
+        return $this->render('SportBundle:Default:gymSchedule.html.twig',array(''));
 
     }
 }

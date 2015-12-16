@@ -30,7 +30,13 @@ final class connection
     {
         $servername = "localhost";
         $username = "root";
-        $password = null;
+
+
+
+        $password = "12345";
+
+
+
         $dbname = "moraspirit";
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
