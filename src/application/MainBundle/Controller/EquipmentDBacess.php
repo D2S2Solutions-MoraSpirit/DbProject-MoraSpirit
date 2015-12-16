@@ -122,7 +122,7 @@ class EquipmentDBacess{
                 $eqOb=new Equipment();
                 $eqOb->setEquipmentName($row["equipmentName"]);
                 $eqOb->setResourceId($row["resource_id"]);
-                echo ($eqOb->getEquipmentName());
+                //echo ($eqOb->getEquipmentName());
                 $equipmentArray[]=$eqOb;
 
 

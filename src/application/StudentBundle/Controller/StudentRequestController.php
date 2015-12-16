@@ -56,7 +56,7 @@ class StudentRequestController extends Controller
 
         $status=StudentRequestDBaccess::addStudentRequest($request,$resourcesArray);
 
-$v=$resourcesArray[0];
+        $v=$resourcesArray[0];
 
 
         return new JsonResponse(['status'=>$status]);
