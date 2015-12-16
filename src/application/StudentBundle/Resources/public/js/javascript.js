@@ -64,7 +64,6 @@ function submitTable(){
     for(var x=4;x<datas.length;x++){
        tableList[x-4]=datas[x];
     }
-    alert(tableList);
 
    var studentID= $("#studentID").val();
    var requestID= $("#requestID").val();
@@ -77,7 +76,12 @@ function submitTable(){
         data: {"student_id": studentID,"request_id":requestID,"tableList":tableList},
         success: function (data) {
 
-            alert(data['status']);
+            if(data['status']==true){
+                alert("Successfully added the request");
+            }else{
+                alert("Unable to add request");
+            }
+
             //var json_obj = $.parseJSON(data);
 
         }

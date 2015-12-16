@@ -149,7 +149,7 @@
                     <td>
                         <span><label></label><input type="radio" name="equipment" value="equipment" id="equipmentRadio"
                                                     style="padding-left:5em;width: 15%">Equipment</span>
-                        <select name="equipmentList" id="equipmentCombo">
+                        <select name="equipmentList" id="equipmentCombo" >
                             <% {% for x in eqList %}
                             <option value="eqItem">{{ x.getEquipmentName() }}</option>
                             {% endfor %}%>
@@ -182,7 +182,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <button onclick="addRequestResource()">Add to request</button>
+                        <button onclick="addRequestResource()" style="float: right;height: 30px;width: 100px;">Add to request</button>
                     </td>
                 </tr>
 
@@ -205,7 +205,7 @@
             <th>Return date</th>
         </tr>
     </table>
-    <button onclick="submitTable()">SUubmit request</button>
+    <button  style="float: right;margin-right: 7%;width: 150px;height: 50px;margin-top: 20px;" onclick="submitTable()">SUubmit request</button>
 
 
 </span>
