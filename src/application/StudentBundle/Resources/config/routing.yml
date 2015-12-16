@@ -31,4 +31,4 @@ application_studentRequestSubmitPage:
 
 application_achievementAdd:
     path:     /addAchievement
-    defaults: { _controller: applicationStudentBundle:StudentRequest:addStudentRequ
+    defaults: { _controller: applicationStudentBundle:StudentRequest:addStudentRequ}
