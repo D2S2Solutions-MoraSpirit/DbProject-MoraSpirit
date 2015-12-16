@@ -57,4 +57,45 @@ class LocationDBaccess
 
 
     }
+
+
+
+    public static function getAllLocations(){
+
+            try{
+                $conn=connection::getConnectionObject();
+                $con =$conn->getConnection();
+
+
+                $stm=$con->stmt_init();
+
+                $stm->prepare("SELECT resource_id ,locationName FROM location");
+//
+//
+                $stm->execute();
+                $result = $stm->get_result();
+//
+
+
+                $locationarray=array();
+                $count=0;
+
+                while ($row = $result->fetch_assoc())
+                {
+                    $location=new Location();
+                    $location->setName($row["locationName"]);
+                    $location->setResourceid($row["resource_id"]);
+                    $locationarray[]=$location;
+                }
+
+                return $locationarray;
+            }catch (Exception $e){
+                return "error";
+            }finally{
+                //$conn->close();
+                $stm->close();
+            }
+        }
+
+
 }
