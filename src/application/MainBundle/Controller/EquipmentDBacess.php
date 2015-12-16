@@ -114,9 +114,11 @@ class EquipmentDBacess{
             while ($row = $result->fetch_assoc())
             {
 
+
                 $eqOb=new Equipment();
                 $eqOb->setEquipmentName($row["equipmentName"]);
                 $eqOb->setResourceId($row["resource_id"]);
+                echo ($eqOb->getEquipmentName());
                 $equipmentArray[]=$eqOb;
 
             }
@@ -134,19 +136,69 @@ class EquipmentDBacess{
         $conn=connection::getConnectionObject();
         $con =$conn->getConnection();
 
-
-        $stm=$con->stmt_init();
-
-        $stm="UPDATE equipment SET 'quantity'='quantity'+"+$eq->getQuantity()+ "WHERE equipmentName="+$eq->getEquipmentName();
-        echo $stm;
+        $qty=$eq->getQuantity();
+        $date= $eq->getDate();
+        $name =$eq->getEquipmentName();
 
 
-        if (mysqli_query($con, $stm)) {
-            echo "Updated successfully";
-        } else {
-            echo "not working";
-            //echo "Error: " . $sql . "<br>";
+        $sql = "UPDATE equipment  SET qty=qty+?, boughtDate=? WHERE equipmentName=?";
+
+        $sql = $con->prepare($sql);
+        $sql->bind_param('iss',$qty, $date,$name);
+
+
+        $sql->execute();
+
+
+        if ($sql->errno) {
+            echo "FAILURE!!! " . $sql->error;
         }
+        else echo "Updated {$sql->affected_rows} rows";
+
+
+    }
+    public static function getResourceID(equipment $eqpt){
+        $conn = cont\connection::getConnectionObject();
+        $con =$conn->getConnection();
+        $name =$eqpt->getEquipmentName();
+        $sql="SELECT resource_id FROM equipment where equipmentName=? ";
+        $sql = $con->prepare($sql);
+        $sql->bind_param('s',$name);
+
+
+        $sql->execute();
+        $result = $sql->get_result();
+
+
+
+        $row=mysqli_fetch_row($result);
+
+        $eqpt->setResourceId($row[0]);
+        return $eqpt;
+
+
+    }
+    public static function updateResource(resource $rs){
+
+        $conn=connection::getConnectionObject();
+        $con =$conn->getConnection();
+        $s_id =$rs->getSupplierId();
+        $r_id=$rs->getResourceId();
+     
+
+        $sql = "UPDATE resource  SET supplierId=? WHERE resource_id=?";
+
+        $sql = $con->prepare($sql);
+        $sql->bind_param('ss',$s_id,$r_id );
+
+
+        $sql->execute();
+
+
+        if ($sql->errno) {
+            echo "FAILURE!!! " . $sql->error;
+        }
+        else echo "Updated {$sql->affected_rows} rows";
     }
 
 }

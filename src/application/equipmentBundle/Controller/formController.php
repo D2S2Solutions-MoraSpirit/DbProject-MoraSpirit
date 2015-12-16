@@ -22,10 +22,15 @@ class formController extends Controller
         $eqpm->setEquipmentName($_POST["equipmentName"]);
         $eqpm->setDate($_POST["Date"]);
         $eqpm->setQuantity($_POST["quantity"]);
+        $rs=new en\resource();
+        $rs->setResourceId($eqpm->getResourceId());
+        $rs->setSupplierId($_POST["supplier_id"]);
 
 
-
+        $eqpm=cont\EquipmentDBacess::getResourceID($eqpm);
+        $rs->setResourceId($eqpm->getResourceId());
         cont\EquipmentDBacess::updateEquipment($eqpm);
+        cont\EquipmentDBacess::updateResource($rs);
 
 
 
