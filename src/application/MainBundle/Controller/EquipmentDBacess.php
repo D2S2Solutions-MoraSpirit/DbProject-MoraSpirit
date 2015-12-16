@@ -22,6 +22,8 @@ class EquipmentDBacess{
         $r_id = $eqpm->getResourceID();
         $s_id = $rs->getSupplierID();
         $sql = $con->prepare("INSERT INTO equipment VALUES (?,? )");
+
+
         $sql = "INSERT INTO resource VALUES ( '$r_id'  , '$s_id' ) ";
 
 
@@ -31,19 +33,20 @@ class EquipmentDBacess{
         } else {
             echo "Error: " . $sql . "<br>" ;
         }
-        $t_name=$eqpm->getTypeId();
-        $sql2="select type_id from EquipmentType where '$t_name'=equipmentName";
-        $result=mysqli_query($con,$sql2);
-        $row=mysqli_fetch_row($result);
+
+
+
         $quantity=$eqpm->getQuantity();
         $date= $eqpm->getDate();
-        $mysqltime = date('Y-m-d', strtotime(str_replace('-','/', $date)));
+        $name=$eqpm->getEquipmentName();
+        $mysqltime = $eqpm->getDate();
+        echo $mysqltime;
 
-        $newsql = "insert into equipment Values('$r_id',$row[0],$quantity,$mysqltime)";
+        $newsql = "insert into equipment Values('$r_id','$name','$quantity','$mysqltime')";
         if ( $con->query($newsql)==TRUE) {
             echo "New record created successfully";
         } else {
-            echo "Error: " . $sql . "<br>" ;
+            echo "Error: " . $newsql . "<br>" ;
         }
 
 
@@ -67,6 +70,7 @@ class EquipmentDBacess{
 
             mysqli_free_result($result);
         }
+
         return $r+1;
 
     }

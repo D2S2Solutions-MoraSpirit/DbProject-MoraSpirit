@@ -14,3 +14,9 @@ applicationequipment_reportDamage:
 applicationequipment_reportDamageView:
     path:     /saveDamage
     defaults: { _controller: applicationequipmentBundle:form:damageReport }
+applicationequipment_addNewEquipView:
+    path:     /addNewEquip
+    defaults: { _controller: applicationequipmentBundle:form:addNewEquipment }
+applicationequipment_addNewEquipsave:
+    path:     /addNew
+    defaults: { _controller: applicationequipmentBundle:form:addNewEquipmentSave }

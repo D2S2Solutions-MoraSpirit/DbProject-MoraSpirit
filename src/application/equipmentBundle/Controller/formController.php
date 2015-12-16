@@ -64,4 +64,25 @@ class formController extends Controller
     public static function getAllEqupiments(){
         return cont\EquipmentDBacess::getAllEquipmentTypes();
     }
+    public function addNewEquipmentAction(){
+            $id =cont\EquipmentDBacess::getLastResourceID();
+        echo $id;
+
+        return $this->render('applicationequipmentBundle:Forms:add_new_equipment.html.twig',array('new_id'=>$id));
+    }
+    public function addNewEquipmentSaveAction(){
+        $eqpm = new en\equipment();
+
+        $eqpm->setEquipmentName($_POST["equipmentName"]);
+        $eqpm->setDate($_POST["Date"]);
+        echo $eqpm->getDate();
+        $eqpm->setQuantity($_POST["quantity"]);
+        $eqpm->setResourceId($_POST["resource_id"]);
+        $rs = new en\resource();
+        $rs->setResourceId($_POST["resource_id"]);
+        $rs->setSupplierId($_POST["supplier_id"]);
+        cont\EquipmentDBacess::saveToEquipment($eqpm,$rs);
+
+        return $this->render('applicationMainBundle:Default:index.html.twig');
+    }
 }
