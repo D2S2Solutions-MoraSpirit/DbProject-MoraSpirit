@@ -1,14 +1,18 @@
 <html>
-<head>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/sport/js/LoadDataGym.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sport/js/card-depth.js') }}"> </script>
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/sport/css/buttonstyle.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/sport/css/card.css') }}"/>
+
     <script type="javascript">
         jQuery.noConflict();
     </script>
     <script>
         $(document).ready(function () {
-                    readyness();
+
                 }
         );
     </script>
@@ -24,16 +28,19 @@
     </style>
 </head>
 <body>
+<section class="card">
+    <h1>View Schedule</h1>
+    <h2>Select Location to view the respective schedule</h2>
+</section>
 
-<p>
-    This is a para
-</p>
-
-<button id="gymButton" onclick="window.location.href = '/sport/Gym';">Gym Schedule</button>
-<button id="GroundButton" onclick="getScheduleData()">Ground Schedule</button>
-<button id="LocationAButton" onclick="getScheduleData()">Location A</button>
-<button id="LocationAButton" onclick="getScheduleData()">Location B</button>
-<button id="LocationAButton" onclick="getScheduleData()">Location C</button>
+<div align="center">
+    <button class="btn" type="button" id="gymButton" onclick="window.location.href = '/sport/Gym';"><span>Gym Schedule</span></button>
+    <button class="btn" type="button" id="GroundButton" onclick="window.location.href = '/sport/Ground';"><span>Ground Schedule</span></button>
+    <button class="btn" type="button" id="LocationAButton" onclick="getScheduleData()"><span>NA 2</span></button>
+    <button class="btn" type="button" id="LocationAButton" onclick="getScheduleData()"><span>NA 1</span></button>
+    <button class="btn" type="button" id="LocationAButton" onclick="getScheduleData()"><span>Old Gym</span></button>
+</div>
+<br>
 </body>
 
 </html>

@@ -14,7 +14,23 @@ class PracticeSchedule{
     private $resource_id;
     private $practise_Date;
     private $practise_time;
+    private $resource_name;
 
+    /**
+     * @return mixed
+     */
+    public function getResourceName()
+    {
+        return $this->resource_name;
+    }
+
+    /**
+     * @param mixed $resource_name
+     */
+    public function setResourceName($resource_name)
+    {
+        $this->resource_name = $resource_name;
+    }
     /**
      * @return mixed
      */
