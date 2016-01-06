@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 application_student_homepage:
     path:     /addStudent
     defaults: { _controller: applicationStudentBundle:Default:index }
@@ -27,3 +28,45 @@ application_studentRequestPage:
 application_studentRequestSubmitPage:
     path:     /submitStudentRequest
     defaults: { _controller: applicationStudentBundle:StudentRequest:addStudentRequest}
+=======
+application_student_homepage:
+    path:     /addStudent
+    defaults: { _controller: applicationStudentBundle:Default:index }
+
+application_student_insertpage:
+    path:     /AddStudentControl
+    defaults: { _controller: applicationStudentBundle:Student:addStudent }
+
+application_student_sport_detail_insertpage:
+    path:     /addStudentspd
+    defaults: { _controller: applicationStudentBundle:SportInvolve:index }
+
+
+application_sport_involve_controlpage:
+    path:     /AddStudentSPDControl
+    defaults: { _controller: applicationStudentBundle:SportInvolve:addSportInvolve}
+
+application_getStudentDetailPage:
+    path:     /getStudentDetail
+    defaults: { _controller: applicationStudentBundle:Student:getStudentDetails}
+
+application_studentRequestPage:
+    path:     /studentRequest
+    defaults: { _controller: applicationStudentBundle:StudentRequest:index}
+
+
+application_studentRequestSubmitPage:
+    path:     /submitStudentRequest
+    defaults: { _controller: applicationStudentBundle:StudentRequest:addStudentRequest}
+
+
+application_achievementAdd:
+    path:     /addAchievement
+
+    defaults: { _controller: applicationStudentBundle:Achievement:index}
+
+application_achievementStudentAdd:
+    path:     /AddAchievementStudents
+
+    defaults: { _controller: applicationStudentBundle:Achievement:addStudent}
+>>>>>>> 6ae794794e2e7d293622273171ea5bef4855a79c

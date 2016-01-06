@@ -1,3 +1,4 @@
+
 <!doctype HTML>
 <HTML>
 <head>
@@ -34,4 +35,42 @@ Date:<br>
 
 </form>
 </body>
+=======
+<!doctype HTML>
+<HTML>
+<head>
+</head>
+<body bgcolor="#E6E6FA">
+<h1 align="center"> Add Equipment </h1>
+<form action="/add" method ="post"  >
+Supplier ID:<br>
+    <input type="text" name="supplier_id" >
+    <br>
+
+Quantity:<br>
+<input type="number" name="quantity" min="1" max="1000" >
+<br>
+
+Equipment:<br>
+
+
+
+    <select name="equipmentName">
+
+        <% {% for x in s %}
+
+        <option value={{  x.getEquipmentName() }}>{{ x.getEquipmentName() }}</option>
+        {% endfor %}%>
+
+    </select>
+
+<br>
+Date:<br>
+<input type="date" name="Date">
+<br><br><br>
+<input type="submit">
+
+</form>
+</body>
+
 </HTML>

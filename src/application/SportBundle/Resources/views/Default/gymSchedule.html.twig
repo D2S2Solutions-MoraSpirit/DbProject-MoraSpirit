@@ -1,7 +1,42 @@
+<<<<<<< HEAD
 <html>
 
 
 
 
 
+=======
+<html>
+<head>
+    <style type="text/css">
+        .addTableRow th {
+            width: 200px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
+</head>
+<body>
+
+<table align="center">
+    <tr class="addTableRow">
+        <th>Sport ID</th>
+        <th>Location name</th>
+        <th>Reserved date</th>
+        <th>Reserved time</th>
+    </tr>
+    {% for x in response_array %}
+    <tr><td align="center">{{ x.getSportId() }}</td>
+    <td align="center">{{ x.getResourceName()}}</td>    <td align="center">{{ x.getPractiseDate()}}</td>    <td align="center">{{ x.getPractiseTime()}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+>>>>>>> 6ae794794e2e7d293622273171ea5bef4855a79c
 </html>
