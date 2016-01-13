@@ -66,8 +66,6 @@ function submitTable(){
    var studentID= $("#studentID").val();
    var requestID= $("#requestID").val();
 
-
-
     jQuery.ajax({
         url: "/submitStudentRequest",
         type: "GET",

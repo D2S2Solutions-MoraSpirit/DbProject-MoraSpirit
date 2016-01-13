@@ -15,6 +15,23 @@ class PracticeSchedule{
     private $practise_Date;
     private $practise_time;
     private $resource_name;
+    private $sport_name;
+
+    /**
+     * @return mixed
+     */
+    public function getSportName()
+    {
+        return $this->sport_name;
+    }
+
+    /**
+     * @param mixed $sport_name
+     */
+    public function setSportName($sport_name)
+    {
+        $this->sport_name = $sport_name;
+    }
 
     /**
      * @return mixed

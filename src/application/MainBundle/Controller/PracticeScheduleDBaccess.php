@@ -27,7 +27,14 @@ class PracticeScheduleDBaccess
             $practiceScheduleArray = array();
             while ($row = $result->fetch_assoc()) {
                 $practiceSchedule = new PracticeSchedule();
-                $practiceSchedule->setSportId($row["sport_id"]);
+
+                $stm_sport = $con->stmt_init();
+                $stm_sport->prepare("SELECT name FROM sport where sport.sport_id=?");
+                $stm_sport->bind_param("s",$row["sport_id"] );
+                $stm_sport->execute();
+                $result_sport = $stm_sport->get_result();
+                $row_sport = $result_sport->fetch_assoc();
+                $practiceSchedule->setSportName($row_sport["name"]);
                 $practiceSchedule->setPractiseDate($row["practiceDate"]);
                 $practiceSchedule->setPractiseTime($row["practiceTime"]);
                 $practiceSchedule->setResourceName($row["locationName"]);
