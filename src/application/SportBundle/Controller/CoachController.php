@@ -11,7 +11,7 @@ namespace application\SportBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class AddCoachController extends Controller
+class CoachController extends Controller
 {
     public function addCoachAction(){
         return $this->render('SportBundle:AddCoach:addcoach.html.twig');

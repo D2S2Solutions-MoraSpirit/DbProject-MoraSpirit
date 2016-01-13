@@ -18,7 +18,7 @@ class SportDBaccess{
         $conn = connection::getConnectionObject();
         $con = $conn->getConnection();
 
-        $sql = $con->prepare("INSERT INTO sport VALUES (?,?)");
+        $sql = $con->prepare("INSERT INTO Sport VALUES (?,?)");
         $sportid = $sport->getSportId();
         $sportname = $sport->getName();
 
@@ -27,9 +27,9 @@ class SportDBaccess{
         if ( $sql->execute()==TRUE) {
             echo "New record created successfully (sport added)";
         } else {
-            echo "Error in adding sport: " . $sql . "<br>" ;
+            //echo "Error in adding sport: " . $sql . "<br>" ;
+            echo "Error in adding sport:";
         }
-
     }
 
     public static function getAllSports(){
