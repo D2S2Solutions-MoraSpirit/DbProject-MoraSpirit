@@ -14,13 +14,16 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ViewScheduleDataController extends Controller
 {
-    public function viewScheduleAction(){
+    public function viewScheduleAction()
+    {
         return $this->render('SportBundle:Default:index.html.twig');
     }
-    public function viewScheduleGymAction(){
 
-        $locationShedule=PracticeScheduleDBAccess::getAllLocationSchedule();
-        return $this->render('SportBundle:Default:gymSchedule.html.twig',array(''));
+    public function viewScheduleGymAction()
+    {
+
+        $locationShedule = PracticeScheduleDBAccess::getAllLocationSchedule();
+        return $this->render('SportBundle:Default:gymSchedule.html.twig', array(''));
 
     }
 }

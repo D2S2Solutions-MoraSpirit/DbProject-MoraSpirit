@@ -29,6 +29,8 @@ class formController extends Controller
 
         $eqpm=cont\EquipmentDBacess::getResourceID($eqpm);
         $rs->setResourceId($eqpm->getResourceId());
+        echo $_POST["equipmentName"];
+        echo " <br>";
         cont\EquipmentDBacess::updateEquipment($eqpm);
         cont\EquipmentDBacess::updateResource($rs);
 

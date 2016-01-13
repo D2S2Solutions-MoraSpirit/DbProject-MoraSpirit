@@ -32,8 +32,15 @@ final class connection
     {
         $servername = "localhost";
         $username = "root";
-        $password = "diluksha";
-        $dbname = "Moraspirit";
+
+
+
+        $password = null;
+
+
+        $dbname = "moraspirit";
+
+
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection

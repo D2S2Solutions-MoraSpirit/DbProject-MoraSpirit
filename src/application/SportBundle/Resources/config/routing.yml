@@ -1,3 +1,4 @@
+
 sport_homepage:
     path:     /sport
     defaults: { _controller: SportBundle:Default:index }
@@ -16,6 +17,10 @@ sport-view-gymschedule:
 sport-view-groundschedule:
     path: /sport/Ground
     defaults: {_controller: SportBundle:GroundSchedule:index}
+
+
+
 add_coach:
     path: /sport/addcoach
     defaults: {_controller: SportBundle:Coach:addCoach}
+
