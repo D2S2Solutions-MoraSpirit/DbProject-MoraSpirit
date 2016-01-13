@@ -2,14 +2,12 @@
 sport_homepage:
     path:     /sport
     defaults: { _controller: SportBundle:Default:index }
-
 sport-add:
-    path: /sportadd
-    defaults: {_controller: SportBundle:AddSportForm:addSport}
-
+    path: /addsport
+    defaults: {_controller: SportBundle:Sport:addSport}
 sport-add-database:
     path: /sport/save
-    defaults: {_controller: SportBundle:AddSportForm:saveSport}
+    defaults: {_controller: SportBundle:Sport:saveSport}
 sport-view-schedule:
     path: /sport/view
     defaults: {_controller: SportBundle:ViewScheduleData:viewSchedule}
@@ -19,4 +17,10 @@ sport-view-gymschedule:
 sport-view-groundschedule:
     path: /sport/Ground
     defaults: {_controller: SportBundle:GroundSchedule:index}
+
+
+
+add_coach:
+    path: /sport/addcoach
+    defaults: {_controller: SportBundle:Coach:addCoach}
 

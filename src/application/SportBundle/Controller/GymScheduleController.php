@@ -21,4 +21,3 @@ class GymScheduleController extends Controller
         return $this->render('SportBundle:Default:gymSchedule.html.twig', array('response_array' => $resource));
     }
 }
-
