@@ -1,72 +1,42 @@
-{#<html>#}
-{#<head>#}
-    {#<style type="text/css">#}
-        {#.addTableRow th {#}
-            {#width: 200px;#}
-            {#background-color: #4CAF50;#}
-            {#color: white;#}
-        {#}#}
-
-        {#table tr:nth-child(even) {#}
-            {#background-color: #f2f2f2#}
-        {#}#}
-    {#</style>#}
-{#</head>#}
-{#<body>#}
-
-{#<table align="center">#}
-    {#<tr class="addTableRow">#}
-        {#<th>Sport ID</th>#}
-        {#<th>Location name</th>#}
-        {#<th>Reserved date</th>#}
-        {#<th>Reserved time</th>#}
-    {#</tr>#}
-    {#{% for x in response_array %}#}
-    {#<tr><td align="center">{{ x.getSportName() }}</td>#}
-    {#<td align="center">{{ x.getResourceName()}}</td>    <td align="center">{{ x.getPractiseDate()}}</td>    <td align="center">{{ x.getPractiseTime()}}</td>#}
-    {#</tr>#}
-    {#{% endfor %}#}
-{#</table>#}
+<<<<<<< HEAD
+<html>
 
 
-{#</body>#}
-{#</html>#}
 
 
-<!DOCTYPE html>
+
+=======
 <html>
 <head>
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/sport/css/materialize.css') }}"  media="screen,projection"/>
+    <style type="text/css">
+        .addTableRow th {
+            width: 200px;
+            background-color: #4CAF50;
+            color: white;
+        }
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        table tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
 </head>
-
 <body>
-<!--Import jQuery before materialize.js-->
-<a class="waves-effect waves-light btn center-align"  >
-    This
-</a>
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card blue darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">Card Title</span>
-                <p>I am a very simple card. I am good at
-                    containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action yellow">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="{{ asset('bundles/sport/js/materialize.js') }}"></script>
+
+<table align="center">
+    <tr class="addTableRow">
+        <th>Sport ID</th>
+        <th>Location name</th>
+        <th>Reserved date</th>
+        <th>Reserved time</th>
+    </tr>
+    {% for x in response_array %}
+    <tr><td align="center">{{ x.getSportId() }}</td>
+    <td align="center">{{ x.getResourceName()}}</td>    <td align="center">{{ x.getPractiseDate()}}</td>    <td align="center">{{ x.getPractiseTime()}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
 
 </body>
+>>>>>>> 6ae794794e2e7d293622273171ea5bef4855a79c
 </html>

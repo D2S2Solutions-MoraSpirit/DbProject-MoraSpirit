@@ -5,9 +5,11 @@
  * Date: 11/12/15
  * Time: 4:42 AM
  */
-namespace application\MainBundle\Controller;
-use mysqli;
 
+
+namespace application\MainBundle\Controller;
+
+use mysqli;
 
 /**
  * Singleton class
@@ -30,14 +32,8 @@ final class connection
     {
         $servername = "localhost";
         $username = "root";
-
-
-
-        $password = "19930417";
-
-
-
-        $dbname = "moraspirit";
+        $password = "diluksha";
+        $dbname = "Moraspirit";
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection
