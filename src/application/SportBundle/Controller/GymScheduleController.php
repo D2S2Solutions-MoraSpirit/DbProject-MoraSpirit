@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-<?php
-
-namespace application\SportBundle\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-class GymScheduleController extends Controller
-{
-    public function indexAction()
-    {
-        return $this->render('SportBundle:Default:gymSchedule.html.twig');
-    }
-}
-=======
 <?php
 
 namespace application\SportBundle\Controller;
@@ -36,4 +21,4 @@ class GymScheduleController extends Controller
         return $this->render('SportBundle:Default:gymSchedule.html.twig', array('response_array' => $resource));
     }
 }
->>>>>>> 6ae794794e2e7d293622273171ea5bef4855a79c
+
