@@ -1,16 +1,41 @@
 <html>
-    <head>
-    </head>
-    <body>
-        <form action="/sport/save" method="post">
-            Sport name:<br>
-            <input type="text" name="sportname">
-            <br>
-            SportId:<br>
-            <input type="text" name="sportid">
-            <br>
-            <br>
-            <input type="submit" value="Submit">
-        </form>
-    </body>
+
+<head>
+    <style>
+        .form {
+            background-color: aqua;
+            background-size: contain;
+            padding-top: 100;
+            float: none;           
+        }
+        
+        .container {
+            box-sizing: padding-box;
+            width: 20%;
+            margin-top: 0;
+            margin-right: auto;
+            margin-bottom: 0;
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <form action="/sport/save" method="post">
+                Sport name:
+                <br>
+                <input type="text" name="sportname">
+                <br> SportId:
+                <br>
+                <input type="text" name="sportid">
+                <br>
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+
 </html>

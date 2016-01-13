@@ -27,6 +27,7 @@ class SportController extends Controller
         $sportName = $_POST["sportname"];
         $sportId = $_POST["sportid"];
         if ($sportName==NULL){
+            echo "Please enter valid a Sport Name";
             return $this->render('SportBundle:AddSport:addSport.html.twig');
         }
         else{
