@@ -11,6 +11,11 @@ class DefaultController extends Controller
         return $this->render('applicationStudentBundle:Default:AddStudent.html.twig');
     }
 
+    public function viewItemAction()
+    {
+        return $this->render('applicationStudentBundle:Default:ViewAvailableItem.html.twig');
+    }
+
 
 
 }

@@ -39,3 +39,8 @@ application_achievementStudentAdd:
     path:     /AddAchievementStudents
     defaults: { _controller: applicationStudentBundle:Achievement:addStudent}
 
+
+application_viewAvailableItems:
+    path:     /ViewAvailableItems
+    defaults: { _controller: applicationStudentBundle:Default:viewItem}
+
