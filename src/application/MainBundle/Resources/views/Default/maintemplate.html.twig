@@ -3,6 +3,7 @@
     <!-- Material Design Lite -->
     <script type="text/javascript" src="{{ asset('bundles/applicationmain/js/material.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('bundles/applicationmain/css/material.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/applicationmain/css/formStyle.css') }}">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
@@ -47,9 +48,11 @@
         </nav>
     </div>
     <main class="mdl-layout__content">
+
         {% block midPanel %}
             My cool posts
         {% endblock %}
+
 </main>
 </div>
 </body>

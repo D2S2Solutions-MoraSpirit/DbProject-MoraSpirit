@@ -3,6 +3,7 @@ applicationequipment_homepage:
     defaults: { _controller: applicationequipmentBundle:Default:index }
 applicationequipment_addEquip:
     path:     /add
+
     defaults: { _controller: applicationequipmentBundle:form:saveEquipment }
 applicationequipment_addEquipForm:
     path:     /addEquip
@@ -19,4 +20,5 @@ applicationequipment_addNewEquipView:
     defaults: { _controller: applicationequipmentBundle:form:addNewEquipment }
 applicationequipment_addNewEquipsave:
     path:     /addNew
+
     defaults: { _controller: applicationequipmentBundle:form:addNewEquipmentSave }

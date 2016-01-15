@@ -20,7 +20,7 @@ class formController extends Controller
         $eqpm = new en\equipment();
 
         $eqpm->setEquipmentName($_POST["equipmentName"]);
-        $eqpm->setDate($_POST["Date"]);
+        $eqpm->setDate($_POST["date"]);
         $eqpm->setQuantity($_POST["quantity"]);
         $rs=new en\resource();
         $rs->setResourceId($eqpm->getResourceId());
@@ -76,15 +76,22 @@ class formController extends Controller
         $eqpm = new en\equipment();
 
         $eqpm->setEquipmentName($_POST["equipmentName"]);
-        $eqpm->setDate($_POST["Date"]);
+        $eqpm->setDate($_POST["date"]);
         echo $eqpm->getDate();
         $eqpm->setQuantity($_POST["quantity"]);
-        $eqpm->setResourceId($_POST["resource_id"]);
+        $eqpm->setResourceId($_POST["resourceId"]);
         $rs = new en\resource();
-        $rs->setResourceId($_POST["resource_id"]);
-        $rs->setSupplierId($_POST["supplier_id"]);
-        cont\EquipmentDBacess::saveToEquipment($eqpm,$rs);
+        $rs->setResourceId($_POST["resourceId"]);
+        $rs->setSupplierId($_POST["supplierId"]);
+        $added=cont\EquipmentDBacess::saveToEquipment($eqpm,$rs);
+        if($added){
+            return $this->render('applicationequipmentBundle:Forms:addedSuccessfullyMessage.html.twig');
+        }
+        else{
+            echo "not added";
+            return $this->render('applicationMainBundle:Default:index.html.twig');
+        }
 
-        return $this->render('applicationMainBundle:Default:index.html.twig');
+
     }
 }

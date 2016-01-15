@@ -16,6 +16,8 @@ class MainTemplateController extends Controller{
     public function templateTestAction(){
         return $this->render('applicationMainBundle:Default:maintemplate.html.twig');
     }
+
+
     /*public function addCoachAction(){
         return $this->render('SportBundle:AddCoach:addcoach.html.twig');
     }*/
