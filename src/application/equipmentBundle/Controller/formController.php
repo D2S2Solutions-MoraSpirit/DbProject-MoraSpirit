@@ -24,7 +24,7 @@ class formController extends Controller
         $eqpm->setQuantity($_POST["quantity"]);
         $rs=new en\resource();
         $rs->setResourceId($eqpm->getResourceId());
-        $rs->setSupplierId($_POST["supplier_id"]);
+        $rs->setSupplierId($_POST["supplierId"]);
 
 
         $eqpm=cont\EquipmentDBacess::getResourceID($eqpm);
