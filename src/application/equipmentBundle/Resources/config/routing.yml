@@ -22,3 +22,11 @@ applicationequipment_addNewEquipsave:
     path:     /addNew
 
     defaults: { _controller: applicationequipmentBundle:form:addNewEquipmentSave }
+applicationequipment_addNewSupplier:
+    path:     /addSupplier
+
+    defaults: { _controller: applicationequipmentBundle:form:addNewSupplier }
+applicationequipment_saveNewSupplier:
+    path:     /saveSupplier
+
+    defaults: { _controller: applicationequipmentBundle:form:saveSupplier }

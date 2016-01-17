@@ -163,8 +163,10 @@ class EquipmentDBacess{
 
         if ($sql->errno) {
             echo "FAILURE!!! " . $sql->error;
+            return false;
         }
-        else echo "Updated {$sql->affected_rows} rows";
+        else return True;
+
 
 
     }
@@ -208,8 +210,9 @@ class EquipmentDBacess{
 
         if ($sql->errno) {
             echo "FAILURE!!! " . $sql->error;
+            return false;
         }
-        else echo "Updated {$sql->affected_rows} rows";
+        else  return true;
     }
 
 }

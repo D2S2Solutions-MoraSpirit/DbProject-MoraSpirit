@@ -5,6 +5,7 @@ use application\MainBundle\Resources\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use application\MainBundle\Controller as cont;
 use application\MainBundle\Resources\Entity as en;
+
 class formController extends Controller
 {
     public function addAction()
@@ -31,12 +32,19 @@ class formController extends Controller
         $rs->setResourceId($eqpm->getResourceId());
         echo $_POST["equipmentName"];
         echo " <br>";
-        cont\EquipmentDBacess::updateEquipment($eqpm);
-        cont\EquipmentDBacess::updateResource($rs);
+        $updateEquip=cont\EquipmentDBacess::updateEquipment($eqpm);
+        $updateRes=cont\EquipmentDBacess::updateResource($rs);
+        if($updateEquip && $updateRes){
+            return $this->render('applicationequipmentBundle:Forms:addedSuccessfullyMessage.html.twig');
+        }
+        else{
+            echo "updated resources "+$updateRes;
+            echo "updated equipment "+$updateEquip;
+        }
 
 
 
-        return $this->render('applicationMainBundle:Default:index.html.twig');
+
     }
     public function damageReportAction()
     {
@@ -93,5 +101,24 @@ class formController extends Controller
         }
 
 
+    }
+    public function addNewSupplierAction(){
+        $r=cont\SupplierDBacess::getLastSupplierID();
+        return $this->render('applicationequipmentBundle:Forms:addNewSupplier.html.twig',array('sid' => $r));
+    }
+    public function saveSupplierAction(){
+        $spp = new en\Supplier();
+        $spp->setSupplierId("supplierId");
+        $spp->setName("name");
+        $spp->setContactNo("contactNo");
+        $spp->setNic("Nic");
+        $added = cont\SupplierDBacess::saveToSupplier($spp);
+        if($added){
+            return $this->render('applicationequipmentBundle:Forms:addedSuccessfullyMessage.html.twig');
+        }
+        else{
+            echo "not added";
+            return $this->render('applicationMainBundle:Default:index.html.twig');
+        }
     }
 }
