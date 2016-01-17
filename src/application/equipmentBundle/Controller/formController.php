@@ -108,10 +108,10 @@ class formController extends Controller
     }
     public function saveSupplierAction(){
         $spp = new en\Supplier();
-        $spp->setSupplierId("supplierId");
-        $spp->setName("name");
-        $spp->setContactNo("contactNo");
-        $spp->setNic("Nic");
+        $spp->setSupplierId($_POST["supplierId"]);
+        $spp->setName($_POST["name"]);
+        $spp->setContactNo($_POST["telNo"]);
+        $spp->setNic($_POST["NIC"]);
         $added = cont\SupplierDBacess::saveToSupplier($spp);
         if($added){
             return $this->render('applicationequipmentBundle:Forms:addedSuccessfullyMessage.html.twig');
