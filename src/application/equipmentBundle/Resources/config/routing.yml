@@ -30,3 +30,7 @@ applicationequipment_saveNewSupplier:
     path:     /saveSupplier
 
     defaults: { _controller: applicationequipmentBundle:form:saveSupplier }
+applicationequipment_requestProcess:
+    path:     /requestProccess
+
+    defaults: { _controller: applicationequipmentBundle:form:requestAcceptTable }

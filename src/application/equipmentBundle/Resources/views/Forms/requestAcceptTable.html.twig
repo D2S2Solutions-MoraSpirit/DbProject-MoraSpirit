@@ -1,0 +1,32 @@
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+
+{%  block midPanel %}
+
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+        <tr>
+            <th>Request ID</th>
+            <th>Student ID</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for x in s %}
+            <tr>
+                <td>{{  x.getRequest_id() }}</td>
+                <td>{{  x.getStudent_id() }}</td>
+                <td>{{  x.getRequestDate() }}</td>
+                <td>Pending</td>
+
+            </tr>
+
+
+        {% endfor %}
+
+
+    </table>
+
+
+{% endblock %}
