@@ -19,10 +19,11 @@ class RequestDBaccess{
         $requests = array();
         $req_num=0;
         while($row=mysqli_fetch_row($result)){
+
             $request = new en\ Request();
-            $request->setRequestId($row["request_id"]);
-            $request->setStudentId($row["student_id"]);
-            $request->setRequestDate($row["requestDate"]);
+            $request->setRequestId($row[0]);
+            $request->setStudentId($row[1]);
+            $request->setRequestDate($row[2]);
             $requests[$req_num]=$request;
             $req_num++;
         }
