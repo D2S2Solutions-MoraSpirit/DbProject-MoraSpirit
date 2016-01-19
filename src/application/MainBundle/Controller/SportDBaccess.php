@@ -58,7 +58,7 @@ class SportDBaccess{
         }
     }
 
-    public static function getSport($id){
+    public static function getSportName($id){
         try{
             $conn=connection::getConnectionObject();
             $con =$conn->getConnection();
