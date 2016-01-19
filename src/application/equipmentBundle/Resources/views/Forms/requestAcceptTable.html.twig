@@ -1,0 +1,43 @@
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+
+{%  block midPanel %}
+
+    <table class="mdl-data-table mdl-js-data-table mdl mdl-shadow--2dp">
+        <thead>
+        <tr>
+            <th>Request ID</th>
+            <th>Student ID</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for x in s %}
+
+            <tr  onclick="updateRequestResource(this)" >
+                <td>{{  x.getRequestId() }}</td>
+                <td>{{  x.getStudentId() }}</td>
+                <td>{{  x.getRequestDate() }}</td>
+                <td>Pending</td>
+
+            </tr>
+
+
+        {% endfor %}
+        <script>
+            function updateRequestResource(x) {
+
+                alert("Row index is: " + x.rowIndex);
+
+
+
+            }
+        </script>
+
+
+    </table>
+
+
+{% endblock %}

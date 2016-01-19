@@ -121,4 +121,11 @@ class formController extends Controller
             return $this->render('applicationMainBundle:Default:index.html.twig');
         }
     }
+    public function requestAcceptTableAction(){
+
+
+        $r=cont\RequestDBaccess::getPendingRequests();
+
+        return $this->render('applicationequipmentBundle:Forms:requestAcceptTable.html.twig',array('s' => $r));
+    }
 }
