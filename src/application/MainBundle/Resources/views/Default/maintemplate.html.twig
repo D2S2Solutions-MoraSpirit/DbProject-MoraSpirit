@@ -5,13 +5,21 @@
     <link rel="stylesheet" href="{{ asset('bundles/applicationmain/css/material.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/applicationmain/css/formStyle.css') }}">
     <!-- Material Design icon font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    {#<link rel="stylesheet" href="{{asset('bundles/applicationmain/fonts/Roboto-Light.ttf') }}">#}
 
     <!-- Material Design Lite -->
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    {% block styleBlock %}
+            <!--My cool styles-->
+    {% endblock %}
+    
+    {% block scriptBlock %}
+            <!--My cool styles-->
+    {% endblock %}
 
     <style>
         .demo-layout-transparent {
@@ -29,16 +37,10 @@
         */
         .header-edit {
             margin-top: -9px;
-
         }
-
-
+        {% block styleCodeBlocks %}
+        {% endblock %}
     </style>
-    {% block stylePanel %}
-        My cool styles
-    {% endblock %}
-
-
 </head>
 <body>
 <!-- Uses a transparent header that draws on top of the layout's background -->
