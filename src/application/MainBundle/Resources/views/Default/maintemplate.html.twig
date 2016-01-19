@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    {% block styleBlock %}
+            <!--My cool styles-->
+    {% endblock %}
+    
+    {% block scriptBlock %}
+            <!--My cool styles-->
+    {% endblock %}
 
     <style>
         .demo-layout-transparent {
@@ -29,15 +37,7 @@
         */
         .header-edit {
             margin-top: -9px;
-
         }
-
-        {% block stylePanel %}
-            My cool styles
-        {% endblock %}
-
-
-
     </style>
 </head>
 <body>
