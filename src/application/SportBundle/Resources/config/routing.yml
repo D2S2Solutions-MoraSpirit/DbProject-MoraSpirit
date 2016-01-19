@@ -17,9 +17,9 @@ sport-view-gymschedule:
 sport-view-groundschedule:
     path: /sport/Ground
     defaults: {_controller: SportBundle:GroundSchedule:index}
-
-
-
+sport-add-scheduledEvent:
+    path: /sport/AddScheduledEvent
+    defaults: {_controller: SportBundle:AddSchedule:index}
 add_coach:
     path: /sport/addcoach
     defaults: {_controller: SportBundle:Coach:addCoach}

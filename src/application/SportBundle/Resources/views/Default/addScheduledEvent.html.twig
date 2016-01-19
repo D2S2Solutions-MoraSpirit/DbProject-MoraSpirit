@@ -1,0 +1,36 @@
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+{% block title %}
+    Add Scheduled Event
+{% endblock %}
+{% block midPanel %}
+    <div class="container">
+        <h1>Add Scheduled Event</h1>
+        <form action="/addNew" method ="post" >
+
+            <div class="form-group">
+                <input type="text" required="required" name="name" >
+                <label for="name" class="control-label">Sport</label><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+                <input type="text" required="required" name="location" >
+                <label for="location" class="control-label">Location Name</label><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+                <input type="text" required="required" name="author" >
+                <label for="author" class="control-label">Author</label><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+                <input type="text" required="required" name="participants" >
+                <label for="participants" class="control-label">participants</label><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+                <input type="date" name="date" required="required" class="datepicker">
+                <label for="date" class="control-label">Date</label><i class="bar"></i>
+            </div>
+            <button type="submit" class="button"><span>Submit</span></button>
+        </form>
+{% endblock %}
