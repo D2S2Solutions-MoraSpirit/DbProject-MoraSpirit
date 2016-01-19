@@ -26,7 +26,33 @@ class RequestDBaccess{
             $request->setRequestDate($row[2]);
             $requests[$req_num]=$request;
             $req_num++;
+            $requestResources=self::getRequestResource($request);
         }
-        return $requests;
+        $returnValue=array();
+        $returnValue[0]=$requests;
+        $returnValue[1]=$requestResources;
+
+        return $returnValue;
+    }
+    public static function getRequestResource(en\ Request $request){
+        $request_id = $request->getRequestId();
+        $conn = cont\connection::getConnectionObject();
+        $con =$conn->getConnection();
+        $sql="SELECT * FROM RequestResource WHERE request_id=$request_id";
+        $result=mysqli_query($con,$sql);
+        $requestResources=array();
+        $res_num=0;
+        while($row=mysqli_fetch_row($result)){
+            $requestResource =new en\ RequestResource();
+            $requestResource->setResourceId($row[1]);
+            $requestResource->setItemBorrowingDate($row[2]);
+            $requestResource->setIssueDate($row[3]);
+            $requestResource->setReturnDate($row[4]);
+            $requestResource->setStatus($row[5]);
+            $requestResources[$res_num]=$requestResource;
+            $res_num++;
+
+        }
+        return $requestResources;
     }
 }

@@ -124,8 +124,11 @@ class formController extends Controller
     public function requestAcceptTableAction(){
 
 
-        $r=cont\RequestDBaccess::getPendingRequests();
+        $returned=cont\RequestDBaccess::getPendingRequests();
+        $r=$returned[0];
+        $i =$returned[1];
 
-        return $this->render('applicationequipmentBundle:Forms:requestAcceptTable.html.twig',array('s' => $r));
+
+        return $this->render('applicationequipmentBundle:Forms:requestAcceptTable.html.twig',array('s' => $r,'i'=>$i));
     }
 }
