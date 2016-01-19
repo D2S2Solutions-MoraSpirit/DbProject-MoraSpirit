@@ -36,21 +36,12 @@ class SportDBaccess{
         try{
             $conn=connection::getConnectionObject();
             $con =$conn->getConnection();
-
-
             $stm=$con->stmt_init();
-
             $stm->prepare("SELECT name FROM Sport");
-//
-//
             $stm->execute();
             $result = $stm->get_result();
-//
-
-
             $sportArray=array();
             $count=0;
-
             while ($row = $result->fetch_assoc())
             {
                 $sport=new Sport();
@@ -64,6 +55,23 @@ class SportDBaccess{
         }finally{
             //$conn->close();
             $stm->close();
+        }
+    }
+
+    public static function getSport($id){
+        try{
+            $conn=connection::getConnectionObject();
+            $con =$conn->getConnection();
+            $stm=$con->stmt_init();
+            $stm->prepare("SELECT name FROM sport WHERE sport_id="+$id);
+            $stm->execute();
+            $result = $stm->get_result();
+            echo 'ID: '.$result['name'].'<br>';
+            return $result;
+        }catch(Exception $e){
+            return "error";
+        }finally{
+
         }
     }
 }

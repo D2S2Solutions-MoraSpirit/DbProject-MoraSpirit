@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="{{ asset('bundles/applicationmain/css/formStyle.css') }}">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <style>
         .demo-layout-transparent {
             background: url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover;
+            background: url('/bundles/sport/images/indigo-pentagonal-background.png') center/cover;
         }
         .demo-layout-transparent .mdl-layout__header,
         .demo-layout-transparent .mdl-layout__drawer-button {
@@ -17,15 +19,31 @@
             color: white;
         }
 
+        /*Following header edits is for the correct page title alignment with the breadcrumb ,Do not edit further -sineth 17/1/2016 8.29
+        */
+        .header-edit {
+            margin-top: -9px;
+
+        }
+
+        {% block stylePanel %}
+            My cool styles
+        {% endblock %}
+
+
+
     </style>
 </head>
 <body>
 <!-- Uses a transparent header that draws on top of the layout's background -->
-<div class="demo-layout-transparent mdl-layout mdl-js-layout">
-    <header class="mdl-layout__header mdl-layout__header--transparent">
-        <div class="mdl-layout__header-row">
+<div class="demo-layout-transparent mdl-layout mdl-js-layout" >
+    <header class="header-edit mdl-layout__header " >
+        <div class="mdl-layout__header-row ">
             <!-- Title -->
-            <span class="mdl-layout-title">Title</span>
+            <span class="mdl-layout-title">
+                {% block title %}
+                {% endblock  %}
+            </span>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation -->
@@ -55,5 +73,6 @@
 
 </main>
 </div>
+
 </body>
 </html>
