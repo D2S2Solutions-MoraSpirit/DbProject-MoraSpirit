@@ -215,5 +215,48 @@ class EquipmentDBacess{
         }
         else  return true;
     }
+    public static function getAllEquipments(){
+        try{
+            $conn=connection::getConnectionObject();
+            $con =$conn->getConnection();
+
+
+            $stm=$con->stmt_init();
+
+            $stm->prepare("SELECT * FROM Equipment");
+//           // $result = mysqli_query($con,$sql);
+//
+//
+            $stm->execute();
+            $result = $stm->get_result();
+//
+
+            $equipmentArray=array();
+
+
+            while ($row = $result->fetch_assoc())
+            {
+
+
+                $eqOb=new Equipment();
+                $eqOb->setEquipmentName($row["equipmentName"]);
+                $eqOb->setResourceId($row["resource_id"]);
+                $eqOb->setDate($row["boughtDate"]);
+                $eqOb->setQuantity($row["qty"]);
+                $equipmentArray[]=$eqOb;
+
+
+
+            }
+
+            return $equipmentArray;
+        }catch (Exception $e){
+            return "error";
+        }finally{
+            //$conn->close();
+            // $stm->close();
+
+        }
+    }
 
 }

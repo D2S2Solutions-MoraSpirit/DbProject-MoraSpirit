@@ -1,36 +1,58 @@
 {% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+{% block scriptStylePanel %}
 
+    <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/javascript.js') }}"></script>
+
+    <script type="javascript">
+
+        jQuery.noConflict();
+
+    </script>
+
+{% endblock %}
  {% block title %}
      Requested Resources
  {% endblock  %}
 {%  block midPanel %}
-<form method="post" action="/approvals">
-    <table class="mdl-data-table mdl-js-data-table mdl mdl-shadow--2dp"  align="center">
 
-        <thead>
+
+    <table id="resourceTable" class="mdl-data-table mdl-js-data-table mdl mdl-shadow--2dp"  align="center">
+
+
         <tr>
+            <th>Request ID</th>
             <th>Resource ID</th>
             <th>Borrowing Date</th>
             <th>Issue Date</th>
             <th>Return Date</th>
             <th>Status </th>
         </tr>
-        </thead>
+
         {% for x in results %}
-            {% var y=0 %}
+
 
             <tr >
+                <td id="requestId">{{ r_id }}</td>
+                <td id="resourceId">{{  x.getResourceId() }}</td>
+                <td id="ItemBorrowingDate">{{  x.getItemBorrowingDate() }}</td>
+                <td id="issueDate">{{  x.getIssueDate() }}</td>
+                <td id="returnDate">{{  x.getReturnDate() }}</td>
 
-                <td>{{  x.getResourceId() }}</td>
-                <td>{{  x.getItemBorrowingDate() }}</td>
-                <td>{{  x.getIssueDate() }}</td>
-                <td>{{  x.getReturnDate() }}</td>
+                <td >
+                <select name="equipmentName"   id="{{ x.getResourceId() }}" onmouseup="updateState(this)  ">
 
 
-                <td>
-                <input type="checkbox" name={{ y }} value="checked" /> Approve
-                 </td>
-                {% y=y+1 %}
+
+                    <option  value="2">Approve</option>
+                    <option  value="1">Discard</option>
+
+
+
+                </select >
+                </td >
+                <td class="hidden" id={{x.getResourceId()*-1}} aria-readonly="true">1</td>
+
 
 
 
@@ -43,13 +65,57 @@
 
 
         {% endfor %}
-        <td><button type="submit" class="button"><span>Submit</span></button></td>
+        <td> <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                     onclick="submitTable()" style="float: right;height: 30px;width: 120px;">Confirm
+            </button></td>
 
 
 
     </table>
-</form>
     <script>
+        function updateState(x){
+
+            document.getElementById(x.id*-1).innerHTML= x.value;
+        }
+        </script>
+
+    <script>
+        function submitTable(){
+            var datas = [];
+            jQuery.each(jQuery('#resourceTable tr:gt(0)'), function(i,e ) {
+                datas.push(jQuery('td', e).map(function(i,e) {
+
+
+                            return e.innerHTML.valueOf();
+                        }).get()
+                );
+            });
+
+
+
+            alert(requestId);
+            jQuery.ajax({
+                url: "/approvals",
+                type: "GET",
+
+                data: {"resourceTable":datas},
+                success: function (data) {
+
+                    if(data['status']==true){
+                        alert("Successfully added the request");
+                    }else{
+                        alert("Unable to add request");
+                    }
+
+
+
+                }
+            });
+
+
+
+
+        }
 
     </script>
 
