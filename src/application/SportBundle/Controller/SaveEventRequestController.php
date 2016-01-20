@@ -5,10 +5,9 @@
  * Date: 1/20/2016
  * Time: 2:02 PM
  */
-
 namespace application\SportBundle\Controller;
-use application\MainBundle\Resources\Entity as en;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use application\MainBundle\Resources\Entity as en;
 use application\MainBundle\Controller as cont;
 
 class SaveEventRequestController extends Controller

@@ -36,7 +36,11 @@ final class connection
 
 
 
+<<<<<<< HEAD
         $password = "12345";
+=======
+        $password = '19930417';
+>>>>>>> 936dbb482515b252fbc7cd49b74f27b6654ae037
 
         $dbname = "moraspirit";
 

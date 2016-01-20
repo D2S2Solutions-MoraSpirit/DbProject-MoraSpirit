@@ -17,6 +17,12 @@ class MainTemplateController extends Controller{
         return $this->render('applicationMainBundle:Default:maintemplate.html.twig');
     }
 
+    public function mainTemplateAdminAction(){
+        return $this->render('applicationMainBundle:Default:mainUIAdmin.html.twig');
+    }
+    public function mainTemplateUserAction(){
+        return $this->render('applicationMainBundle:Default:mainUIUser.html.twig');
+    }
 
     /*public function addCoachAction(){
         return $this->render('SportBundle:AddCoach:addcoach.html.twig');
