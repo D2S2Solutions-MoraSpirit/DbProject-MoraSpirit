@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -128,3 +129,96 @@ table.form label.email { border-bottom: 1px dotted #000000; }
 </script>
 
 </html>
+=======
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+
+{% block midPanel %}
+    <div class="container">
+        <form action="/AddStudentControl" method="post">
+            <h1>Add Student form</h1>
+
+
+            <div class="form-group">
+                <input type="text" name="StudentId"  value="{{ s_id }}"+ readonly >
+                <label for="id" class="control-label"><strong>Student ID:</strong></label><i class="bar"></i>
+
+            </div>
+
+            <div class="form-group">
+                <input required="required" name="name" id="name" type="text"/>
+                <label for="name" class="control-label"><strong>Name:</strong></label><i class="bar"></i>
+
+            </div>
+
+            <div class="form-group">
+                <input name="name" id="name" type="text" required="required"/>
+                <label class="control-label" for="name"><strong>Telephone:</strong></label><i class="bar"></i>
+
+
+                <button type="button" name="addButton" id="addButton" onclick="addField()" size="30">Add
+                </button>
+
+            </div>
+
+            <div class="form-group">
+                <input name="batch" id="batch" type="text" required=""/>
+                <label class="control-label" for="batch"><strong>Batch:</strong></label><i class="bar"></i>
+
+            </div>
+
+            <div class="form-group">
+                <input name="faculty" id="faculty" type="text" required="">
+                <label class="control-label" for="faculty"><strong>Faculty:</strong></label><i class="bar"></i>
+
+            </div>
+
+            <div class="form-group">
+                <input name="address" id="address" type="text" required=""/>
+                <label class="control-label" for="address"><strong>Address:</strong></label><i class="bar"></i>
+
+            </div>
+
+            <div class="form-group" >
+                <input  name="nic" id="nic" type="text" required="required"/>
+                <label class="control-label" for="nic"><strong>NIC:</strong></label><i class="bar"></i>
+
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" class="button"><span>Submit</span></button>
+
+            </div>
+
+
+        </form>
+    </div>
+{% endblock %}
+
+{% block scriptBlock %}
+    <script>
+        var a = 1;
+        function addField() {
+            var table = document.getElementById('table1');
+            var newRow = table.insertRow(2 + a);
+            var newCell = newRow.insertCell(0);
+            newCell.innerHTML = "<label><strong>  telephone </strong>" + a + "</label>";
+            var newCell2 = newRow.insertCell(1);
+            newCell2.innerHTML = '<td><input class="inp-text" name="nic" id="nic" type="text" size="30" /></td>';
+            var newCell3 = newRow.insertCell(2);
+            newCell3.innerHTML = '<td><button type="button" name="delButton" id="' + a + '" onclick="deleteField(this.id)" size="30">Del</button></td>';
+            a = a + 1;
+            alert(a);
+        }
+
+        function deleteField(id) {
+            alert(id);
+            var table = document.getElementById('table1');
+            table.deleteRow(2 + id);
+        }
+    </script>
+{% endblock %}
+
+
+>>>>>>> 66d486d01253d6575dffd1cc30354441d7b77312

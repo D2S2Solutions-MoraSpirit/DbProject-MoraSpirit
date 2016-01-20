@@ -10,6 +10,7 @@
 namespace application\MainBundle\Controller;
 
 
+use application\MainBundle\Resources\Entity\Achievement;
 use application\MainBundle\Resources\Entity\resource as En;
 use application\MainBundle\Controller as cont;
 use application\MainBundle\Resources\Entity\Sport;
@@ -40,7 +41,7 @@ class AchievementDBaccess{
 
                 $eqOb=new Sport();
                 $eqOb->setName($row["name"]);
-                $eqOb->getSportId($row["sport_id"]);
+                $eqOb->setSportId($row["sport_id"]);
 
                 $equipmentArray[]=$eqOb;
 
@@ -56,6 +57,31 @@ class AchievementDBaccess{
             // $stm->close();
 
         }
+    }
+    public static function saveToAchievement(Achievement $achievement){
+        $conn = cont\connection::getConnectionObject();
+        $con = $conn->getConnection();
+
+        $sql = $con->prepare("INSERT INTO achievement VALUES (?,?,?,? )");
+        $sport_id=$achievement->getSportId();
+        $achievement_id=$achievement->getAchievementId();
+        $description=$achievement->getDescription();
+        $date=$achievement->getDate();
+        echo $sport_id;
+        echo $achievement_id;
+        echo $description;
+        echo $date;
+        $sql->bind_param("ssss",$sport_id,$achievement_id ,$description ,$date );
+
+        $sql->execute();
+
+
+        if ($sql->errno) {
+            echo "FAILURE!!! " . $sql->error;
+        }
+        else echo "Updated {$sql->affected_rows} rows";
+
+
     }
 
 

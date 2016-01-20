@@ -3,6 +3,7 @@ applicationequipment_homepage:
     defaults: { _controller: applicationequipmentBundle:Default:index }
 applicationequipment_addEquip:
     path:     /add
+
     defaults: { _controller: applicationequipmentBundle:form:saveEquipment }
 applicationequipment_addEquipForm:
     path:     /addEquip
@@ -19,4 +20,25 @@ applicationequipment_addNewEquipView:
     defaults: { _controller: applicationequipmentBundle:form:addNewEquipment }
 applicationequipment_addNewEquipsave:
     path:     /addNew
+
     defaults: { _controller: applicationequipmentBundle:form:addNewEquipmentSave }
+applicationequipment_addNewSupplier:
+    path:     /addSupplier
+
+    defaults: { _controller: applicationequipmentBundle:form:addNewSupplier }
+applicationequipment_saveNewSupplier:
+    path:     /saveSupplier
+
+    defaults: { _controller: applicationequipmentBundle:form:saveSupplier }
+applicationequipment_requestProcess:
+    path:     /requestProccess
+
+    defaults: { _controller: applicationequipmentBundle:form:requestAcceptTable }
+applicationequipment_requestResource:
+    path:     /RequestResource
+
+    defaults: { _controller: applicationequipmentBundle:form:requestResourceTable }
+applicationequipment_approveRequest:
+    path:     /approvals
+
+    defaults: { _controller: applicationequipmentBundle:form:approval }

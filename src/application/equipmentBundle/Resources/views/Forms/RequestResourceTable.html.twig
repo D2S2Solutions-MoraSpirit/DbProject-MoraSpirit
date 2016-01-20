@@ -1,0 +1,58 @@
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+ {% block title %}
+     Requested Resources
+ {% endblock  %}
+{%  block midPanel %}
+<form method="post" action="/approvals">
+    <table class="mdl-data-table mdl-js-data-table mdl mdl-shadow--2dp"  align="center">
+
+        <thead>
+        <tr>
+            <th>Resource ID</th>
+            <th>Borrowing Date</th>
+            <th>Issue Date</th>
+            <th>Return Date</th>
+            <th>Status </th>
+
+
+
+
+        </tr>
+        </thead>
+        {% for x in results %}
+
+            <tr >
+
+                <td>{{  x.getResourceId() }}</td>
+                <td>{{  x.getItemBorrowingDate() }}</td>
+                <td>{{  x.getIssueDate() }}</td>
+                <td>{{  x.getReturnDate() }}</td>
+
+
+                <td>
+                <input type="checkbox" name="myTextEditBox" value="checked" /> Approve
+                 </td>
+
+
+
+
+
+
+
+
+            </tr>
+
+
+        {% endfor %}
+        <td><button type="submit" class="button"><span>Submit</span></button></td>
+
+
+
+    </table>
+</form>
+    <script>
+
+    </script>
+
+{% endblock %}

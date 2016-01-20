@@ -1,19 +1,35 @@
 <html>
-<form action="/coach/save" method="post">
-    Coach name:<br>
-    <input type="text" name="coachname">
-    <br>
-    Coach Id:<br>
-    <input type="text" name="coachid">
-    <br>
-    Sport Id:<br>
-    <select name="sportid" id="combo"></select>
+    <Head>
+        <style>
+            .form{
+                background-color: aqua;
+                border: dashed;
+                
+            }
+        </style>
+    </Head>
+    <body>
+        <div class="form">
+        <form action="/coach/save" method="post">
+            Coach name:<br>
+            <input type="text" name="coachname">
+            <br>
+            <br>
+            Coach Id:<br>
+            <input type="text" name="coachid">
+            <br>
+            <br>
+            Sport Id:<br>
+            <input type="text" name="sportid">
+            <select name="sportid" id="combo"></select>
 
 
-    <br>
-    <br>
-    <input type="submit" value="Submit">
-</form>
+            <br>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        </div>
+    </body>
 
 </html>
 

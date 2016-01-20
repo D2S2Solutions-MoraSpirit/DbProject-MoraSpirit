@@ -1,37 +1,43 @@
-<!doctype HTML>
-<HTML>
-<head>
-</head>
-<body bgcolor="#E6E6FA">
-<h1 align="center"> Add Equipment </h1>
-<form action="/add" method ="post"  >
-Supplier ID:<br>
-    <input type="text" name="supplier_id" >
-    <br>
-
-Quantity:<br>
-<input type="number" name="quantity" min="1" max="1000" >
-<br>
-
-Equipment:<br>
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
 
 
-    <select name="equipmentName">
+{%  block midPanel %}
+    <div class="container">
+        <h1>Add New Equipment</h1>
+        <form action="/add" method ="post" >
 
-        <% {% for x in s %}
+            <div class="form-group">
+                <input type="text" required="required" name="supplierId" >
+                <label for="supplierId" class="control-label">Supplier ID</label><i class="bar"></i>
+            </div>
 
-        <option value={{  x.getEquipmentName() }}>{{ x.getEquipmentName() }}</option>
-        {% endfor %}%>
+            <div class="form-group">
+            <select name="equipmentName" id ="equipmentName">
 
-    </select>
+                <% {% for x in s %}
+
+                <option  value="{{  x.getEquipmentName() }}">{{ x.getEquipmentName() }}</option>
+
+                {% endfor %}%>
+
+            </select>
+                <label for="equipmentName" class="control-label">equipment Name</label><i class="bar"></i>
+                </div>
+            <div class="form-group">
+                <input type="number" name="quantity" min="1" max="1000" required="required">
+                <label for="quantity" class="control-label">Quantity</label><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+                <input type="date" name="date" required="required" class="datepicker">
+                <label for="date" class="control-label">Date</label><i class="bar"></i>
+            </div>
+
+            <button type="submit" class="button"><span>Submit</span></button>
+
+        </form>
+
+    </div>
 
 
-<br>
-Date:<br>
-<input type="date" name="Date">
-<br><br><br>
-<input type="submit">
-
-</form>
-</body>
-</HTML>
+{% endblock %}

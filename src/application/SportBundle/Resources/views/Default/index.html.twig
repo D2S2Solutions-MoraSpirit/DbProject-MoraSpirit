@@ -1,39 +1,135 @@
-<html>
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/sport/js/LoadDataGym.js') }}"></script>
-    <script type="javascript">
-        jQuery.noConflict();
-    </script>
-    <script>
-        $(document).ready(function () {
-                    readyness();
-                }
-        );
-    </script>
-    <style>
-        .pure-table tr td {
-            width: 100px;
-            text-align: center;
-        }
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+{% block styleCodeBlocks %}
+    #top_row{
+    max-width: 1250px;
+    padding-left: 50px;
+    padding-top: 80px;
+    }
+    a.mdl-button--colored {
+    font-family: topheader;
+    font-weight: bold;
+    }
+    .header-edit {
+    margin-top: -9px;
+    position: fixed;
+    }
+    .demo-card-wide.mdl-card {
+    width: 350px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    float: left;
+    }
+    .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
 
-        .pure-table thead {
-            width: 100px;
-        }
-    </style>
-</head>
-<body>
+    }
+{% endblock %}
+{% block title %}
+    University Sports Schedule
+    {% endblock %}
+{%  block midPanel %}
+    <div id="top_row" class="content-grid mdl-grid">
+        <div class="mdl-cell">
+    <div class="content-grid mdl-grid demo-card-wide mdl-card mdl-shadow--2dp">
 
-<p>
-    This is a para
-</p>
+        <div id="NewGymSchdule" class="mdl-card__title">
+            <h2 class="mdl-card__title-text">New Gymnasium</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            New gymnasium provides practice areas for several sports including <a href="table.html">BasketBall</a>, <a href="table.html">Badminton</a> and <a href="table.html">Table Tennis</a>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/sport/Ground">
+                View Schedule
+            </a>
+        </div>
+    </div>
+            </div>
+        <div class="mdl-cell">
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div id="OldGym" class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Old Gym</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...cfv
+                    gfvr vr ver ve rv e vrvvfvtbt r
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        View Schedule
+                    </a>
+                </div>
+            </div>
+        </div>
 
-<button id="gymButton" onclick="window.location.href = '/sport/Gym';">Gym Schedule</button>
-<button id="GroundButton" onclick="getScheduleData()">Ground Schedule</button>
-<button id="LocationAButton" onclick="getScheduleData()">Location A</button>
-<button id="LocationAButton" onclick="getScheduleData()">Location B</button>
-<button id="LocationAButton" onclick="getScheduleData()">Location C</button>
-</body>
+        <div class="mdl-cell">
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div id="MainGround" class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Main Ground</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Main ground provides practice areas for <a href="table.html">Cricket</a>, <a href="table.html">Football</a>,
+                    <a href="table.html">Hockey</a> ,<a href="table.html">Rugby</a> and many more track and field sports.
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        View Schedule
+                    </a>
+        </div>
+</div>
+    </div>
+        </div>
+    <div class="content-grid mdl-grid" style="max-width: 1250px; padding-left: 50px;">
+        <div class="mdl-cell">
+            <div class="content-grid mdl-grid demo-card-wide mdl-card mdl-shadow--2dp">
 
-</html>
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">New Gymnasium</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    New gymnasium provides practice areas for several sports including <a href="table.html">BasketBall</a>, <a href="table.html">Badminton</a> and <a href="table.html">Table Tennis</a>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="displayAlert();" href="table.html">
+                        View Schedule
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-cell">
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div id="OldGym" class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Old Gym</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...cfv
+                    gfvr vr ver ve rv e vrvvfvtbt r
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        View Schedule
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell">
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div id="MainGround" class="mdl-card__title" >
+                    <h2 class="mdl-card__title-text">Main Ground</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Main ground provides practice areas for <a href="table.html">Cricket</a>, <a href="table.html">Football</a>,
+                    <a href="table.html">Hockey</a> ,<a href="table.html">Rugby</a> and many more track and field sports.
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        View Schedule
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

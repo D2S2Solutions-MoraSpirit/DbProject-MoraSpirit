@@ -5,9 +5,11 @@
  * Date: 11/12/15
  * Time: 4:42 AM
  */
-namespace application\MainBundle\Controller;
-use mysqli;
 
+
+namespace application\MainBundle\Controller;
+
+use mysqli;
 
 /**
  * Singleton class
@@ -33,11 +35,12 @@ final class connection
 
 
 
-        $password = "12345";
-
+        $password = null;
 
 
         $dbname = "moraspirit";
+
+
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection

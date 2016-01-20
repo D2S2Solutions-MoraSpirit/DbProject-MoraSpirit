@@ -1,0 +1,34 @@
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+
+{%  block midPanel %}
+    <div class="container">
+        <h1>Add New Supplier</h1>
+        <form action="/saveSupplier" method ="post" >
+
+
+            <div class="form-group">
+                <input type="text" name="supplierId"  value="{{ sid}}"+ readonly >
+                <label for="supplierId" class="control-label">Supplier ID</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+                <input type="text" required="required" name="name" >
+                <label for="name" class="control-label">Name</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+                <input type="text" name="telNo"  required="required">
+                <label for="telNo" class="control-label">Telephone Number</label><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="NIC" required="required" >
+                <label for="NIC" class="control-label">NIC Number</label><i class="bar"></i>
+            </div>
+
+            <button type="submit" class="button"><span>Submit</span></button>
+
+        </form>
+
+    </div>
+
+{% endblock %}

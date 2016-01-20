@@ -1,0 +1,50 @@
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+ {% block title %}
+     Accept Resource Requests
+ {% endblock  %}
+{%  block midPanel %}
+
+
+    <table class="mdl-data-table mdl-js-data-table mdl mdl-shadow--2dp"  align="center">
+
+        <thead>
+        <tr>
+            <th>Request ID</th>
+            <th>Student ID</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Change </th>
+
+
+
+
+        </tr>
+        </thead>
+
+
+        {% for x in s %}
+            <form method="post" action="/RequestResource">
+            <tr   >
+                <td>{{  x.getRequestId() }}</td>
+                <td>{{  x.getStudentId() }}</td>
+                <td>{{  x.getRequestDate() }}</td>
+                <input type="hidden" name="requestResource" value="{{ x.getRequestId()}}"/>
+                <td>Pending</td>
+               <td><button type="submit" class="button"><span>Submit</span></button></td>
+             </form>
+
+            </tr>
+
+
+        {% endfor %}
+
+
+
+    </table>
+
+
+
+
+
+{% endblock %}

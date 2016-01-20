@@ -1,34 +1,38 @@
-<!doctype HTML>
-<HTML>
-<head>
-</head>
-<body bgcolor="#E6E6FA">
-<h1 align="center"> Add New Equipment </h1>
-<form action="/addNew" method ="post"  >
-    Supplier ID:<br>
-    <input type="text" name="supplier_id" >
-    <br>
-
-    Quantity:<br>
-    <input type="number" name="quantity" min="1" max="1000" >
-    <br>
-
-    Resource ID:<br>
-    <input type="text" name="resource_id"  value="00{{ new_id }}"+ readonly >
-    <br>
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
 
 
-    Resource Name:<br>
-    <input type="text" name="equipmentName" >
-    <br>
+{%  block midPanel %}
+        <div class="container">
+            <h1>Add New Equipment</h1>
+        <form action="/addNew" method ="post" >
+
+            <div class="form-group">
+                <input type="text" required="required" name="supplierId" >
+                <label for="supplierId" class="control-label">Supplier ID</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+                <input type="text" name="resourceId"  value="{{ new_id }}"+ readonly >
+                <label for="resourceId" class="control-label">Resource ID</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+                <input type="text" required="required" name="equipmentName" >
+                <label for="equipmentName" class="control-label">Equipment Name</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+                <input type="number" name="quantity" min="1" max="1000" required="required">
+                <label for="quantity" class="control-label">Quantity</label><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+                <input type="date" name="date" required="required" class="datepicker">
+                <label for="date" class="control-label">Date</label><i class="bar"></i>
+            </div>
+
+            <button type="submit" class="button"><span>Submit</span></button>
+
+        </form>
+
+    </div>
 
 
-    <br>
-    Date:<br>
-    <input type="date" name="Date">
-    <br><br><br>
-    <input type="submit">
-
-</form>
-</body>
-</HTML>
+{% endblock %}

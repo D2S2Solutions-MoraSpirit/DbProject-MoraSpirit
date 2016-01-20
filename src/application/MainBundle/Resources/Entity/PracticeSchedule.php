@@ -13,8 +13,58 @@ class PracticeSchedule{
     private $sport_id;
     private $resource_id;
     private $practise_Date;
-    private $practise_time;
+    private $practise_start_time;
+    private $resource_name;
+    private $practise_end_time;
 
+    /**
+     * @return mixed
+     */
+    public function getPractiseEndTime()
+    {
+        return $this->practise_end_time;
+    }
+
+    /**
+     * @param mixed $practise_end_time
+     */
+    public function setPractiseEndTime($practise_end_time)
+    {
+        $this->practise_end_time = $practise_end_time;
+    }
+    private $sport_name;
+
+    /**
+     * @return mixed
+     */
+    public function getSportName()
+    {
+        return $this->sport_name;
+    }
+
+    /**
+     * @param mixed $sport_name
+     */
+    public function setSportName($sport_name)
+    {
+        $this->sport_name = $sport_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResourceName()
+    {
+        return $this->resource_name;
+    }
+
+    /**
+     * @param mixed $resource_name
+     */
+    public function setResourceName($resource_name)
+    {
+        $this->resource_name = $resource_name;
+    }
     /**
      * @return mixed
      */
@@ -66,17 +116,17 @@ class PracticeSchedule{
     /**
      * @return mixed
      */
-    public function getPractiseTime()
+    public function getPractiseStartTime()
     {
-        return $this->practise_time;
+        return $this->practise_start_time;
     }
 
     /**
      * @param mixed $practise_time
      */
-    public function setPractiseTime($practise_time)
+    public function setPractiseStartTime($practise_start_time)
     {
-        $this->practise_time = $practise_time;
+        $this->practise_time = $practise_start_time;
     }
 
 }

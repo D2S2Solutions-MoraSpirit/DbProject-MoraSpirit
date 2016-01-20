@@ -15,7 +15,7 @@ use  application\MainBundle\Resources\Entity\requestResourceDamage;
 
 class EquipmentDBacess{
 
-    public static function saveToEquipment(equipment $eqpm,resource $rs)
+    public  static  function saveToEquipment(equipment $eqpm,resource $rs)
     {
         $conn = cont\connection::getConnectionObject();
         $con =$conn->getConnection();
@@ -32,6 +32,7 @@ class EquipmentDBacess{
             echo "New record created successfully";
         } else {
             echo "Error: " . $sql . "<br>" ;
+            return false;
         }
 
 
@@ -45,8 +46,10 @@ class EquipmentDBacess{
         $newsql = "insert into equipment Values('$r_id','$name','$quantity','$mysqltime')";
         if ( $con->query($newsql)==TRUE) {
             echo "New record created successfully";
+            return true;
         } else {
             echo "Error: " . $newsql . "<br>" ;
+            return false;
         }
 
 
@@ -147,6 +150,8 @@ class EquipmentDBacess{
         $name =$eq->getEquipmentName();
 
 
+
+
         $sql = "UPDATE equipment  SET qty=qty+?, boughtDate=? WHERE equipmentName=?";
 
         $sql = $con->prepare($sql);
@@ -158,8 +163,10 @@ class EquipmentDBacess{
 
         if ($sql->errno) {
             echo "FAILURE!!! " . $sql->error;
+            return false;
         }
-        else echo "Updated {$sql->affected_rows} rows";
+        else return True;
+
 
 
     }
@@ -203,8 +210,9 @@ class EquipmentDBacess{
 
         if ($sql->errno) {
             echo "FAILURE!!! " . $sql->error;
+            return false;
         }
-        else echo "Updated {$sql->affected_rows} rows";
+        else  return true;
     }
 
 }

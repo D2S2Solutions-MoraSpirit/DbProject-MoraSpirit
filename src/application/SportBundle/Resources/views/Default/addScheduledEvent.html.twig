@@ -1,0 +1,87 @@
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+{% block title %}
+    Add Scheduled Event
+{% endblock %}
+{% block midPanel %}
+    <div class="container">
+        <h1>Add Scheduled Event</h1>
+        <form action="/addNew" method ="post" >
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text"  name="sport" id="sport" >
+                <label for="sport" class="mdl-textfield__label">Sport</label><i class="bar"></i>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text"  name="location" id="location" >
+                <label for="location" class="mdl-textfield__label">Location Name</label><i class="bar"></i>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="author" id="author">
+                <label class="mdl-textfield__label" for="author">Author</label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text"  name="numberofParticipants" id="numberofParticipants" pattern="-?[0-9]*(\.[0-9]+)?" >
+                <label for="numberofParticipants" class="mdl-textfield__label">Number of Participants</label><i class="bar"></i>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div><br>Scheduled Time</div>
+            <div class="content-grid mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="hour">
+                        <label class="mdl-textfield__label" for="hour">Hour</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="minutes">
+                        <label class="mdl-textfield__label" for="minutes">Minutes</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col" style="padding-top: 24px;">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-am">
+                        <input type="radio" id="option-am" class="mdl-radio__button" name="options" value="1" checked>
+                        <span class="mdl-radio__label">AM</span>
+                    </label>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-pm">
+                        <input type="radio" id="option-pm" class="mdl-radio__button" name="options" value="2">
+                        <span class="mdl-radio__label">PM</span>
+                    </label>
+                </div>
+
+            </div>
+            Scheduled Date
+            <div class="content-grid mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="number" min="1" max="31" id="date">
+                        <label class="mdl-textfield__label" for="date">Date</label>
+                        <label class="mdl-textfield__error">Wrong date </label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--8-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="number" min="1" max="12" id="month">
+                        <label class="mdl-textfield__label" for="month">Month</label>
+                        <label class="mdl-textfield__error">Wrong Month</label>
+                    </div>
+                </div>
+                {#<div class="mdl-cell mdl-cell--4-col" style="padding-top: 24px;">#}
+                    {#<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-am">#}
+                        {#<input type="radio" id="option-am" class="mdl-radio__button" name="options" value="1" checked>#}
+                        {#<span class="mdl-radio__label">AM</span>#}
+                    {#</label>#}
+                    {#<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-pm">#}
+                        {#<input type="radio" id="option-pm" class="mdl-radio__button" name="options" value="2">#}
+                        {#<span class="mdl-radio__label">PM</span>#}
+                    {#</label>#}
+                {#</div>#}
+
+            </div>
+
+
+            <button type="submit" class="button"><span>Submit</span></button>
+        </form>
+{% endblock %}

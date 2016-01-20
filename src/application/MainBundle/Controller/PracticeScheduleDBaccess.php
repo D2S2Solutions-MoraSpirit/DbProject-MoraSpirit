@@ -19,28 +19,38 @@ class PracticeScheduleDBaccess
             $conn = connection::getConnectionObject();
             $con = $conn->getConnection();
             $stm = $con->stmt_init();
-            $stm->prepare("SELECT sport_id,practiceDate,practiceTime FROM practiceschedule where resource_id=?");
+            $stm->prepare("SELECT sport_id,practiceDate,practiceStartTime,locationName FROM practiceschedule NATURAL JOIN location where location.resource_id=?");
             $stm->bind_param("s", $resource_id);
-//           // $result = mysqli_query($con,$sql);
             $stm->execute();
             $result = $stm->get_result();
+
             $practiceScheduleArray = array();
             while ($row = $result->fetch_assoc()) {
                 $practiceSchedule = new PracticeSchedule();
-                $practiceSchedule->setSportId($row["sport_id"]);
+
+                $stm_sport = $con->stmt_init();
+                $stm_sport->prepare("SELECT name FROM sport where sport.sport_id=?");
+                $stm_sport->bind_param("s",$row["sport_id"] );
+                $stm_sport->execute();
+                $result_sport = $stm_sport->get_result();
+                $row_sport = $result_sport->fetch_assoc();
+                $practiceSchedule->setSportName($row_sport["name"]);
                 $practiceSchedule->setPractiseDate($row["practiceDate"]);
-                $practiceSchedule->setPractiseTime($row["practiceTime"]);
+                $practiceSchedule->setPractiseStartTime($row["practiceStartTime"]);
+                $practiceSchedule->setResourceName($row["locationName"]);
                 $practiceScheduleArray[]=$practiceSchedule;
                 //array_push($practiceScheduleArray, );
             }
-
             return $practiceScheduleArray;
         } catch (Exception $e) {
             return "error";
         } finally {
             //$conn->close();
-            $stm->close();
+            //$stm->close();
         }
+
+    }
+    public static function saveScheduledEvent(){
 
     }
 

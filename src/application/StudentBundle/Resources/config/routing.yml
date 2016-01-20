@@ -1,3 +1,4 @@
+
 application_student_homepage:
     path:     /addStudent
     defaults: { _controller: applicationStudentBundle:Default:index }
@@ -32,5 +33,14 @@ application_studentRequestSubmitPage:
 application_achievementAdd:
     path:     /addAchievement
 
-    defaults: { _controller: applicationStudentBundle:StudentRequest:addStudentRequest}
+    defaults: { _controller: applicationStudentBundle:Achievement:index}
+
+application_achievementStudentAdd:
+    path:     /AddAchievementStudents
+    defaults: { _controller: applicationStudentBundle:Achievement:addStudent}
+
+
+application_viewAvailableItems:
+    path:     /ViewAvailableItems
+    defaults: { _controller: applicationStudentBundle:Default:viewItem}
 

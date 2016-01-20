@@ -5,6 +5,7 @@ use application\MainBundle\Resources\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use application\MainBundle\Controller as cont;
 use application\MainBundle\Resources\Entity as en;
+
 class formController extends Controller
 {
     public function addAction()
@@ -20,21 +21,30 @@ class formController extends Controller
         $eqpm = new en\equipment();
 
         $eqpm->setEquipmentName($_POST["equipmentName"]);
-        $eqpm->setDate($_POST["Date"]);
+        $eqpm->setDate($_POST["date"]);
         $eqpm->setQuantity($_POST["quantity"]);
         $rs=new en\resource();
         $rs->setResourceId($eqpm->getResourceId());
-        $rs->setSupplierId($_POST["supplier_id"]);
+        $rs->setSupplierId($_POST["supplierId"]);
 
 
         $eqpm=cont\EquipmentDBacess::getResourceID($eqpm);
         $rs->setResourceId($eqpm->getResourceId());
-        cont\EquipmentDBacess::updateEquipment($eqpm);
-        cont\EquipmentDBacess::updateResource($rs);
+        echo $_POST["equipmentName"];
+        echo " <br>";
+        $updateEquip=cont\EquipmentDBacess::updateEquipment($eqpm);
+        $updateRes=cont\EquipmentDBacess::updateResource($rs);
+        if($updateEquip && $updateRes){
+            return $this->render('applicationequipmentBundle:Forms:addedSuccessfullyMessage.html.twig');
+        }
+        else{
+            echo "updated resources "+$updateRes;
+            echo "updated equipment "+$updateEquip;
+        }
 
 
 
-        return $this->render('applicationMainBundle:Default:index.html.twig');
+
     }
     public function damageReportAction()
     {
@@ -74,15 +84,60 @@ class formController extends Controller
         $eqpm = new en\equipment();
 
         $eqpm->setEquipmentName($_POST["equipmentName"]);
-        $eqpm->setDate($_POST["Date"]);
+        $eqpm->setDate($_POST["date"]);
         echo $eqpm->getDate();
         $eqpm->setQuantity($_POST["quantity"]);
-        $eqpm->setResourceId($_POST["resource_id"]);
+        $eqpm->setResourceId($_POST["resourceId"]);
         $rs = new en\resource();
-        $rs->setResourceId($_POST["resource_id"]);
-        $rs->setSupplierId($_POST["supplier_id"]);
-        cont\EquipmentDBacess::saveToEquipment($eqpm,$rs);
+        $rs->setResourceId($_POST["resourceId"]);
+        $rs->setSupplierId($_POST["supplierId"]);
+        $added=cont\EquipmentDBacess::saveToEquipment($eqpm,$rs);
+        if($added){
+            return $this->render('applicationequipmentBundle:Forms:addedSuccessfullyMessage.html.twig');
+        }
+        else{
+            echo "not added";
+            return $this->render('applicationMainBundle:Default:index.html.twig');
+        }
 
-        return $this->render('applicationMainBundle:Default:index.html.twig');
+
+    }
+    public function addNewSupplierAction(){
+        $r=cont\SupplierDBacess::getLastSupplierID();
+        return $this->render('applicationequipmentBundle:Forms:addNewSupplier.html.twig',array('sid' => $r));
+    }
+    public function saveSupplierAction(){
+        $spp = new en\Supplier();
+        $spp->setSupplierId($_POST["supplierId"]);
+        $spp->setName($_POST["name"]);
+        $spp->setContactNo($_POST["telNo"]);
+        $spp->setNic($_POST["NIC"]);
+        $added = cont\SupplierDBacess::saveToSupplier($spp);
+        if($added){
+            return $this->render('applicationequipmentBundle:Forms:addedSuccessfullyMessage.html.twig');
+        }
+        else{
+            echo "not added";
+            return $this->render('applicationMainBundle:Default:index.html.twig');
+        }
+    }
+    public function requestAcceptTableAction(){
+
+
+        $r=cont\RequestDBaccess::getPendingRequests();
+
+
+        return $this->render('applicationequipmentBundle:Forms:requestAcceptTable.html.twig',array('s' => $r));
+    }
+    public function  requestResourceTableAction(){
+        $r_id= $_POST["requestResource"];
+        $request=new en\Request();
+        $request->setRequestId($r_id);
+        $results= cont\RequestDBaccess::getRequestResource($request);
+
+        return $this->render('applicationequipmentBundle:Forms:RequestResourceTable.html.twig',array('results'=>$results));
+    }
+    public function approvalAction(){
+
     }
 }
