@@ -11,7 +11,7 @@
 
 
             <div class="form-group">
-                <input type="text" name="StudentId"  value="{{ s_id }}"+ readonly >
+                <input type="text" name="student_id"  value="{{ s_id }}"+ readonly >
                 <label for="id" class="control-label"><strong>Student ID:</strong></label><i class="bar"></i>
 
             </div>
@@ -23,12 +23,14 @@
             </div>
 
             <div class="form-group">
-                <input name="name" id="name" type="text" required="required"/>
-                <label class="control-label" for="name"><strong>Telephone:</strong></label><i class="bar"></i>
+                <input name="telNo1" id="telNo1" type="text" required="required"/>
+                <label class="control-label" for="name"><strong>Telephone 1:</strong></label><i class="bar"></i>
 
+            </div>
 
-                <button type="button" name="addButton" id="addButton" onclick="addField()" size="30">Add
-                </button>
+            <div class="form-group">
+                <input name="telNo2" id="telNo2" type="text" required="required"/>
+                <label class="control-label" for="name"><strong>Telephone 2:</strong></label><i class="bar"></i>
 
             </div>
 

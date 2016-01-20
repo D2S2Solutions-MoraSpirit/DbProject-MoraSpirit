@@ -36,6 +36,7 @@ final class connection
         $dbname = "Moraspirit";
 
 
+
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection
