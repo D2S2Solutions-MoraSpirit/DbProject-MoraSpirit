@@ -92,6 +92,29 @@ class StudentDBaccess
     {
 
     }
+    public static function getLastStudentID()
+    {
+        $conn = connection::getConnectionObject();
+        $con =$conn->getConnection();
+        $sql="SELECT max(student_id) FROM student";
+
+        if ($result=mysqli_query($con,$sql))
+        {
+            $row=mysqli_fetch_row($result);
+            if($row[0]==null){
+                $r = 0;
+
+            }
+            else{
+                $r= $row[0];
+            }
+
+            mysqli_free_result($result);
+        }
+
+        return $r+1;
+
+    }
 
 
 

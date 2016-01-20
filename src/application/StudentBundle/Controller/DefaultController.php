@@ -3,12 +3,14 @@
 namespace application\StudentBundle\Controller;
 use application\MainBundle\Resources\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use application\MainBundle\Controller\StudentDBaccess;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('applicationStudentBundle:Default:AddStudent.html.twig');
+        $s_id=StudentDBaccess::getLastStudentID();
+        return $this->render('applicationStudentBundle:Default:AddStudent.html.twig',array('s_id'=>$s_id));
     }
 
     public function viewItemAction()

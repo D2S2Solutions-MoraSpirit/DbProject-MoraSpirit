@@ -137,4 +137,7 @@ class formController extends Controller
 
         return $this->render('applicationequipmentBundle:Forms:RequestResourceTable.html.twig',array('results'=>$results));
     }
+    public function approvalAction(){
+
+    }
 }
