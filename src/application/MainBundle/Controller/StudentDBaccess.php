@@ -11,6 +11,8 @@ namespace application\MainBundle\Controller;
 
 use application\MainBundle\Resources\Entity\Request;
 use application\MainBundle\Resources\Entity\RequestResource;
+use application\MainBundle\Resources\Entity\Sport;
+use application\MainBundle\Resources\Entity\SportInvolve;
 use application\MainBundle\Resources\Entity\Student;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
@@ -88,9 +90,36 @@ class StudentDBaccess
     }
 
 
-    public static function addSportInvolve()
+    public static function addSportInvolveDetails(SportInvolve $sportInvolve)
     {
+        try {
+            $conn = connection::getConnectionObject();
+            $con = $conn->getConnection();
 
+            $sql = $con->prepare("INSERT INTO SportInvolve VALUES (?,?,?,?)");
+
+
+            $studentId = $sportInvolve->getStudentId();
+            $sportId = $sportInvolve->getSportId();
+            $status = $sportInvolve->getIsActive();
+            $role = $sportInvolve->getRole();
+
+            $sql->bind_param("ssis",$studentId , $sportId,$status , $role);
+
+
+            if ($sql->execute() == TRUE) {
+                //echo "New record created successfully";
+                return true;
+            } else {
+                //echo "Error: " . $sql . "<br>";
+                return false;
+            }
+
+        } catch (Exception $e) {
+            return false;
+        } finally {
+            $con->close();
+        }
     }
 
     public static function getLastStudentID()

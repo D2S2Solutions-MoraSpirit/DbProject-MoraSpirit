@@ -44,14 +44,21 @@
                             <span class="mdl-radio__label">Equipment</span>
                         </label>
 
-
-
+                        <br>
+                        <br>
 
                         <select name="equipmentList" id="equipmentCombo">
                             <% {% for x in eqList %}
                             <option value="eqItem">{{ x.getEquipmentName() }}</option>
                             {% endfor %}%>
                         </select>
+
+                        <div class="form-group">
+                            <input name="qty" id="qty" type="text" required=""/>
+                            <label class="control-label" for="batch"><strong>Qty:</strong></label><i class="bar"></i>
+
+                        </div>
+
                     </span>
                 </div>
 
@@ -100,6 +107,7 @@
                     <tr class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
                         <th>Resource ID</th>
                         <th>Resource name</th>
+                        <th>Qty</th>
                         <th>Borrowing date</th>
                         <th>Return date</th>
                     </tr>
@@ -122,9 +130,12 @@
             var equipmentType = $("#equipmentCombo").find('option:selected').text();
             var locationType = $("#locationCombo").find('option:selected').text();
             var islocation = $("#locationRadio").is(':checked');
+            var qty=$("#qty").val();
             if (islocation) {
                 equipmentType = locationType;
+                qty=1;
             }
+
 
             var borrowingDate = $("#borrowingDate").val();
             var returnDate = $("#returnDate").val();
@@ -146,7 +157,32 @@
                 }
                 {% endfor %}
             }
-            $("#resourceItemTable tr:last").after('<tr><td>' + resourceId + '<td>' + equipmentType + '</td><td>' + borrowingDate + '</td><td>' + returnDate + '</td>' + '</tr>');
+            var data=[];
+            jQuery.each(jQuery('#resourceItemTable tr:gt(0)'), function(i,e ) {
+                data.push(jQuery('td', e).map(function(i,e) {
+                            return e.innerHTML;
+                        }).get()
+                );
+            });
+
+            alert(data[0]);
+
+            var x;
+            var exists=false;
+            for(x in data){
+
+                if(data[x][0]==resourceId && data[x][3]==borrowingDate){
+                    alert("exists");
+                    exists=true;
+                    break;
+                }
+            }
+
+            if(exists==false){
+                $("#resourceItemTable tr:last").after('<tr><td>' + resourceId + '<td>' + equipmentType + '</td><td>' + qty + '</td><td>' + borrowingDate + '</td><td>' + returnDate + '</td>' + '</tr>');
+            }
+
+
 
 
         }

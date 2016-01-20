@@ -18,100 +18,130 @@
 {% endblock %}
 
 {% block midPanel %}
-<div class="container" style="max-width: 40%;">
-	<form  id="formid" onsubmit="return false">
+    <div class="container" style="max-width: 40%;">
+
         <h1>Add Sports involving details of students</h1>
-		<table class="form" id="table1">
-			<tr>
+        <table class="form" id="table1">
+            <tr>
 
-				<th><label for="id" class="control-label"><strong>Student ID:</strong></label><i class="bar"></i></th>
-				<td><input class="inp-text" name="student_id" value={{ sportList[0].getName() }}  id="studentID" type="text" size="30" onkeypress="getStudentDetails(event)" title="Press enter to load details"/></td>
+                <th><label for="id" class="control-label"><strong>Student ID:</strong></label><i class="bar"></i></th>
+                <td><input class="inp-text" name="student_id" id="studentID" type="text" size="30"
+                           onkeypress="getStudentDetails(event)" title="Press enter to load details"/></td>
 
-			</tr>
+            </tr>
 
             <tr>
-				<th><label for="name"><strong>Name:</strong></label></th>
-				<td><input class="inp-text" name="name" id="name" type="text" size="30" /></td>
-			</tr>
+                <th><label for="name"><strong>Name:</strong></label></th>
+                <td><input class="inp-text" name="name" id="name" type="text" size="30"/></td>
+            </tr>
 
             <tr>
-				<th><label for="batch"><strong>Batch:</strong></label></th>
-				<td><input class="inp-text" name="batch" id="batch" type="text" size="30" /></td>
-			</tr>
+                <th><label for="batch"><strong>Batch:</strong></label></th>
+                <td><input class="inp-text" name="batch" id="batch" type="text" size="30"/></td>
+            </tr>
 
             <tr>
-				<th><label for="faculty"><strong>Faculty:</strong></label></th>
-				<td><input class="inp-text" name="faculty" id="faculty" type="text" size="30" /></td>
-			</tr>
+                <th><label for="faculty"><strong>Faculty:</strong></label></th>
+                <td><input class="inp-text" name="faculty" id="faculty" type="text" size="30"/></td>
+            </tr>
 
             <tr>
-				<th><label for="batch"><strong>Sport:</strong></label></th>
-				<td>
-                    <select name="sport">
-                        <% {% for x in sportList  %}
-                            <option value="cricket">{{ x.getName() }}</option>
+                <th><label for="batch"><strong>Sport:</strong></label></th>
+                <td>
+                    <select name="sport" id="sportID">
+                        <% {% for x in sportList %}
+                        <option value="cricket">{{ x.getName() }}</option>
                         {% endfor %}%>
                     </select>
 
                 </td>
-			</tr>
+            </tr>
 
             <tr>
-				<th><label for="role"><strong>Role:</strong></label></th>
-				<td>
-                    <select name="sport">
-                        <option value="cricket">captain</option>
+                <th><label for="role"><strong>Role:</strong></label></th>
+                <td>
+                    <select name="role" id="role">
+                        <option value="cricket">Captain</option>
                         <option value="VCaptain">V-Captain</option>
                         <option value="player">Player</option>
                         <option value="other">Other</option>
 
                     </select>
                 </td>
-			</tr>
+            </tr>
 
-             <tr>
-				<th><label for="faculty"><strong>Active:</strong></label></th>
-				<td>
-                    <label><input type="checkbox"  style="width:30px;" id="cbox1" value="first_checkbox"> currently active</label>
+            <tr>
+                <th><label for="faculty"><strong>Active:</strong></label></th>
+                <td>
+                    <label><input type="checkbox" name="statusCheckBox" style="width:30px;" id="statusCheckBox"
+                                  value="active"> currently active</label>
                 </td>
-			</tr>
+            </tr>
 
-			<tr>
-				<td class="submit-button-right" colspan="2">
+            <tr>
+                <td class="submit-button-right" colspan="2">
                     <div class="form-group">
-
-                        <button type="submit" class="button"><span>Submit details</span></button>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                onclick="addStudentSportInvolve()" style="float: right;height: 30px;width: 120px;">
+                            Confirm request
+                        </button>
                     </div>
-				</td>
-			</tr>
+                </td>
+            </tr>
 
-		</table>
+        </table>
 
-	</form>
-</div>
+    </div>
 {% endblock %}
 
-{% block scriptBlock %}
-<script>
-    var a=1;
-    function addField() {
+{% block scriptCodeBlock %}
+    <script>
 
-        var table = document.getElementById('table1');
-        var newRow=table.insertRow(2+a);
-        var newCell = newRow.insertCell(0);
-        newCell.innerHTML = "<label><strong>  telephone </strong>"+a+"</label>";
-        var newCell2 = newRow.insertCell(1);
-        newCell2.innerHTML = '<td><input class="inp-text" name="nic" id="nic" type="text" size="30" /></td>';
-        var newCell3=newRow.insertCell(2);
-        newCell3.innerHTML='<td><button type="button" name="delButton" id="addButton'+a+'" onclick="deleteField()" size="30">Del</button></td>';
-        a=a+1;
-    }
 
-    function deleteField(){
-        var table = document.getElementById('table1');
-        table.deleteRow(a);
-    }
+        function addStudentSportInvolve() {
+            var studentID = $("#studentID").val();
 
-</script>
+            var sport = $('#sportID :selected').text();
+            var role = $('#role :selected').text();
+            var sportId;
+
+            var status;
+            if ($('#statusCheckBox').prop('checked')) {
+                status = 1;
+            } else {
+                status = 0;
+            }
+
+
+            {% for x in sportList%}
+            var foo = '{{ x.getName() }}';
+            if (foo == sport) {
+                sportId = '{{ x.getSportId() }}';
+            }
+            {% endfor %}
+            //var status= $("#statusCheckBox").val();
+
+
+            jQuery.ajax({
+                url: "/AddStudentSPDControl",
+                type: "GET",
+                data: {"student_id": studentID, "sportId": sportId, "status": status,"role":role},
+                success: function (data) {
+//                    if (data['status'] == true) {
+//                        alert("Successfully added the request");
+//                    } else {
+//                        alert("Unable to add request");
+//                    }
+
+                    alert("this is working well");
+
+                }
+            });
+
+
+
+        }
+
+    </script>
 {% endblock %}
 
