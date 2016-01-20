@@ -25,8 +25,15 @@ class SportInvolveController extends Controller
         return $this->render('applicationStudentBundle:Default:AddStudentSPD.html.twig', array('sportList' => ($sportList)));
     }
 
-    public function addSportInvolveAction(SportInvolve $sportInvolve)
+    public function addSportInvolveAction()
     {
-        StudentDBaccess::addSportInvolve($sportInvolve);
+        $studentSP = new Entity\SportInvolve();
+        $studentSP->setSportId($_GET["sportId"]);
+        $studentSP->setStudentId($_GET["student_id"]);
+        $studentSP->setIsActive( $_GET["status"]);
+        $studentSP->setRole( $_GET["role"]);
+
+        $status=StudentDBaccess::addSportInvolveDetails($studentSP);
+        return new JsonResponse(['status'=>$status]);
     }
 }

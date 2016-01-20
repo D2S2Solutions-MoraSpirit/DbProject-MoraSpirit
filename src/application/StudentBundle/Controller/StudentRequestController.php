@@ -49,8 +49,9 @@ class StudentRequestController extends Controller
             $requestResource=new RequestResource();
             $requestResource->setRequestId($request_id);
             $requestResource->setResourceId($tableList[$x][0]);
-            $requestResource->setItemBorrowingDate($tableList[$x][2]);
-            $requestResource->setReturnDate($tableList[$x][3]);
+            $requestResource->setQty($tableList[$x][2]);
+            $requestResource->setItemBorrowingDate($tableList[$x][3]);
+            $requestResource->setReturnDate($tableList[$x][4]);
             $resourcesArray[]=$requestResource;
         }
 

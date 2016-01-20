@@ -15,6 +15,7 @@ class LocationDBaccess
 {
     public static function getLastResourceID()
     {
+
         $conn = cont\connection::getConnectionObject();
         $con = $conn->getConnection();
         $sql = "SELECT max(resource_id) FROM resource";

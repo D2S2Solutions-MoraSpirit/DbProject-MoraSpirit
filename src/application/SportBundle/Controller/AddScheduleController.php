@@ -10,11 +10,12 @@ namespace application\SportBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use application\MainBundle\Controller as cont;
 class AddScheduleController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SportBundle:Default:addScheduledEvent.html.twig');
+        $r=cont\PracticeScheduleDBaccess::getAllSport();
+        return $this->render('SportBundle:Default:addScheduledEvent.html.twig',array("sport"=>$r));
     }
 }

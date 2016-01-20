@@ -9,18 +9,20 @@ sport-add-database:
     path: /sport/save
     defaults: {_controller: SportBundle:Sport:saveSport}
 sport-view-schedule:
-    path: /sport/view
+    path: /schedule/view
     defaults: {_controller: SportBundle:ViewScheduleData:viewSchedule}
 sport-view-gymschedule:
-    path: /sport/Gym
+    path: /schedule/Gym
     defaults: {_controller: SportBundle:GymSchedule:index}
 sport-view-groundschedule:
     path: /sport/Ground
     defaults: {_controller: SportBundle:GroundSchedule:index}
 sport-add-scheduledEvent:
-    path: /sport/AddScheduledEvent
+    path: /schedule/AddScheduledEvent
     defaults: {_controller: SportBundle:AddSchedule:index}
 add_coach:
     path: /sport/addcoach
     defaults: {_controller: SportBundle:Coach:addCoach}
-
+sport-save-event:
+    path: /sport/saveEvent
+    defaults: {_controller: SportBundle:SaveEventRequest:index}

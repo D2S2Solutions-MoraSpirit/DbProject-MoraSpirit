@@ -47,6 +47,8 @@ function addRequestResource(){
 }
 
 
+
+
 function submitTable(){
     var data = [];
     jQuery.each(jQuery('#resourceItemTable tr:gt(0)'), function(i,e ) {
@@ -78,6 +80,10 @@ function submitTable(){
     });
 
 
-    alert(datas);
-
+<<<<<<< HEAD
 }
+
+=======
+    alert(data);
+>>>>>>> f7e7c2f99bf111f9ecaf636bc60cf9d2380057bf
+
