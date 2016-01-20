@@ -35,10 +35,10 @@ final class connection
 
 
 
-        $password = null;
+        $password = "diluksha";
 
 
-        $dbname = "moraspirit";
+        $dbname = "Moraspirit";
 
 
         // Create connection

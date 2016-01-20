@@ -1,51 +1,62 @@
-<html>
-    <Head>
-        <style>
-            .form{
-                background-color: aqua;
-                border: dashed;
-                
-            }
-        </style>
-    </Head>
-    <body>
-        <div class="form">
-        <form action="/coach/save" method="post">
-            Coach name:<br>
-            <input type="text" name="coachname">
-            <br>
-            <br>
-            Coach Id:<br>
-            <input type="text" name="coachid">
-            <br>
-            <br>
-            Sport Id:<br>
-            <input type="text" name="sportid">
-            <select name="sportid" id="combo"></select>
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
 
+{% block title %} Add Coach {% endblock %}
 
-            <br>
-            <br>
-            <input type="submit" value="Submit">
-        </form>
-        </div>
-    </body>
+{% block midPanel %}
+<style>
+        .form {
+            background-color: aqua;
+            border: dashed;
+            width: 30%;
+            align-self: center;
+        }
+    </style>
 
-</html>
 
 <script>
-var choices = ["one", "two"];
+    var choices = ["one", "two"];
 
-function addInput(divName) {
-var newDiv = document.createElement('div');
-var selectHTML = "";
-selectHTML="<select>";
-    for(i = 0; i < choices.length; i = i + 1) {
-    selectHTML += "<option value='" + choices[i] + "'>" + choices[i] + "</option>";
+    function addInput(divName) {
+        var newDiv = document.createElement('div');
+        var selectHTML = "";
+        selectHTML = "<select>";
+        for (i = 0; i < choices.length; i = i + 1) {
+            selectHTML += "<option value='" + choices[i] + "'>" + choices[i] + "</option>";
+        }
+        selectHTML += "</select>";
+        newDiv.innerHTML = selectHTML;
+        document.getElementById(divName).appendChild(newDiv);
     }
-    selectHTML += "</select>";
-newDiv.innerHTML = selectHTML;
-document.getElementById(divName).appendChild(newDiv);
-}
-
 </script>
+
+<div class="container">
+        <h1>Add New Coach</h1>
+        <form action="/saveCoach" method ="post" >
+
+
+            <div class="form-group">                
+                <input type="text" name="coachname">
+                <label for="coachname" class="control-label">Coach Name</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+                <input type="text" name="coachid" required="required">
+                <label for="coachid" class="control-label">Coach ID</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+                <input type="text" name="sportid" required="required">
+                <label for="sportid" class="control-label">Sport ID</label><i class="bar"></i>
+                
+                <select name="sportid" id="combo">
+                    
+                </select>
+            </div>
+
+
+            <button type="submit" class="button"><span>Submit</span></button>
+
+        </form>
+
+    </div>
+
+
+{% endblock %}

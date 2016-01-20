@@ -51,7 +51,6 @@ function submitTable(){
     var data = [];
     jQuery.each(jQuery('#resourceItemTable tr:gt(0)'), function(i,e ) {
         data.push(jQuery('td', e).map(function(i,e) {
-                //alert(e.innerHTML);
                 return e.innerHTML;
             }).get()
         );

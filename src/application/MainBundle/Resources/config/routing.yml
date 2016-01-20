@@ -5,3 +5,7 @@ application_main_homepage:
 applicationTemplate:
     path:     /template
     defaults: { _controller: applicationMainBundle:MainTemplate:templateTest }
+    
+newUserRegistering:
+    path:       /registerUser
+    defaults: {_controller: applicationMainBundle:User:authenticateUser}
