@@ -41,10 +41,6 @@ class formController extends Controller
             echo "updated resources "+$updateRes;
             echo "updated equipment "+$updateEquip;
         }
-
-
-
-
     }
     public function damageReportAction()
     {
