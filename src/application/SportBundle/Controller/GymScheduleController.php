@@ -13,13 +13,13 @@ class GymScheduleController extends Controller
         //  $resource_id=$_GET["resource_id"];
         $resource_id = 2;
         $resource = cont\PracticeScheduleDBaccess::getAllLocationSchedule($resource_id);
-        $name=cont\SportDBaccess::getSport($resource_id);
+
 
         //$response=new JsonResponse(['sport-id'=>$resource->getSportId(),'practise_date'=>$resource->getPractiseDate(),'practise_time'=>$resource->getPractiseTime(),'resource_id'=>$resource_id]);
        // $response_array = array($resource->getSportId(), $resource->getPractiseDate(), $resource->getPractiseTime());
        // $response_array = array($resource);
         //$v=$resource[0];
        // echo $v.getSportId();
-        return $this->render('SportBundle:Default:gymSchedule.html.twig', array('response_array' => $resource,'name'=>$name));
+        return $this->render('SportBundle:Default:gymSchedule.html.twig', array('response_array' => $resource,));
     }
 }

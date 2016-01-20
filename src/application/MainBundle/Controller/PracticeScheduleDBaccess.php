@@ -19,7 +19,7 @@ class PracticeScheduleDBaccess
             $conn = connection::getConnectionObject();
             $con = $conn->getConnection();
             $stm = $con->stmt_init();
-            $stm->prepare("SELECT sport_id,practiceDate,practiceStartTime,locationName FROM practiceschedule NATURAL JOIN location where location.resource_id=?");
+            $stm->prepare("SELECT sport_id,practiceDate,practiceStartTime,locationName,author,status,practiceEndTime FROM practiceschedule NATURAL JOIN location where location.resource_id=?");
             $stm->bind_param("s", $resource_id);
             $stm->execute();
             $result = $stm->get_result();
@@ -38,6 +38,9 @@ class PracticeScheduleDBaccess
                 $practiceSchedule->setPractiseDate($row["practiceDate"]);
                 $practiceSchedule->setPractiseStartTime($row["practiceStartTime"]);
                 $practiceSchedule->setResourceName($row["locationName"]);
+                $practiceSchedule->setPractiseEndTime($row["practiceEndTime"]);
+                $practiceSchedule->setAuthor($row["author"]);
+                $practiceSchedule->setStatus($row["status"]);
                 $practiceScheduleArray[]=$practiceSchedule;
                 //array_push($practiceScheduleArray, );
             }

@@ -16,7 +16,41 @@ class PracticeSchedule{
     private $practise_start_time;
     private $resource_name;
     private $practise_end_time;
+    private $author;
+    private $status;
 
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param mixed $author
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
     /**
      * @return mixed
      */
@@ -126,7 +160,7 @@ class PracticeSchedule{
      */
     public function setPractiseStartTime($practise_start_time)
     {
-        $this->practise_time = $practise_start_time;
+        $this->practise_start_time = $practise_start_time;
     }
 
 }

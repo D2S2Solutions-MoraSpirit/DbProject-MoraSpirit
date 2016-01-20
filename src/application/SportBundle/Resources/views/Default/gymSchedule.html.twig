@@ -47,21 +47,27 @@
     <table id="gymTable" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
         <thead class="mdl-data-table">
         <tr id="theader">
-            <th class="mdl-data-table__cell--non-numeric ">Location</th>
             <th>Sport</th>
+            <th>Location</th>
+            <th>Date</th>
             <th>From</th>
             <th>To</th>
+            <th>Author</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
         {% for x in response_array %}
-            <tr><td align="center">{{ x.getSportId() }}</td>
+
+            <tr><td align="center">{{ x.getSportName() }}</td>
                 <td align="center">{{ x.getResourceName()}}</td>
                 <td align="center">{{ x.getPractiseDate()}}</td>
                 <td align="center">{{ x.getPractiseStartTime()}}</td>
+                <td align="center">{{ x.getPractiseEndTime()}} </td>
+                <td align="center">{{ x.getAuthor() }}</td>
+                <td align="center">{{ x.getStatus() }}</td>
             </tr>
         {% endfor %}
-
         </tbody>
     </table>
     <div>
