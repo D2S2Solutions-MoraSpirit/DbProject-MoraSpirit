@@ -403,3 +403,13 @@ fieldset {
 .button:focus {
     outline: none;
 }
+.mycentertable{
+    width:300px;
+    height:300px;
+    background-color:#d9d9d9;
+    position:fixed;
+    margin-left:-150px; /* half of width */
+    margin-top:-300px;  /* half of height */
+    top:50%;
+    left:50%
+}
