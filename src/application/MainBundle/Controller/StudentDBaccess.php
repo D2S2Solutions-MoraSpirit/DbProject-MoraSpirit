@@ -96,7 +96,7 @@ class StudentDBaccess
     {
         $conn = connection::getConnectionObject();
         $con =$conn->getConnection();
-        $sql="SELECT max(student_id) FROM student";
+        $sql="SELECT student_id FROM student ORDER BY student_id DESC limit 1";
 
         if ($result=mysqli_query($con,$sql))
         {
