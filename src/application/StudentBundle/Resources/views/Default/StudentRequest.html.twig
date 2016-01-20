@@ -1,5 +1,6 @@
-<html>
-<head>
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+{% block scriptStylePanel %}
 
     <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/applicationstudent/js/javascript.js') }}"></script>
@@ -8,247 +9,132 @@
 
         jQuery.noConflict();
 
-
     </script>
 
+{% endblock %}
 
-    <style type="text/css">
+{% block midPanel %}
+    <div class="container" style="max-width: 70%;">
+        <h1>ADD Student Request</h1>
+        <div class="content-grid mdl-grid">
 
-        * {
-            margin: 0;
-            padding: 0;
-        }
+            <div class="mdl-cell mdl-cell--5-col">
+                <div class="form-group">
 
-        html {
-            height: 100%;
-            font-size: 62.5%
-        }
+                    <input class="inp-text" name="request_id" id="requestID" type="text" size="30"/>
+                    <label for="id" class="control-label"><strong>Request ID:</strong></label><i class="bar"></i>
 
-        body {
-            height: 100%;
-            background-color: #FFFFFF;
-            font: 1.2em Verdana, Arial, Helvetica, sans-serif;
-        }
+                </div>
 
-        /* ==================== Form style sheet ==================== */
+                <div class="form-group">
+                    <input class="inp-text" name="student_id" id="studentID" type="text" size="30"/>
+                    <label for="id" class="control-label"><strong>Student ID:</strong></label><i class="bar"></i>
 
-        table.form {
-            margin: 25px 0 0 29px;
-            border-collapse: collapse;
-        }
 
-        table.form th, table.form td {
-            padding: 10px 5px;
-            text-align: left;
-            font-weight: normal;
-        }
+                </div>
 
-        table.form label {
-            font-family: Verdana, Arial, Helvetica, sans-serif;
-            color: #181818;
-            margin-right: 12px;
-        }
+                <div class="form-group">
+                    <label for="id"><strong>Resource Type:</strong></label>
 
-        table.form td span {
-            font-size: 0.9em;
-            color: #181818;
-            margin-left: 8px;
-        }
+                      <span class="">
+                            <label><br>Equipment</label>
+                            <input type="radio" name="equipment"
+                                                           value="equipment"
+                                                           id="equipmentRadio">
+                            <select name="equipmentList" id="equipmentCombo">
+                                <% {% for x in eqList %}
+                                <option value="eqItem">{{ x.getEquipmentName() }}</option>
+                                {% endfor %}%>
+                            </select>
+                      </span>
+                </div>
 
-        table.form td samp {
-            font: 1em Verdana, Arial, Helvetica, sans-serif;
-            color: #000000;
-        }
+                <div class="form-group">
+                    <label for="id"><strong></strong></label>
 
-        table.form input {
-            width: 340px;
-        }
-
-        table.form input.answer {
-            width: 53px;
-        }
-
-        table.form textarea {
-            width: 400px;
-            height: 160px;
-        }
-
-        table.form input.inp-text, table.form input.answer, table.form textarea {
-            border: 1px solid #909090;
-            padding: 2px;
-        }
-
-        table.form th.message-up {
-            vertical-align: top !important;
-        }
-
-        table.form td.submit-button-right {
-            text-align: right !important;
-        }
-
-        table.form input.submit-text {
-            font: 1.4em Georgia, "Times New Roman", Times, serif;
-            letter-spacing: 1px;
-            width: auto;
-        }
-
-        table.form label.email {
-            border-bottom: 1px dotted #000000;
-        }
-
-        table tr td {
-            height: 30px;
-            padding: 10px;
-        }
-
-        table tr td input {
-            height: 20px;
-        }
-
-        table tr td input {
-            height: 20px;
-        }
-
-        table tr td span input{
-            height: 20px;
-        }
-
-        .addTableRow th {
-            width: 200px;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        table tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
-
-        /* ==================== Form style sheet END ==================== */
-
-    </style>
-</head>
-<body>
-<span style="float: left;width: 40%;">
-<table style="border-right: 1px solid brown">
-    <tr>
-        <td>
-            <table>
-
-                <tr>
-                    <th><label for="id"><strong>Request ID:</strong></label></th>
-                    <td><input class="inp-text" name="request_id" id="requestID" type="text" size="30"/></td>
-                </tr>
-
-                <tr>
-                    <th><label for="id"><strong>Student ID:</strong></label></th>
-                    <td><input class="inp-text" name="student_id" id="studentID" type="text" size="30"/></td>
-                </tr>
-
-                <tr>
-                    <td><label for="id"><strong>Resource Type:</strong></label></td>
-                    <td>
-                        <span><label></label><input type="radio" name="equipment" value="equipment" id="equipmentRadio"
-                                                    style="padding-left:5em;width: 15%">Equipment</span>
-                        <select name="equipmentList" id="equipmentCombo" >
-                            <% {% for x in eqList %}
-                            <option value="eqItem">{{ x.getEquipmentName() }}</option>
-                            {% endfor %}%>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><label for="id"><strong></strong></label></td>
-                    <td><span><input type="radio" name="equipment" value="equipment" id="locationRadio"
-                                     style="padding-left:5em;width: 15%">Location</span>
-                        <select name="sport"  id="locationCombo">
+                    <span>
+                        <label>Location</label>
+                        <input type="radio" name="equipment" value="equipment" id="locationRadio">
+                        <select name="sport" id="locationCombo">
                             <% {% for x in locationList %}
                             <option value="eqItem">{{ x.getName() }}</option>
                             {% endfor %}%>
                         </select>
-                    </td>
-                </tr>
+                    </span>
+                </div>
 
-                <tr>
-                    <td><label for="id"><strong>Item Borrowing date</strong></label></td>
-                    <td><span><input type="date" name="equipment" value="equipment" id="borrowingDate"></span></td>
-                </tr>
+                <div class="form-group">
+                    <label for="id"><strong>Item Borrowing date</strong></label>
+                                    <span><input type="date" name="equipment" value="equipment"
+                                                 id="borrowingDate"></span>
+                </div>
 
-                <tr>
-                    <td><label for="id"><strong>Return date</strong></label></td>
-                    <td><span><input type="date" name="equipment" value="equipment" id="returnDate"></span></td>
-                </tr>
+                <div class="form-group">
+                    <label for="id"><strong>Return date</strong></label>
+                    <span><input type="date" name="equipment" value="equipment" id="returnDate"></span>
 
-                <tr>
-                    <td></td>
-                    <td>
-                        <button onclick="addRequestResource()" style="float: right;height: 30px;width: 100px;">Add to request</button>
-                    </td>
-                </tr>
+                </div>
 
-            </table>
-        </td>
+                <div class="form-group">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="addRequestResource()" style="float: right;height: 30px;width: 100px;">Add
+                    </button>
+                </div>
+            </div>
 
-    </tr>
-</table>
-</span>
-<span>
-    <table id="resourceItemTable">
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr class="addTableRow">
-            <th>Resource ID</th>
-            <th>Resource name</th>
-            <th>Borrowing date</th>
-            <th>Return date</th>
-        </tr>
-    </table>
-    <button  style="float: right;margin-right: 7%;width: 150px;height: 50px;margin-top: 20px;" onclick="submitTable()">SUubmit request</button>
+            <div class="mdl-cell mdl-cell--7-col">
+                <table id="resourceItemTable" class="mdl-data-table mdl-js-data-table mdl mdl-shadow--2dp" style="margin-left: 30px;">
+
+                    <tr class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <th>Resource ID</th>
+                        <th>Resource name</th>
+                        <th>Borrowing date</th>
+                        <th>Return date</th>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="submitTable()" style="float: right;height: 30px;width: 150px;">Confirm request
+                    </button>
+                </div>
 
 
-</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
-
-</body>
-<script>
-    function addRequestResource(item) {
-        //alert("d");
-        var equipmentType=$("#equipmentCombo").find('option:selected').text();
-        var locationType=$("#locationCombo").find('option:selected').text();
-        var islocation=$("#locationRadio").is(':checked');
-        if(islocation){
-            equipmentType=locationType;
-        }
-
-        var borrowingDate=$("#borrowingDate").val();
-        var returnDate=$("#returnDate").val();
-        var resourceId;
-        if(islocation){
-            {% for x in locationList%}
-            var foo = '{{ x.getName() }}';
-            if(foo==equipmentType){
-                resourceId='{{ x.getResourceid() }}';
-                //alert(resourceId);
+{% block scriptBlock %}
+    <script>
+        function addRequestResource(item) {
+            var equipmentType = $("#equipmentCombo").find('option:selected').text();
+            var locationType = $("#locationCombo").find('option:selected').text();
+            var islocation = $("#locationRadio").is(':checked');
+            if (islocation) {
+                equipmentType = locationType;
             }
-            {% endfor %}
-        }else{
-            {% for x in eqList%}
-            var foo = '{{ x.getEquipmentName() }}';
-            if(foo==equipmentType){
-                resourceId='{{ x.getResourceId() }}';
-                //alert(resourceId);
+
+            var borrowingDate = $("#borrowingDate").val();
+            var returnDate = $("#returnDate").val();
+            var resourceId;
+            if (islocation) {
+                {% for x in locationList%}
+                var foo = '{{ x.getName() }}';
+                if (foo == equipmentType) {
+                    resourceId = '{{ x.getResourceid() }}';
+                    //alert(resourceId);
+                }
+                {% endfor %}
+            } else {
+                {% for x in eqList%}
+                var foo = '{{ x.getEquipmentName() }}';
+                if (foo == equipmentType) {
+                    resourceId = '{{ x.getResourceId() }}';
+                    //alert(resourceId);
+                }
+                {% endfor %}
             }
-            {% endfor %}
+            $("#resourceItemTable tr:last").after('<tr><td>' + resourceId + '<td>' + equipmentType + '</td><td>' + borrowingDate + '</td><td>' + returnDate + '</td>' + '</tr>');
+
+
         }
-
-
-        $("#resourceItemTable tr:last").after('<tr><td>'+resourceId+'</td><td>'+equipmentType+'</td><td>'+borrowingDate+'</td><td>'+returnDate+'</td>'+'</tr>');
-
-
-
-    }
-</script>
-
-</html>
+    </script>
+{% endblock %}
