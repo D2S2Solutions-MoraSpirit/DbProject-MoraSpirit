@@ -21,6 +21,7 @@
         </tr>
         </thead>
         {% for x in results %}
+            {% var y=0 %}
 
             <tr >
 
@@ -31,8 +32,9 @@
 
 
                 <td>
-                <input type="checkbox" name="myTextEditBox" value="checked" /> Approve
+                <input type="checkbox" name={{ y }} value="checked" /> Approve
                  </td>
+                {% y=y+1 %}
 
 
 
