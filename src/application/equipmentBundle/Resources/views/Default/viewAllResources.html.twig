@@ -1,0 +1,46 @@
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+
+ {% block title %}
+     All Equipments
+ {% endblock  %}
+{%  block midPanel %}
+    <table class="mdl-data-table mdl-js-data-table mdl mdl-shadow--2dp"  align="center">
+
+        <thead>
+        <tr>
+            <th>Resource ID</th>
+            <th>Equipment Name</th>
+            <th>Date</th>
+            <th>Quantity</th>
+
+
+
+
+
+        </tr>
+        </thead>
+
+
+        {% for x in s %}
+
+            <tr   >
+                <td>{{  x.getResourceId() }}</td>
+                <td>{{  x.getEquipmentName() }}</td>
+                <td>{{  x.getDate() }}</td>
+                <td>{{  x.getQuantity }}</td>
+
+
+
+            </tr>
+
+
+        {% endfor %}
+
+
+
+    </table>
+
+
+
+{% endblock %}

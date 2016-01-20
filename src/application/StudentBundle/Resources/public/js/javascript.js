@@ -78,6 +78,6 @@ function submitTable(){
     });
 
 
-    alert(datas);
+    alert(data);
 
 }
