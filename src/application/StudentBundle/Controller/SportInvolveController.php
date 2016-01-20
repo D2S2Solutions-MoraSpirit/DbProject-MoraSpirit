@@ -26,6 +26,6 @@ class SportInvolveController extends Controller
     }
 
     public function addSportInvolveAction(SportInvolve $sportInvolve){
-
+        StudentDBaccess::addSportInvolve($sportInvolve);
     }
 }

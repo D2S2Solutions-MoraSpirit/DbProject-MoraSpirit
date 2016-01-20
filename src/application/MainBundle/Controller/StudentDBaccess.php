@@ -11,18 +11,22 @@ namespace application\MainBundle\Controller;
 
 use application\MainBundle\Resources\Entity\Request;
 use application\MainBundle\Resources\Entity\RequestResource;
+use application\MainBundle\Resources\Entity\SportInvolve;
 use application\MainBundle\Resources\Entity\Student;
+use application\MainBundle\Resources\Entity\StudentContact;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 class StudentDBaccess
 {
 
-    public static function addStudent(Student $student)
+    public static function addStudent(Student $student,array $telArray)
     {
 
         try {
             $conn = connection::getConnectionObject();
             $con = $conn->getConnection();
+
+            $con->autocommit(false);
 
             $sql = $con->prepare("INSERT INTO Student VALUES (?,?,?,?,?,? )");
 
@@ -34,19 +38,65 @@ class StudentDBaccess
             $address = $student->getAddress();
             $nic = $student->getNic();
 
+
+
             $sql->bind_param("ssssss", $studentId, $name, $batch, $faculty, $address, $nic);
 
 
             if ($sql->execute() == TRUE) {
+
+
+
+                foreach($telArray as $value){
+                    $isadded=StudentDBaccess::addStudentContact($con,$value);
+                    if($isadded==false){
+                        echo "error while adding contact";
+                        $con->rollback();
+                        return false;
+                    }
+                }
+                $con->commit();
                 echo "New record created successfully";
+                return true;
             } else {
-                echo "Error: " . $sql . "<br>";
+                $con->rollback();
+                echo "error bbb"; //echo "Error: " . $sql . "<br>";
+                return false;
+
             }
-            return true;
+
         } catch (Exception $e) {
-            return "error";
+            $con->rollback();
+            return "error while adding";
         } finally {
+            $con->autocommit(true);
+
+           // $sql->close();
             $con->close();
+        }
+
+
+    }
+
+    public static function addStudentContact($con,StudentContact $studentContact){
+
+
+        $sql = $con->prepare("INSERT INTO StudentContact VALUES (?,?)");
+        $studentId= $studentContact->getStudentId();
+        $contactNo= $studentContact->getContactNo();
+
+        $sql->bind_param("ss",$studentId,$contactNo);
+
+
+        if ($sql->execute() == TRUE) {
+
+            //echo "New record created successfully";
+            return true;
+        } else {
+
+            echo "error"; //echo "Error: " . $sql . "<br>";
+            return false;
+
         }
 
 
@@ -88,8 +138,42 @@ class StudentDBaccess
     }
 
 
-    public static function addSportInvolve()
+    public static function addSportInvolve(SportInvolve $sportInvolve)
     {
+        try {
+            $conn = connection::getConnectionObject();
+            $con = $conn->getConnection();
+
+            $sql = $con->prepare("INSERT INTO sportinvolve VALUES (?,?,?,?,?,? )");
+
+
+            $studentId = $student->getStudentId();
+            $name = $student->getName();
+            $faculty = $student->getFaculty();
+            $batch = $student->getBatch();
+            $address = $student->getAddress();
+            $nic = $student->getNic();
+
+            $sql->bind_param("ssssss", $studentId, $name, $batch, $faculty, $address, $nic);
+
+
+            if ($sql->execute() == TRUE) {
+
+                echo "New record created successfully";
+                return true;
+            } else {
+
+                echo "error"; //echo "Error: " . $sql . "<br>";
+                return false;
+
+            }
+
+        } catch (Exception $e) {
+            return "error";
+        } finally {
+            //$sql->close();
+            $con->close();
+        }
 
     }
 

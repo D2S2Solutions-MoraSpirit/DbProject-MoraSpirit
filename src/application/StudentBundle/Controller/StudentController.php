@@ -19,7 +19,17 @@ class StudentController extends Controller
         $student->setAddress($_POST["address"]);
         $student->setNic($_POST["nic"]);
 
-        cont\StudentDBaccess::addStudent($student);
+
+        $telArray=array();
+        for($x=0;$x< $_POST["hiddenText"];$x++){
+            $contact=new Entity\StudentContact();
+            $contact->setStudentId($_POST["student_id"]);
+            $contact->setContactNo($_POST["telephone"][$x]);
+            $telArray[]=$contact;
+        }
+        //$v=$telArray[1];
+        //echo $v->getContactNo();
+        cont\StudentDBaccess::addStudent($student,$telArray);
         return $this->render('applicationMainBundle:Default:index.html.twig');
     }
 
