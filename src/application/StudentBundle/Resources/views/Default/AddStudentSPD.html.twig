@@ -25,7 +25,7 @@
 		<table class="form" id="table1">
 			<tr>
 				<th><label for="id"><strong>Student ID:</strong></label></th>
-				<td><input class="inp-text" name="student_id" value={{ sportList[0].getName() }}  id="studentID" type="text" size="30" onkeypress="getStudentDetails(event)" title="Press enter to load details"/></td>
+				<td><input class="inp-text" name="student_id"   id="studentID" type="text" size="30" onkeypress="getStudentDetails(event)" title="Press enter to load details"/></td>
 
 			</tr>
 
@@ -91,18 +91,7 @@
 
 <script>
     var a=1;
-    function addField() {
 
-        var table = document.getElementById('table1');
-        var newRow=table.insertRow(2+a);
-        var newCell = newRow.insertCell(0);
-        newCell.innerHTML = "<label><strong>  telephone </strong>"+a+"</label>";
-        var newCell2 = newRow.insertCell(1);
-        newCell2.innerHTML = '<td><input class="inp-text" name="nic" id="nic" type="text" size="30" /></td>';
-        var newCell3=newRow.insertCell(2);
-        newCell3.innerHTML='<td><button type="button" name="delButton" id="addButton'+a+'" onclick="deleteField()" size="30">Del</button></td>';
-        a=a+1;
-    }
 
     function deleteField(){
         var table = document.getElementById('table1');

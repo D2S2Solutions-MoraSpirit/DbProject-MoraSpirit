@@ -92,33 +92,32 @@ class StudentDBaccess
     {
 
     }
+
     public static function getLastStudentID()
     {
         $conn = connection::getConnectionObject();
-        $con =$conn->getConnection();
-        $sql="SELECT student_id FROM student ORDER BY student_id DESC limit 1";
+        $con = $conn->getConnection();
+        $sql = "SELECT student_id FROM student ORDER BY student_id DESC limit 1";
 
-        if ($result=mysqli_query($con,$sql))
-        {
-            $row=mysqli_fetch_row($result);
-            if($row[0]==null){
+        if ($result = mysqli_query($con, $sql)) {
+            $row = mysqli_fetch_row($result);
+            if ($row[0] == null) {
                 $r = 0;
 
-            }
-            else{
-                $r= $row[0];
+            } else {
+                $r = $row[0];
             }
 
             mysqli_free_result($result);
         }
 
-        return $r+1;
+        return $r + 1;
 
     }
-
-
-
-
-
-
 }
+
+
+
+
+
+
