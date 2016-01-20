@@ -65,15 +65,16 @@ class StudentRequestDBaccess
     {
 
 try {
-    $sql = $con->prepare("INSERT INTO  RequestResource VALUES(?,?,?,?,?,?)");
+    $sql = $con->prepare("INSERT INTO  RequestResource VALUES(?,?,?,?,?,?,?)");
     $requestId = $requestResource->getRequestId();
     $resourceId = $requestResource->getResourceId();
+    $qty=$requestResource->getQty();
     $borrowingDate = $requestResource->getItemBorrowingDate();
     $issueDate = date('Y-m-d');
     $returnDate = $requestResource->getReturnDate();
     $status = 1;
 
-    $sql->bind_param("sssssi", $requestId, $resourceId, $borrowingDate, $issueDate, $returnDate, $status);
+    $sql->bind_param("ssisssi", $requestId, $resourceId,$qty, $borrowingDate, $issueDate, $returnDate, $status);
 
     if ($sql->execute() == TRUE) {
         return true;

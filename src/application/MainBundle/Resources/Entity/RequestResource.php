@@ -14,6 +14,7 @@ class RequestResource
     private $request_id;
     private $resource_id;
 
+
     /**
      * @return mixed
      */
@@ -97,6 +98,22 @@ class RequestResource
     /**
      * @return mixed
      */
+    public function getQty()
+    {
+        return $this->qty;
+    }
+
+    /**
+     * @param mixed $qty
+     */
+    public function setQty($qty)
+    {
+        $this->qty = $qty;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getStatus()
     {
         return $this->status;
@@ -113,5 +130,6 @@ class RequestResource
     private $issueDate;
     private $returnDate;
     private $status;
+    private $qty;
 
 }

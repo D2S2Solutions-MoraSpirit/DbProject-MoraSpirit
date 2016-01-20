@@ -37,7 +37,7 @@ class SportDBaccess{
             $conn=connection::getConnectionObject();
             $con =$conn->getConnection();
             $stm=$con->stmt_init();
-            $stm->prepare("SELECT name FROM Sport");
+            $stm->prepare("SELECT name,sport_id FROM Sport");
             $stm->execute();
             $result = $stm->get_result();
             $sportArray=array();
@@ -46,6 +46,7 @@ class SportDBaccess{
             {
                 $sport=new Sport();
                 $sport->setName($row["name"]);
+                $sport->setSportId($row["sport_id"]);
                 $sportArray[]=$sport;
             }
 
