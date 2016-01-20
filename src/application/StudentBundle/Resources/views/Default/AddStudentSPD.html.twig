@@ -1,8 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>HTML Form</title>
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+{% block scriptStylePanel %}
 
 
     <link type="text/css" rel="stylesheet" href="{{ asset('bundles/applicationstudent/css/studentStyle.css') }}"/>
@@ -15,16 +13,18 @@
 
 
     </script>
-</head>
 
 
-<body>
-    <div>
+{% endblock %}
+
+{% block midPanel %}
+<div class="container" style="max-width: 40%;">
 	<form  id="formid" onsubmit="return false">
         <h1>Add Sports involving details of students</h1>
 		<table class="form" id="table1">
 			<tr>
-				<th><label for="id"><strong>Student ID:</strong></label></th>
+
+				<th><label for="id" class="control-label"><strong>Student ID:</strong></label><i class="bar"></i></th>
 				<td><input class="inp-text" name="student_id" value={{ sportList[0].getName() }}  id="studentID" type="text" size="30" onkeypress="getStudentDetails(event)" title="Press enter to load details"/></td>
 
 			</tr>
@@ -38,12 +38,12 @@
 				<th><label for="batch"><strong>Batch:</strong></label></th>
 				<td><input class="inp-text" name="batch" id="batch" type="text" size="30" /></td>
 			</tr>
-            
+
             <tr>
 				<th><label for="faculty"><strong>Faculty:</strong></label></th>
 				<td><input class="inp-text" name="faculty" id="faculty" type="text" size="30" /></td>
 			</tr>
-            
+
             <tr>
 				<th><label for="batch"><strong>Sport:</strong></label></th>
 				<td>
@@ -55,7 +55,7 @@
 
                 </td>
 			</tr>
-            
+
             <tr>
 				<th><label for="role"><strong>Role:</strong></label></th>
 				<td>
@@ -68,27 +68,30 @@
                     </select>
                 </td>
 			</tr>
-            
+
              <tr>
 				<th><label for="faculty"><strong>Active:</strong></label></th>
 				<td>
                     <label><input type="checkbox"  style="width:30px;" id="cbox1" value="first_checkbox"> currently active</label>
                 </td>
 			</tr>
-           
-			
+
 			<tr>
 				<td class="submit-button-right" colspan="2">
-				<input class="submit-text" type="image" src="img/send-button.gif" value="SEND" alt="SEND" title="Send your message" />
+                    <div class="form-group">
+
+                        <button type="submit" class="button"><span>Submit details</span></button>
+                    </div>
 				</td>
 			</tr>
+
 		</table>
-    
+
 	</form>
-        </div>
+</div>
+{% endblock %}
 
-</body>
-
+{% block scriptBlock %}
 <script>
     var a=1;
     function addField() {
@@ -109,8 +112,6 @@
         table.deleteRow(a);
     }
 
-
-
 </script>
+{% endblock %}
 
-</html>

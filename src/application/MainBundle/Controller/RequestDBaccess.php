@@ -17,6 +17,7 @@ class RequestDBaccess{
         $sql="SELECT * FROM Request WHERE STATUS='pending'";
         $result=mysqli_query($con,$sql);
         $requests = array();
+
         $req_num=0;
         while($row=mysqli_fetch_row($result)){
 
@@ -26,13 +27,13 @@ class RequestDBaccess{
             $request->setRequestDate($row[2]);
             $requests[$req_num]=$request;
             $req_num++;
-            $requestResources=self::getRequestResource($request);
-        }
-        $returnValue=array();
-        $returnValue[0]=$requests;
-        $returnValue[1]=$requestResources;
 
-        return $returnValue;
+        }
+
+
+
+
+        return $requests;
     }
     public static function getRequestResource(en\ Request $request){
         $request_id = $request->getRequestId();
@@ -44,6 +45,7 @@ class RequestDBaccess{
         $res_num=0;
         while($row=mysqli_fetch_row($result)){
             $requestResource =new en\ RequestResource();
+
             $requestResource->setResourceId($row[1]);
             $requestResource->setItemBorrowingDate($row[2]);
             $requestResource->setIssueDate($row[3]);

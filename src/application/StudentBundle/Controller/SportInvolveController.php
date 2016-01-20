@@ -21,11 +21,12 @@ class SportInvolveController extends Controller
 
     public function indexAction()
     {
-        $sportList=SportDBaccess::getAllSports();
-        return $this->render('applicationStudentBundle:Default:AddStudentSPD.html.twig',array('sportList' => ($sportList)));
+        $sportList = SportDBaccess::getAllSports();
+        return $this->render('applicationStudentBundle:Default:AddStudentSPD.html.twig', array('sportList' => ($sportList)));
     }
 
-    public function addSportInvolveAction(SportInvolve $sportInvolve){
-
+    public function addSportInvolveAction(SportInvolve $sportInvolve)
+    {
+        StudentDBaccess::addSportInvolve($sportInvolve);
     }
 }
