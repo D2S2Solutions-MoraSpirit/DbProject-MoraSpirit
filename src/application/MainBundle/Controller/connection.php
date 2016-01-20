@@ -35,8 +35,8 @@ final class connection
 
 
 
-        $password = null;
 
+        $password = null;
 
         $dbname = "moraspirit";
 
