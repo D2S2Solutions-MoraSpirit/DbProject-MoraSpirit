@@ -2,6 +2,10 @@ application_main_homepage:
     path:     /
     defaults: { _controller: applicationMainBundle:Default:index }
 
+applicationMainAdminUI:
+    path:     /adminMainPanel
+    defaults: {_controller: applicationMainBundle:MainTemplate:mainTemplateAdmin }
+
 applicationTemplate:
     path:     /template
     defaults: { _controller: applicationMainBundle:MainTemplate:templateTest }
