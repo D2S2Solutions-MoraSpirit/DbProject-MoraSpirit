@@ -1,42 +1,90 @@
-<<<<<<< HEAD
-<html>
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+{% block styleCodeBlocks %}
+    .mdl-data-table {
+    margin-left: 115px;
+    margin-right: auto;
+    margin-top: 75px;
+    text-align: left;
+    width: 90%;
+    }
 
+    .mdl-data-table th {
+    margin-left: 60px;
+    margin-right: 360px;
+    background-color: #4CAF50;
+    color: white;
+    width: 220px;
+    text-align: center;
+    clear: both;
+    }
 
+    .mdl-data-table td,
+    caption {
+    font-family: myFirstFont;
+    text-align: center
+    }
 
+{% endblock %}
 
+{% block title %}
+    Gym Schedule
+    {% endblock %}
+{#<table align="center">#}
+    {#<tr class="addTableRow">#}
+        {#<th>Sport ID</th>#}
+        {#<th>Location name</th>#}
+        {#<th>Reserved date</th>#}
+        {#<th>Reserved time</th>#}
+    {#</tr>#}
+    {#{% for x in response_array %}#}
+    {#<tr><td align="center">{{ x.getSportId() }}</td>#}
+    {#<td align="center">{{ x.getResourceName()}}</td>    <td align="center">{{ x.getPractiseDate()}}</td>    <td align="center">{{ x.getPractiseTime()}}</td>#}
+    {#</tr>#}
+    {#{% endfor %}#}
+{#</table>#}
+{% block midPanel %}
+<div id="tagged">
+    <table id="gymTable" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead class="mdl-data-table">
+        <tr id="theader">
+            <th class="mdl-data-table__cell--non-numeric ">Location</th>
+            <th>Sport</th>
+            <th>From</th>
+            <th>To</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for x in response_array %}
+            <tr><td align="center">{{ x.getSportId() }}</td>
+                <td align="center">{{ x.getResourceName()}}</td>
+                <td align="center">{{ x.getPractiseDate()}}</td>
+                <td align="center">{{ x.getPractiseStartTime()}}</td>
+            </tr>
+        {% endfor %}
 
-=======
-<html>
-<head>
-    <style type="text/css">
-        .addTableRow th {
-            width: 200px;
-            background-color: #4CAF50;
-            color: white;
-        }
+        </tbody>
+    </table>
+    <div>
+        <style>
+            .mdl-button--fab.mdl-button--colored{
+                background-color: #5379c8;
+            }
+            .mdl-button--fab.mdl-button--colored:hover{
+                background-color: #00b0ff;
+            }
+        </style>
+        <!-- Colored FAB button -->
+        <a href="/sport/AddScheduledEvent">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" style="position: fixed;bottom:30px;right: 30px;">
+            <i class="material-icons">save</i>
+        </button>
+        </a>
 
-        table tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
-    </style>
-</head>
-<body>
-
-<table align="center">
-    <tr class="addTableRow">
-        <th>Sport ID</th>
-        <th>Location name</th>
-        <th>Reserved date</th>
-        <th>Reserved time</th>
-    </tr>
-    {% for x in response_array %}
-    <tr><td align="center">{{ x.getSportId() }}</td>
-    <td align="center">{{ x.getResourceName()}}</td>    <td align="center">{{ x.getPractiseDate()}}</td>    <td align="center">{{ x.getPractiseTime()}}</td>
-    </tr>
-    {% endfor %}
-</table>
-
-
-</body>
->>>>>>> 6ae794794e2e7d293622273171ea5bef4855a79c
-</html>
+        <a href="/sport/AddScheduledEvent" class="mdl-button mdl-button--colored mdl-js-button mdl-button--fab mdl-js-ripple-effect"style="position: fixed;bottom:30px;right: 120px;">
+           <i class="material-icons">add</i>
+        </a>
+    </div>
+</div>
+{% endblock %}
+{% block notification %}
+{% endblock %}

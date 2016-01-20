@@ -126,6 +126,18 @@ class formController extends Controller
 
         $r=cont\RequestDBaccess::getPendingRequests();
 
+
         return $this->render('applicationequipmentBundle:Forms:requestAcceptTable.html.twig',array('s' => $r));
+    }
+    public function  requestResourceTableAction(){
+        $r_id= $_POST["requestResource"];
+        $request=new en\Request();
+        $request->setRequestId($r_id);
+        $results= cont\RequestDBaccess::getRequestResource($request);
+
+        return $this->render('applicationequipmentBundle:Forms:RequestResourceTable.html.twig',array('results'=>$results));
+    }
+    public function approvalAction(){
+
     }
 }

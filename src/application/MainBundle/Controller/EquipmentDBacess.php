@@ -58,7 +58,8 @@ class EquipmentDBacess{
     {
         $conn = cont\connection::getConnectionObject();
         $con =$conn->getConnection();
-        $sql="SELECT max(resource_id) FROM resource";
+
+        $sql="SELECT resource_id FROM resource ORDER BY resource_id DESC limit 1";
 
         if ($result=mysqli_query($con,$sql))
         {

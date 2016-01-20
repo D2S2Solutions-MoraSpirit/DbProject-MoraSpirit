@@ -19,7 +19,7 @@ class PracticeScheduleDBaccess
             $conn = connection::getConnectionObject();
             $con = $conn->getConnection();
             $stm = $con->stmt_init();
-            $stm->prepare("SELECT sport_id,practiceDate,practiceTime,locationName FROM practiceschedule NATURAL JOIN location where location.resource_id=?");
+            $stm->prepare("SELECT sport_id,practiceDate,practiceStartTime,locationName FROM practiceschedule NATURAL JOIN location where location.resource_id=?");
             $stm->bind_param("s", $resource_id);
             $stm->execute();
             $result = $stm->get_result();
@@ -36,12 +36,11 @@ class PracticeScheduleDBaccess
                 $row_sport = $result_sport->fetch_assoc();
                 $practiceSchedule->setSportName($row_sport["name"]);
                 $practiceSchedule->setPractiseDate($row["practiceDate"]);
-                $practiceSchedule->setPractiseTime($row["practiceTime"]);
+                $practiceSchedule->setPractiseStartTime($row["practiceStartTime"]);
                 $practiceSchedule->setResourceName($row["locationName"]);
                 $practiceScheduleArray[]=$practiceSchedule;
                 //array_push($practiceScheduleArray, );
             }
-
             return $practiceScheduleArray;
         } catch (Exception $e) {
             return "error";
@@ -49,6 +48,9 @@ class PracticeScheduleDBaccess
             //$conn->close();
             //$stm->close();
         }
+
+    }
+    public static function saveScheduledEvent(){
 
     }
 

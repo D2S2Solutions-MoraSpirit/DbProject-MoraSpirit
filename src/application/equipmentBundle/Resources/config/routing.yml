@@ -34,3 +34,11 @@ applicationequipment_requestProcess:
     path:     /requestProccess
 
     defaults: { _controller: applicationequipmentBundle:form:requestAcceptTable }
+applicationequipment_requestResource:
+    path:     /RequestResource
+
+    defaults: { _controller: applicationequipmentBundle:form:requestResourceTable }
+applicationequipment_approveRequest:
+    path:     /approvals
+
+    defaults: { _controller: applicationequipmentBundle:form:approval }
