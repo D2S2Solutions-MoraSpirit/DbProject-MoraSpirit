@@ -48,10 +48,9 @@ function addRequestResource(){
 
 
 function submitTable(){
-    alert("sdff");
-    var datas = [];
+    var data = [];
     jQuery.each(jQuery('#resourceItemTable tr:gt(0)'), function(i,e ) {
-        datas.push(jQuery('td', e).map(function(i,e) {
+        data.push(jQuery('td', e).map(function(i,e) {
                 //alert(e.innerHTML);
                 return e.innerHTML;
             }).get()
@@ -59,19 +58,13 @@ function submitTable(){
     });
 
 
-    var tableList=new Array();
-    for(var x=0;x<datas.length;x++){
-        tableList[x]=datas[x];
-    }
-
    var studentID= $("#studentID").val();
    var requestID= $("#requestID").val();
 
-    alert(tableList);
     jQuery.ajax({
         url: "/submitStudentRequest",
         type: "GET",
-        data: {"student_id": studentID,"request_id":requestID,"tableList":tableList},
+        data: {"student_id": studentID,"request_id":requestID,"tableList":data},
         success: function (data) {
 
             if(data['status']==true){
