@@ -3,7 +3,6 @@ applicationequipment_homepage:
     defaults: { _controller: applicationequipmentBundle:Default:index }
 applicationequipment_addEquip:
     path:     /add
-
     defaults: { _controller: applicationequipmentBundle:form:saveEquipment }
 applicationequipment_addEquipForm:
     path:     /addEquip
@@ -42,3 +41,7 @@ applicationequipment_approveRequest:
     path:     /approvals
 
     defaults: { _controller: applicationequipmentBundle:form:approval }
+applicationequipment_viewAll:
+    path:     /viewAllEquipments
+
+    defaults: { _controller: applicationequipmentBundle:Default:viewAllEquipments }

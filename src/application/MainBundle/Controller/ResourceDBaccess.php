@@ -38,4 +38,22 @@ class ResourceDBaccess
 
 
     }
+    public static function updateRequestResources($resourcesArray){
+        $conn = connection::getConnectionObject();
+        $con = $conn->getConnection();
+
+
+        foreach ($resourcesArray as $value){
+            $sql = $con->prepare("UPDATE requestresource set state=? WHERE resource_id=? and request_id=? and itemBorrowingDate=?");
+            $sql->bind_param("isss", $value->getStatus(),$value->getResourceId(), $value->getRequestId(),$value->getItemBorrowingDate());
+            if ( $sql->execute()==TRUE) {
+                echo "New record created successfully in RESOURCE table";
+            } else {
+                echo "Error in resource adding: <br>" ;
+            }
+        }
+    }
+
+
+
 }

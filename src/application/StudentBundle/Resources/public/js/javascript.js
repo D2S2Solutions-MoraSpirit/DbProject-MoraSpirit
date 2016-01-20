@@ -80,6 +80,10 @@ function submitTable(){
     });
 
 
+<<<<<<< HEAD
 }
 
+=======
+    alert(data);
+>>>>>>> f7e7c2f99bf111f9ecaf636bc60cf9d2380057bf
 

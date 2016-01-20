@@ -5,13 +5,23 @@
 {% block midPanel %}
     <div class="container">
         <h1>Add Scheduled Event</h1>
-        <form action="/addNew" method ="post" >
+        <form action="/sport/saveEvent" method ="post" >
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text"  name="sport" id="sport" >
-                <label for="sport" class="mdl-textfield__label">Sport</label><i class="bar"></i>
+            {#<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">#}
+                {#<input class="mdl-textfield__input" type="text"  name="sport" id="sport" >#}
+                {#<label for="sport" class="mdl-textfield__label">Sport</label><i class="bar"></i>#}
+            {#</div>#}
+            <div>
+                <label for="sport" >Select Sport</label><i class="bar"></i>
+            <select name="sport" id="sport">
+                {#<label for="sport" class="mdl-textfield__label">Sport</label><i class="bar"></i>#}
+                <%{% for x in sport %}
+                    <option  value="{{  x.getSportId() }}">{{ x.getName() }}</option>
+                    {% endfor %}
+                %>
+            </select>
+
             </div>
-
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text"  name="location" id="location" >
                 <label for="location" class="mdl-textfield__label">Location Name</label><i class="bar"></i>
@@ -26,18 +36,45 @@
                 <label for="numberofParticipants" class="mdl-textfield__label">Number of Participants</label><i class="bar"></i>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
-            <div><br>Scheduled Time</div>
+            <div><br>Scheduled Start Time</div>
             <div class="content-grid mdl-grid">
                 <div class="mdl-cell mdl-cell--4-col">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="hour">
-                        <label class="mdl-textfield__label" for="hour">Hour</label>
+                        <input class="mdl-textfield__input" type="text" name="start_hour" id="start_hour">
+                        <label class="mdl-textfield__label" for="hour">Start Hour</label>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--4-col">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="minutes">
-                        <label class="mdl-textfield__label" for="minutes">Minutes</label>
+                        <input class="mdl-textfield__input" type="text" name="start_minutes" id="start_minutes">
+                        <label class="mdl-textfield__label" for="minutes">Start Minutes</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col" style="padding-top: 24px;">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-am">
+                        <input type="radio" id="option-am" class="mdl-radio__button" name="options" value="1" checked>
+                        <span class="mdl-radio__label">AM</span>
+                    </label>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-pm">
+                        <input type="radio" id="option-pm" class="mdl-radio__button" name="options" value="2">
+                        <span class="mdl-radio__label">PM</span>
+                    </label>
+                </div>
+
+            </div>
+
+            <div><br>Scheduled End Time</div>
+            <div class="content-grid mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" name="end_hour" id="end_hour">
+                        <label class="mdl-textfield__label" for="hour">End Hour</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" name="end_minutes" id="end_minutes">
+                        <label class="mdl-textfield__label" for="minutes">End Minutes</label>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--4-col" style="padding-top: 24px;">

@@ -41,10 +41,6 @@ class formController extends Controller
             echo "updated resources "+$updateRes;
             echo "updated equipment "+$updateEquip;
         }
-
-
-
-
     }
     public function damageReportAction()
     {
@@ -135,9 +131,35 @@ class formController extends Controller
         $request->setRequestId($r_id);
         $results= cont\RequestDBaccess::getRequestResource($request);
 
-        return $this->render('applicationequipmentBundle:Forms:RequestResourceTable.html.twig',array('results'=>$results));
+        return $this->render('applicationequipmentBundle:Forms:RequestResourceTable.html.twig',array('results'=>$results,'r_id'=>$r_id));
     }
     public function approvalAction(){
+
+        $tableList=$_GET["resourceTable"];
+
+
+
+        $resourcesArray=array();
+
+        echo "<br/>";
+
+        for ($x = 0; $x < count($tableList)-1 ; $x+=1) {
+
+            $requestResource=new en\RequestResource();
+            $requestResource->setRequestId($tableList[$x][0]);
+
+            $requestResource->setResourceId($tableList[$x][1]);
+            $requestResource->setItemBorrowingDate($tableList[$x][2]);
+            $requestResource->setStatus($tableList[$x][6]);
+            $resourcesArray[$x]=$requestResource;
+        }
+
+        $status=cont\ResourceDBaccess::updateRequestResources($resourcesArray);
+
+        $v=$resourcesArray[0];
+
+
+        return new JsonResponse(['status'=>$status]);
 
     }
 }

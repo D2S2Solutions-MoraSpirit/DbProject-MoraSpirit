@@ -9,7 +9,8 @@
 namespace application\MainBundle\Controller;
 
 use application\MainBundle\Resources\Entity\PracticeSchedule;
-
+use application\MainBundle\Resources\Entity\Sport;
+use application\MainBundle\Controller as cont;
 class PracticeScheduleDBaccess
 {
     public static function getAllLocationSchedule($resource_id)
@@ -53,8 +54,49 @@ class PracticeScheduleDBaccess
         }
 
     }
-    public static function saveScheduledEvent(){
+    public static function saveScheduledEvent(practiceSchedule $practiceSchedule){
+        $conn=connection::getConnectionObject();
+        $con =$conn->getConnection();
+        $sql = $con->prepare("INSERT INTO practiceschedule VALUES (?,?,?,?,?,?,?)");
+        $sportid=$practiceSchedule->getSportId();
+        $resource_id=$practiceSchedule->getResourceId();
+        $practiceDate=$practiceSchedule->getPractiseDate();
+        $practiceStartTime=$practiceSchedule->getPracticeStartTime();
+        $practiceEndTime=$practiceSchedule->getPracticeEndTime();
+        $status=$practiceSchedule->getStatus();
+        $author=$practiceSchedule->getAutor();
+        $sql->bind_param("ssss", $sportid, $resource_id, $practiceDate, $practiceStartTime,$practiceEndTime,$author,$status);
+        if ($sql->execute()==TRUE){
+            return true;
+        }else{
+            return false;
+        }
 
+    }
+    public static function getAllSport(){
+        $stm = null;
+        try {
+            $conn = connection::getConnectionObject();
+            $con = $conn->getConnection();
+            $stm = $con->stmt_init();
+            $stm->prepare("select * from sport");
+            $stm->execute();
+            $result = $stm->get_result();
+            $sportArray=array();
+            while ($row = $result->fetch_assoc()) {
+                $sport=new Sport();
+                $sport->setSportId($row["sport_id"]);
+                $sport->setName($row["name"]);
+                $sportArray[]=$sport;
+            }
+            return $sportArray;
+
+        }catch (Exception $e) {
+            return "error";
+        } finally {
+            //$conn->close();
+            //$stm->close();
+        }
     }
 
 
