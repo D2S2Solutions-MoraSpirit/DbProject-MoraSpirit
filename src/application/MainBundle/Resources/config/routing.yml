@@ -1,4 +1,3 @@
-
 application_main_homepage:
     path:     /
     defaults: { _controller: applicationMainBundle:Default:index }
@@ -18,3 +17,8 @@ applicationTemplate:
 newUserRegistering:
     path:       /registerUser
     defaults: { _controller: applicationMainBundle:User:authenticateUser}
+    
+logoutUser:
+    path:       /logout
+    defaults: { _controller: applicationMainBundle:User:logoutUser}
+
