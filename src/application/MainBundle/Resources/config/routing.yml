@@ -13,4 +13,8 @@ applicationTemplate:
 newUserRegistering:
     path:       /registerUser
     defaults: { _controller: applicationMainBundle:User:authenticateUser}
+    
+logoutUser:
+    path:       /logout
+    defaults: { _controller: applicationMainBundle:User:logoutUser}
 
