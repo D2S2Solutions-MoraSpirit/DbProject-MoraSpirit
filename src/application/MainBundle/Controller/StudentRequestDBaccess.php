@@ -87,4 +87,29 @@ try {
 
     }
 
+    public static function getLastStudentID()
+    {
+        $conn = connection::getConnectionObject();
+        $con = $conn->getConnection();
+
+        $stm=$con->stmt_init();
+
+        $stm->prepare("SELECT request_id FROM request ORDER BY request_id DESC limit 1");
+
+        $stm->execute();
+        $result = $stm->get_result();
+
+
+        while($row = $result->fetch_assoc()){
+
+           $r = $row["request_id"];
+
+        }
+
+
+        $s=substr($r,2) + 1;
+        return $s;
+
+    }
+
 }
