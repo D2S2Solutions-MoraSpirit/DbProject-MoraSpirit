@@ -3,43 +3,26 @@
 {% block title %} Add Sport {% endblock %} 
 
 {% block midPanel %}
-<style>
-    .form {
-        /*background-color: aqua;*/
-        background-size: contain;
-        padding-top: 100;
-        float: none;
-    }
-    
-    .container {
-        box-sizing: padding-box;
-        width: 30%;
-        height: auto;
-        margin-top: 0;
-        margin-right: auto;
-        margin-bottom: 0;
-        margin-left: auto;
-        align-items: center;
-    }
-</style>
+
 <div class="container">
-    <div class="form">
-        <form action="/sport/save" method="post">
-            Sport name:
-            <br>
-            <input type="text" name="sportname">
-            <br> SportId:
-            <br>
-            <input type="text" name="sportid">
-            <br>
-            <br>
-            <input type="submit" value="Submit">
+        <h1>Add Sport</h1>
+        <form action="/sport/save" method="post" >
+
+
+            <div class="form-group">                
+                <input type="text" name="sportname" required="required">
+                <label for="sportname" class="control-label">Sport Name</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+                <input type="text" name="sportid" required="required">
+                <label for="sportid" class="control-label">Sport ID</label><i class="bar"></i>
+            </div>
+
+            <button type="submit" class="button"><span>Submit</span></button>
+
         </form>
-    </div>
-</div>
 
 </div>
-
 
 
 

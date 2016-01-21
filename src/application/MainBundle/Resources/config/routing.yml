@@ -21,4 +21,8 @@ newUserRegistering:
 logoutUser:
     path:       /logout
     defaults: { _controller: applicationMainBundle:User:logoutUser}
+    
+home:
+    path:       /home
+    defaults: { _controller: applicationMainBundle:User:userHome}
 

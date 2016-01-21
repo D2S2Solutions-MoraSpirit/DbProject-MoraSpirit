@@ -25,7 +25,7 @@ class SportDBaccess{
         $sql->bind_param("ss",$sportid,$sportname);
 
         if ( $sql->execute()==TRUE) {
-            echo "New record created successfully (sport added)";
+            /*echo "New record created successfully (sport added)";*/
         } else {
             //echo "Error in adding sport: " . $sql . "<br>" ;
             echo "Error in adding sport:";
