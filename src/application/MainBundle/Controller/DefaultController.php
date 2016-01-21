@@ -10,6 +10,6 @@ class DefaultController extends Controller
     public function indexAction()
     {
         //$student=new Entity\Student();
-        return $this->render('applicationMainBundle:Default:index.html.twig');
+        return $this->render('applicationMainBundle:Login:login.html.twig');
     }
 }

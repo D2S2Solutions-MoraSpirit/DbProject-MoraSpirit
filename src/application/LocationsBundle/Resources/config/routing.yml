@@ -1,6 +1,4 @@
-application_locations_homepage:
-    path:     /
-    defaults: { _controller: applicationLocationsBundle:Default:index }
+
 
 application_equipmnet_add:
     path:   /locationadd

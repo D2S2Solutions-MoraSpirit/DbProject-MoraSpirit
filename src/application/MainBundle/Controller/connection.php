@@ -32,14 +32,9 @@ final class connection
     {
         $servername = "localhost";
         $username = "root";
+        $password = '12345';
+        $dbname = "Moraspirit";
 
-
-
-
-        $password = "12345";
-
-
-        $dbname = "moraspirit";
 
 
         // Create connection

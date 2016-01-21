@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <!-- Material Design Lite -->
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <!-- Wide card with share menu button -->
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="float=right;">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Welcome</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            <div class="container">
+                <h1>Sign in</h1>
+                <form action="/registerUser" method="post">
+
+
+                    <div class="form-group">
+                        <input type="text" name="username" required="required">
+                        <label for="username" class="control-label">User Name</label><i class="bar"></i>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" name="password" required="required">
+                        <label for="password" class="control-label">Password</label><i class="bar"></i>
+                    </div>
+                    <br>
+                    <!--<div class="form-group">
+                        <input type="text" name="role" required="required">
+                        <label for="role" class="control-label">Role</label><i class="bar"></i>
+                    </div>-->
+                    <br>
+
+                    <button type="submit" class="button"><span>Submit</span></button>
+
+                </form>
+
+            </div>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Any problem contact us
+        </a>
+        </div>
+
+    </div>
+    <style>
+        .demo-card-wide.mdl-card {
+            width: 512px;
+        }
+        
+        .demo-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url('http://getmdl.io/assets/demos/welcome_card.jpg') center / cover;
+        }
+        
+        .demo-card-wide > .mdl-card__menu {
+            color: #fff;
+        }
+        
+        body {
+            padding: 20px;
+            background: #fafafa;
+            position: relative;
+        }
+    </style>
+</body>
+
+</html>

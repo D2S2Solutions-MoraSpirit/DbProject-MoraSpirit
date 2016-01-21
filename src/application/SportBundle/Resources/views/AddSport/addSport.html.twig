@@ -1,8 +1,11 @@
-{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %} {% block midPanel %}
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
 
+{% block title %} Add Sport {% endblock %} 
+
+{% block midPanel %}
 <style>
     .form {
-        background-color: aqua;
+        /*background-color: aqua;*/
         background-size: contain;
         padding-top: 100;
         float: none;
@@ -16,6 +19,7 @@
         margin-right: auto;
         margin-bottom: 0;
         margin-left: auto;
+        align-items: center;
     }
 </style>
 <div class="container">
@@ -33,6 +37,10 @@
         </form>
     </div>
 </div>
+
+</div>
+
+
 
 
 {% endblock %}
