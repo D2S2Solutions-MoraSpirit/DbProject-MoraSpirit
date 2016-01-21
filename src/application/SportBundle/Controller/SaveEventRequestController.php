@@ -13,7 +13,7 @@ use application\MainBundle\Controller as cont;
 class SaveEventRequestController extends Controller
 {
     public function indexAction(){
-        $practiceSchedule= new en/PracticeSchedule();
+        $practiceSchedule= new en\PracticeSchedule();
         $practiceSchedule->setSportId($_POST["sport"]);
         $practiceSchedule->setResourceId($_POST["location"]);
         $practiceSchedule->setPractiseDate($_POST["date"]+"-"+$_POST["month"]+"2016");
