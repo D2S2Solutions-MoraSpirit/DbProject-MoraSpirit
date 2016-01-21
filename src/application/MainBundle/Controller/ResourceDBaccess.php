@@ -9,12 +9,12 @@
 namespace application\MainBundle\Controller;
 
 
-use application\MainBundle\Resources\Entity\resource;
+use application\MainBundle\Resources\Entity as en;
 use application\MainBundle\Controller as cont;
 
 class ResourceDBaccess
 {
-    public static function addResource(resource $rs)
+    public static function addResource(en\resource $rs)
     {
 
         $conn = connection::getConnectionObject();

@@ -39,11 +39,25 @@ class RequestDBaccess{
         $request_id = $request->getRequestId();
         $conn = cont\connection::getConnectionObject();
         $con =$conn->getConnection();
-        $sql="SELECT * FROM RequestResource WHERE request_id=$request_id";
-        $result=mysqli_query($con,$sql);
+        $sql = $con->prepare("SELECT * FROM RequestResource WHERE request_id=$request_id");
+
+
+
+
+        $sql->bind_param('s',$request_id);
+
+        $sql->execute();
+        $result = $sql->get_result();
+//
+
+
+
+
+
+
         $requestResources=array();
         $res_num=0;
-        while($row=mysqli_fetch_row($result)){
+        while($row = $result->fetch_assoc()){
             $requestResource =new en\ RequestResource();
 
             $requestResource->setResourceId($row[1]);

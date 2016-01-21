@@ -44,3 +44,7 @@ application_viewAvailableItems:
     path:     /ViewAvailableItems
     defaults: { _controller: applicationStudentBundle:Default:viewItem}
 
+application_viewAchievements:
+    path:     /ViewAchievements
+    defaults: { _controller: applicationStudentBundle:Default:viewAchievements}
+

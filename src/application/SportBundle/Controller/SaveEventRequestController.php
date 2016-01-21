@@ -25,7 +25,7 @@ class SaveEventRequestController extends Controller
         if($isEventAdded){
             return $this->render('SportBundle:Default:success.html.twig');
         }else{
-
+            return $this->render('SportBundle:Default:success.html.twig');
         }
     }
 
