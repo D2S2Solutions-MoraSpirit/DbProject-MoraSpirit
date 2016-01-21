@@ -71,6 +71,8 @@ CREATE TABLE StudentAchievement(
 );
  
 
+CREATE VIEW achievementView AS SELECT student_id,description,achievedDate,name  FROM Achievement NATURAL JOIN StudentAchievement nathural join sport;
+
 
 CREATE TABLE Supplier(
 	supplierId varchar(10),

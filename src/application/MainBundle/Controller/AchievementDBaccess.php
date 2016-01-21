@@ -11,11 +11,64 @@ namespace application\MainBundle\Controller;
 
 
 use application\MainBundle\Resources\Entity\Achievement;
+use application\MainBundle\Resources\Entity\achievementView;
 use application\MainBundle\Resources\Entity\resource as En;
 use application\MainBundle\Controller as cont;
 use application\MainBundle\Resources\Entity\Sport;
+use Symfony\Component\Validator\Tests\Fixtures\Entity;
 
 class AchievementDBaccess{
+
+
+    public static function getAllAchievements(){
+        try{
+            $conn=connection::getConnectionObject();
+            $con =$conn->getConnection();
+
+
+            $stm = $con->stmt_init();
+
+            $stm->prepare("SELECT * FROM achievementView where student_id=?");
+            $s="S-0001";
+            $stm->bind_param('s',$s);
+//
+//
+            $stm->execute();
+
+            $result = $stm->get_result();
+//
+
+            $achArray=array();
+
+
+            while ($row = $result->fetch_assoc())
+            {
+
+
+                $eqOb=new achievementView();
+                $eqOb->setName($row["name"]);
+                $eqOb->setDescription($row["description"]);
+                $eqOb->setAchievedDate($row["achievedDate"]);
+
+                $achArray[]=$eqOb;
+
+
+
+            }
+
+
+
+            return $achArray;
+        }catch (Exception $e){
+            return "error";
+        }finally{
+            //$conn->close();
+            // $stm->close();
+
+        }
+    }
+
+
     public static function getAllSports(){
         try{
             $conn=connection::getConnectionObject();
