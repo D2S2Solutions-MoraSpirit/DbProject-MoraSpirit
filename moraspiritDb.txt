@@ -29,6 +29,7 @@ CREATE TABLE StudentContact(
 );
 
 
+
 CREATE TABLE Sport(
 	sport_id varchar(10),
 	name varchar(15) NOT NULL UNIQUE,
@@ -36,14 +37,12 @@ CREATE TABLE Sport(
 
 );
 
-CREATE UNIQUE INDEX nameIndex ON Sport(name);
-
 
 CREATE TABLE Coach(
 	sport_id varchar(10) NOT NULL,
 	coach_id varchar(10),
 	coachName varchar(30),
-	PRIMARY KEY(coach_id,sport_id),
+	PRIMARY KEY(coach_id),
 	FOREIGN KEY f1(sport_id) REFERENCES Sport(sport_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -118,9 +117,6 @@ CREATE TABLE Equipment(
 	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE UNIQUE INDEX eqNameIndex ON Equipment(equipmentName );
-CREATE VIEW EquipmentView AS SELECT resource_id,equipmentName,boughtDate date FROM  Equipment;
-
 
 CREATE TABLE PracticeSchedule(
 	sport_id varchar(10),
@@ -166,7 +162,7 @@ CREATE TABLE RequestResource(
 	itemBorrowingDate date,
 	issueDate date,
 	returnDate date,
-	status int DEFAULT 1,
+	status boolean DEFAULT FALSE,
 	PRIMARY KEY(request_id,resource_id,itemBorrowingDate),
 	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id),
 	FOREIGN KEY f2(request_id) REFERENCES Request(request_id)  ON DELETE CASCADE ON UPDATE CASCADE
