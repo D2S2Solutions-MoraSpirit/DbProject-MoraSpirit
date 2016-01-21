@@ -2,10 +2,30 @@
 {% block title %}
     Add Scheduled Event
 {% endblock %}
+{% block scriptCodeBlock %}
+    <script>
+//        function validateFormauthor() {
+//            var x = document.forms["addSchedule"]["author"].value;
+//            if (x == null || x == "") {
+//                alert("Author must be filled out");
+//                return false;
+//            }
+//        }
+//        function validateFormlocation() {
+//            var x = document.forms["addSchedule"]["location"].value;
+//            if (x == null || x == "") {
+//                alert("location must be filled out");
+//                return false;
+//            }
+//        }
+
+    </script>
+
+    {% endblock %}
 {% block midPanel %}
     <div class="container">
         <h1>Add Scheduled Event</h1>
-        <form action="/sport/saveEvent" method ="post" >
+        <form action="/sport/saveEvent" name="addSchedule" method ="post" >
 
             {#<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">#}
                 {#<input class="mdl-textfield__input" type="text"  name="sport" id="sport" >#}
@@ -23,16 +43,16 @@
 
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text"  name="location" id="location" >
+                <input class="mdl-textfield__input" type="text"  name="location" id="location" required >
                 <label for="location" class="mdl-textfield__label">Location Name</label><i class="bar"></i>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="author" id="author">
+                <input class="mdl-textfield__input" type="text" name="author" id="author" required>
                 <label class="mdl-textfield__label" for="author">Author</label>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text"  name="numberofParticipants" id="numberofParticipants" pattern="-?[0-9]*(\.[0-9]+)?" >
+                <input class="mdl-textfield__input" type="number" min="1" max="250"  name="numberofParticipants" id="numberofParticipants" pattern="-?[0-9]*(\.[0-9]+)?" >
                 <label for="numberofParticipants" class="mdl-textfield__label">Number of Participants</label><i class="bar"></i>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
