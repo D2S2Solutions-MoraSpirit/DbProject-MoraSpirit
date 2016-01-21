@@ -6,11 +6,35 @@
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        .demo-card-wide.mdl-card {
+            width: 512px;
+        }
+
+        .demo-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url('http://getmdl.io/assets/demos/welcome_card.jpg') center / cover;
+        }
+
+        .demo-card-wide > .mdl-card__menu {
+            color: #fff;
+        }
+
+        body {
+            padding: 20px;
+            background: url("http://laban.rs/img/bgi/el_bg_img_5.jpg") center/cover;
+
+            position: relative;
+        }
+        
+    </style>
 </head>
 
 <body>
     <!-- Wide card with share menu button -->
-    <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="float=right;">
+    <div style="position: fixed ; padding-left: 400px">
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp" >
         <div class="mdl-card__title">
             <h2 class="mdl-card__title-text">Welcome</h2>
         </div>
@@ -26,7 +50,7 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <input type="text" name="password" required="required">
+                        <input type="password" name="password" required="required">
                         <label for="password" class="control-label">Password</label><i class="bar"></i>
                     </div>
                     <br>
@@ -49,27 +73,8 @@
         </div>
 
     </div>
-    <style>
-        .demo-card-wide.mdl-card {
-            width: 512px;
-        }
-        
-        .demo-card-wide > .mdl-card__title {
-            color: #fff;
-            height: 176px;
-            background: url('http://getmdl.io/assets/demos/welcome_card.jpg') center / cover;
-        }
-        
-        .demo-card-wide > .mdl-card__menu {
-            color: #fff;
-        }
-        
-        body {
-            padding: 20px;
-            background: #fafafa;
-            position: relative;
-        }
-    </style>
+        </div>
+
 </body>
 
 </html>
