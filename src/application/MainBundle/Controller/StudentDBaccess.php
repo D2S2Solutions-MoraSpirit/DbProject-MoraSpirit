@@ -14,17 +14,19 @@ use application\MainBundle\Resources\Entity\RequestResource;
 use application\MainBundle\Resources\Entity\Sport;
 use application\MainBundle\Resources\Entity\SportInvolve;
 use application\MainBundle\Resources\Entity\Student;
+use application\MainBundle\Resources\Entity\StudentContact;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 class StudentDBaccess
 {
 
-    public static function addStudent(Student $student)
+    public static function addStudent(Student $student, array $contact)
     {
 
         try {
             $conn = connection::getConnectionObject();
             $con = $conn->getConnection();
+            $con->autocommit(false);
 
             $sql = $con->prepare("INSERT INTO Student VALUES (?,?,?,?,?,? )");
 
@@ -36,17 +38,31 @@ class StudentDBaccess
             $address = $student->getAddress();
             $nic = $student->getNic();
 
+
             $sql->bind_param("ssssss", $studentId, $name, $batch, $faculty, $address, $nic);
 
 
             if ($sql->execute() == TRUE) {
-                echo "New record created successfully";
+
+                foreach ($contact as $value) {
+                    $isAdded = StudentDBaccess::addStudentContact($con, $studentId, $value);
+                    if ($isAdded == false) {
+                        $con->rollback();
+                        return false;
+                    }
+                }
+                $con->commit();
+                return true;
+
             } else {
-                echo "Error: " . $sql . "<br>";
+                $con->rollback();
+                return false;
+                // echo "Error: " . $sql . "<br>";
             }
-            return true;
+
         } catch (Exception $e) {
-            return "error";
+            $con->rollback();
+            return false;
         } finally {
             $con->close();
         }
@@ -104,7 +120,7 @@ class StudentDBaccess
             $status = $sportInvolve->getIsActive();
             $role = $sportInvolve->getRole();
 
-            $sql->bind_param("ssis",$studentId , $sportId,$status , $role);
+            $sql->bind_param("ssis", $studentId, $sportId, $status, $role);
 
 
             if ($sql->execute() == TRUE) {
@@ -143,6 +159,36 @@ class StudentDBaccess
         return $r + 1;
 
     }
+
+
+    public static function addStudentContact($con, $studentId, StudentContact $contact)
+    {
+
+        try {
+
+
+            //echo "thiss";
+            $sql = $con->prepare("INSERT INTO studentcontact VALUES (?,?)");
+
+            $cont = $contact->getContactNo();
+            //$cont="222";
+            echo $cont;
+
+            $sql->bind_param("ss", $studentId, $cont);
+
+
+            if ($sql->execute() == TRUE) {
+                echo "this is works";
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $w) {
+            return false;
+        }
+
+    }
+
 }
 
 
