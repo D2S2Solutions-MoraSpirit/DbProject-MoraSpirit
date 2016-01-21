@@ -61,10 +61,10 @@ class PracticeScheduleDBaccess
         $sportid=$practiceSchedule->getSportId();
         $resource_id=$practiceSchedule->getResourceId();
         $practiceDate=$practiceSchedule->getPractiseDate();
-        $practiceStartTime=$practiceSchedule->getPracticeStartTime();
-        $practiceEndTime=$practiceSchedule->getPracticeEndTime();
+        $practiceStartTime=$practiceSchedule->getPractiseStartTime();
+        $practiceEndTime=$practiceSchedule->getPractiseEndTime();
         $status=$practiceSchedule->getStatus();
-        $author=$practiceSchedule->getAutor();
+        $author=$practiceSchedule->getAuthor();
         $sql->bind_param("ssss", $sportid, $resource_id, $practiceDate, $practiceStartTime,$practiceEndTime,$author,$status);
         if ($sql->execute()==TRUE){
             return true;

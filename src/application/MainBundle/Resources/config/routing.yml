@@ -6,6 +6,10 @@ applicationMainAdminUI:
     path:     /adminMainPanel
     defaults: {_controller: applicationMainBundle:MainTemplate:mainTemplateAdmin }
 
+applicationMainUserUI:
+    path:     /userMainPanel
+    defaults: {_controller: applicationMainBundle:MainTemplate:mainTemplateUser }
+
 applicationTemplate:
     path:     /template
     defaults: { _controller: applicationMainBundle:MainTemplate:templateTest }
