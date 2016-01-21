@@ -124,7 +124,7 @@ class StudentDBaccess
 
 
             if ($sql->execute() == TRUE) {
-                //echo "New record created successfully";
+                echo "New record created successfully";
                 return true;
             } else {
                 //echo "Error: " . $sql . "<br>";
@@ -172,13 +172,13 @@ class StudentDBaccess
 
             $cont = $contact->getContactNo();
             //$cont="222";
-            echo $cont;
+            //echo $cont;
 
             $sql->bind_param("ss", $studentId, $cont);
 
 
             if ($sql->execute() == TRUE) {
-                echo "this is works";
+
                 return true;
             } else {
                 return false;
