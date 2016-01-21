@@ -17,7 +17,8 @@ CREATE TABLE Student(
 	faculty varchar(20) NOT NULL,
 	address varchar(100),
 	NIC char(10) UNIQUE,
-	PRIMARY KEY(student_id)
+	PRIMARY KEY(student_id),
+	FOREIGN KEY f1(student_id) REFERENCES AppUser(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE StudentContact(
