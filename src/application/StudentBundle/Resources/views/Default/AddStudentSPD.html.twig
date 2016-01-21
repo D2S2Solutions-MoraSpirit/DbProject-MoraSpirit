@@ -127,13 +127,12 @@
                 type: "GET",
                 data: {"student_id": studentID, "sportId": sportId, "status": status,"role":role},
                 success: function (data) {
-//                    if (data['status'] == true) {
-//                        alert("Successfully added the request");
-//                    } else {
-//                        alert("Unable to add request");
-//                    }
+                    if (data['status'] == true) {
+                        alert("Successfully added the request");
+                    } else {
+                        alert("Unable to add request");
+                    }
 
-                    alert("this is working well");
 
                 }
             });

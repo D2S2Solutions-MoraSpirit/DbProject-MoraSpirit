@@ -14,6 +14,7 @@ use application\MainBundle\Controller\StudentDBaccess;
 use application\MainBundle\Resources\Entity\SportInvolve;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use application\MainBundle\Resources\Entity;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SportInvolveController extends Controller
 {

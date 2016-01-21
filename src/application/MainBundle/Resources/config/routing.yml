@@ -4,8 +4,13 @@ application_main_homepage:
 
 applicationMainAdminUI:
     path:     /adminMainPanel
-    defaults: {_controller: applicationMainBundle:MainTemplate:mainTemplateAdmin }
+    defaults: { _controller: applicationMainBundle:MainTemplate:mainTemplateAdmin }
 
 applicationTemplate:
     path:     /template
     defaults: { _controller: applicationMainBundle:MainTemplate:templateTest }
+    
+newUserRegistering:
+    path:       /registerUser
+    defaults: { _controller: applicationMainBundle:User:authenticateUser}
+

@@ -34,12 +34,9 @@ final class connection
         $username = "root";
 
 
-
-
         $password = null;
 
         $dbname = "moraspirit";
-
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);

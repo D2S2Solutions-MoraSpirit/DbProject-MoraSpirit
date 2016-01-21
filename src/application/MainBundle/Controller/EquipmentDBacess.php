@@ -7,7 +7,7 @@
  */
 namespace application\MainBundle\Controller;
 use application\MainBundle\Resources\Entity\EquipmentType;
-use application\MainBundle\Resources\Entity\resource;
+use application\MainBundle\Resources\Entity as en;
 use mysqli;
 use application\MainBundle\Controller as cont;
 use  application\MainBundle\Resources\Entity\equipment;
@@ -15,23 +15,23 @@ use  application\MainBundle\Resources\Entity\requestResourceDamage;
 
 class EquipmentDBacess{
 
-    public  static  function saveToEquipment(equipment $eqpm,resource $rs)
+    public  static  function saveToEquipment(en\equipment $eqpm,en\resource $rs)
     {
         $conn = cont\connection::getConnectionObject();
         $con =$conn->getConnection();
         $r_id = $eqpm->getResourceID();
         $s_id = $rs->getSupplierID();
-        $sql = $con->prepare("INSERT INTO equipment VALUES (?,? )");
-
-
-        $sql = "INSERT INTO resource VALUES ( '$r_id'  , '$s_id' ) ";
+        $sql = $con->prepare("INSERT INTO resource VALUES (?,? )");
 
 
 
-        if ( $con->query($sql)==TRUE) {
-            echo "New record created successfully";
+
+        $sql->bind_param('ss',$r_id,$s_id);
+
+        if ( $sql->execute()==TRUE) {
+
         } else {
-            echo "Error: " . $sql . "<br>" ;
+
             return false;
         }
 
@@ -41,10 +41,11 @@ class EquipmentDBacess{
         $date= $eqpm->getDate();
         $name=$eqpm->getEquipmentName();
         $mysqltime = $eqpm->getDate();
-        echo $mysqltime;
 
-        $newsql = "insert into equipment Values('$r_id','$name','$quantity','$mysqltime')";
-        if ( $con->query($newsql)==TRUE) {
+
+        $newsql = $con->prepare("insert into equipment Values(?,?,?,?)");
+        $newsql->bind_param('ssss',$r_id,$name,$quantity,$mysqltime);
+        if ( $newsql->execute()==TRUE) {
             echo "New record created successfully";
             return true;
         } else {
@@ -192,7 +193,7 @@ class EquipmentDBacess{
 
 
     }
-    public static function updateResource(resource $rs){
+    public static function updateResource(en\resource $rs){
 
         $conn=connection::getConnectionObject();
         $con =$conn->getConnection();
