@@ -122,10 +122,7 @@ CREATE TABLE PracticeSchedule(
 	sport_id varchar(10),
 	resource_id varchar(10),
 	practiceDate date,
-	practiceStartTime time,
-	practiceEndTime time,
-	author varchar(30),
-	status varchar(10),
+	practiceTime time,
 	PRIMARY KEY(sport_id,resource_id,practiceDate,practiceTime),
 	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id),
 	FOREIGN KEY f2(sport_id) REFERENCES Sport(sport_id) ON DELETE CASCADE ON UPDATE CASCADE

@@ -1,10 +1,11 @@
+
 application_main_homepage:
     path:     /
     defaults: { _controller: applicationMainBundle:Default:index }
 
 applicationMainAdminUI:
     path:     /adminMainPanel
-    defaults: {_controller: applicationMainBundle:MainTemplate:mainTemplateAdmin }
+    defaults: { _controller: applicationMainBundle:MainTemplate:mainTemplateAdmin }
 
 applicationMainUserUI:
     path:     /userMainPanel
@@ -13,3 +14,7 @@ applicationMainUserUI:
 applicationTemplate:
     path:     /template
     defaults: { _controller: applicationMainBundle:MainTemplate:templateTest }
+    
+newUserRegistering:
+    path:       /registerUser
+    defaults: { _controller: applicationMainBundle:User:authenticateUser}
