@@ -6,6 +6,10 @@ applicationMainAdminUI:
     path:     /adminMainPanel
     defaults: { _controller: applicationMainBundle:MainTemplate:mainTemplateAdmin }
 
+applicationMainUserUI:
+    path:     /userMainPanel
+    defaults: {_controller: applicationMainBundle:MainTemplate:mainTemplateUser }
+
 applicationTemplate:
     path:     /template
     defaults: { _controller: applicationMainBundle:MainTemplate:templateTest }
@@ -13,4 +17,8 @@ applicationTemplate:
 newUserRegistering:
     path:       /registerUser
     defaults: { _controller: applicationMainBundle:User:authenticateUser}
+    
+logoutUser:
+    path:       /logout
+    defaults: { _controller: applicationMainBundle:User:logoutUser}
 

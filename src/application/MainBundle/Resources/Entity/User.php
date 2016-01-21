@@ -18,7 +18,7 @@ class User{
         return $this->user_id;
     }
     
-    public function setuserId($user_id)
+    public function setUserId($user_id)
     {
         $this->user_id = $user_id;
     }

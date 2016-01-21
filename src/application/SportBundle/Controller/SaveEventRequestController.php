@@ -17,11 +17,11 @@ class SaveEventRequestController extends Controller
         $practiceSchedule->setSportId($_POST["sport"]);
         $practiceSchedule->setResourceId($_POST["location"]);
         $practiceSchedule->setPractiseDate($_POST["date"]+"-"+$_POST["month"]+"2016");
-        $practiceSchedule->setPracticeStartTime($_POST["start_hour"].":".$_POST["start_minutes"].":00");
-        $practiceSchedule->setPracticeEndTime($_POST["end_hour"].":".$_POST["end_minutes"].":00");
+        $practiceSchedule->setPractiseStartTime($_POST["start_hour"].":".$_POST["start_minutes"].":00");
+        $practiceSchedule->setPractiseEndTime($_POST["end_hour"].":".$_POST["end_minutes"].":00");
         $practiceSchedule->setAuthor($_POST["author"]);
         $practiceSchedule->setStatus("Active");
-        $isEventAdded=cont\PracticeSchedule::saveScheduledEvent($practiceSchedule);
+        $isEventAdded=cont\PracticeScheduleDBaccess::saveScheduledEvent($practiceSchedule);
         if($isEventAdded){
             return $this->render('SportBundle:Default:success.html.twig');
         }else{

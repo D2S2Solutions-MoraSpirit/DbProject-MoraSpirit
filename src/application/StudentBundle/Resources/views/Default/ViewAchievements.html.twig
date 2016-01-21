@@ -1,0 +1,55 @@
+{% extends 'applicationMainBundle:Default:maintemplate.html.twig' %}
+
+{% block styleCodeBlocks %}
+
+
+    .mdl-data-table th {
+    margin-left: 60px;
+    margin-right: 360px;
+    background-color: #4CAF50;
+    color: white;
+    width: 220px;
+    text-align: center;
+    clear: both;
+    }
+
+    .mdl-data-table td,
+    caption {
+    font-family: myFirstFont;
+    text-align: center
+    }
+
+{% endblock %}
+
+{% block title %}
+    View Achievements
+{% endblock %}
+
+
+{% block midPanel %}
+    <div class="">
+        <table id="resourceItemTable"
+               class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+
+            <tr class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                <th>Sport Name</th>
+                <th>Description</th>
+                <th>Achieved Date</th>
+            </tr>
+
+            {% for x in ach %}
+                <tr>
+                    <td>{{ x.getName() }}</td>
+                    <td>{{ x.getDescription() }}</td>
+                    <td>{{ x.getAchievedDate() }}</td>
+                </tr>
+            {% endfor %}
+
+
+        </table>
+
+
+    </div>
+
+{% endblock %}
+
