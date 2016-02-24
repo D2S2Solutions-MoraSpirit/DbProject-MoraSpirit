@@ -17,7 +17,8 @@ CREATE TABLE Student(
 	faculty varchar(20) NOT NULL,
 	address varchar(100),
 	NIC char(10) UNIQUE,
-	PRIMARY KEY(student_id)
+	PRIMARY KEY(student_id),
+	FOREIGN KEY f1(student_id) REFERENCES AppUser(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE StudentContact(
@@ -29,7 +30,6 @@ CREATE TABLE StudentContact(
 );
 
 
-
 CREATE TABLE Sport(
 	sport_id varchar(10),
 	name varchar(15) NOT NULL UNIQUE,
@@ -37,12 +37,14 @@ CREATE TABLE Sport(
 
 );
 
+CREATE UNIQUE INDEX nameIndex ON Sport(name);
+
 
 CREATE TABLE Coach(
 	sport_id varchar(10) NOT NULL,
 	coach_id varchar(10),
 	coachName varchar(30),
-	PRIMARY KEY(coach_id),
+	PRIMARY KEY(coach_id,sport_id),
 	FOREIGN KEY f1(sport_id) REFERENCES Sport(sport_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -77,8 +79,6 @@ CREATE TABLE StudentAchievement(
 	FOREIGN KEY f2(student_id) REFERENCES Student(student_id) ON DELETE CASCADE ON UPDATE CASCADE	
 );
  
-
-CREATE VIEW achievementView AS SELECT student_id,description,achievedDate,name  FROM Achievement NATURAL JOIN StudentAchievement nathural join sport;
 
 
 CREATE TABLE Supplier(
@@ -119,6 +119,9 @@ CREATE TABLE Equipment(
 	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE UNIQUE INDEX eqNameIndex ON Equipment(equipmentName );
+CREATE VIEW EquipmentView AS SELECT resource_id,equipmentName,boughtDate date FROM  Equipment;
+
 
 CREATE TABLE PracticeSchedule(
 	sport_id varchar(10),
@@ -128,7 +131,7 @@ CREATE TABLE PracticeSchedule(
 	practiceEndTime time,
 	author varchar(30),
 	status varchar(10),
-	PRIMARY KEY(sport_id,resource_id,practiceDate,practiceTime),
+	PRIMARY KEY(sport_id,resource_id,practiceDate,practiceStartTime),
 	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id),
 	FOREIGN KEY f2(sport_id) REFERENCES Sport(sport_id) ON DELETE CASCADE ON UPDATE CASCADE
 	
@@ -164,7 +167,7 @@ CREATE TABLE RequestResource(
 	itemBorrowingDate date,
 	issueDate date,
 	returnDate date,
-	status boolean DEFAULT FALSE,
+	status int DEFAULT 1,
 	PRIMARY KEY(request_id,resource_id,itemBorrowingDate),
 	FOREIGN KEY f1(resource_id) REFERENCES Resource(resource_id),
 	FOREIGN KEY f2(request_id) REFERENCES Request(request_id)  ON DELETE CASCADE ON UPDATE CASCADE

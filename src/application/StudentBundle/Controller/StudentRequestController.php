@@ -26,7 +26,8 @@ class StudentRequestController extends Controller
         //$sportList=SportDBaccess::getAllSports();
         $eqList=formController::getAllEqupiments();
         $locationList=LocationDBaccess::getAllLocations();
-        return $this->render('applicationStudentBundle:Default:StudentRequest.html.twig',array('eqList'=>$eqList,'locationList'=>$locationList));
+        $lastId=StudentRequestDBaccess::getLastStudentID();
+        return $this->render('applicationStudentBundle:Default:StudentRequest.html.twig',array('lastId'=>$lastId,'eqList'=>$eqList,'locationList'=>$locationList));
     }
 
 

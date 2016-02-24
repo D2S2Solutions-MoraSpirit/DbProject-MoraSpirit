@@ -21,14 +21,31 @@ class StudentController extends Controller
 
 
         $telArray=array();
-        for($x=0;$x< $_POST["hiddenText"];$x++){
+        $contact=new Entity\StudentContact();
+        $contact->setStudentId($_POST["student_id"]);
+
+        $telNo1=$_POST["telNo1"];
+        $telNo2=$_POST["telNo2"];
+
+        //$telArray[]=$contact;
+
+        if($telNo1!=""){
             $contact=new Entity\StudentContact();
             $contact->setStudentId($_POST["student_id"]);
-            $contact->setContactNo($_POST["telephone"][$x]);
+            $contact->setContactNo($telNo1);
             $telArray[]=$contact;
         }
+
+        if($telNo2!=""){
+            $contact2=new Entity\StudentContact();
+            $contact2->setStudentId($_POST["student_id"]);
+            $contact2->setContactNo($telNo2);
+            $telArray[]=$contact2;
+        }
+
+
         //$v=$telArray[1];
-        //echo $v->getContactNo();
+        //echo $telArray.length;
         cont\StudentDBaccess::addStudent($student,$telArray);
         return $this->render('applicationMainBundle:Default:index.html.twig');
     }

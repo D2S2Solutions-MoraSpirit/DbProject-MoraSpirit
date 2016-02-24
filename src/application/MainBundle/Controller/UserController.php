@@ -50,7 +50,7 @@ class UserController extends Controller
     }
     
     public function userHomeAction(){
-        if ($$_SESSION["urole"]=="a"){
+        if ($_SESSION["urole"]=="a"){
                 return $this->render('applicationMainBundle:Default:mainUIAdmin.html.twig');
             }
         else if ($_SESSION["urole"]=="b"){
